@@ -381,7 +381,7 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                                 {activePost.title}
                             </h1>
 
-                            <div className={`text-lg md:text-xl leading-relaxed opacity-90 font-serif ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                            <div className={`font-serif text-lg md:text-lg leading-relaxed ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                                 {activePost.content}
                             </div>
 
