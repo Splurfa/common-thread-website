@@ -1,0 +1,374 @@
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, X, Sun, Moon, ArrowRight, Clock, Calendar } from 'lucide-react';
+import { SerifDisplay, MonoLabel, BodyText } from './Typography';
+import { VisualOrbital, VisualNet, VisualFlock, VisualMagnet } from './visual-drafts/Drafts';
+
+interface BlogPost {
+    id: number;
+    title: string;
+    excerpt: string;
+    date: string;
+    readTime: string;
+    category: string;
+    content: React.ReactNode;
+    Visual: React.FC;
+}
+
+const BLOG_POSTS: BlogPost[] = [
+    {
+        id: 1,
+        title: "The Human Standard",
+        excerpt: "Delegation means loss. Context fades in transit. What if nothing got lost?",
+        date: "Nov 22, 2024",
+        readTime: "4 min read",
+        category: "Philosophy",
+        Visual: VisualOrbital,
+        content: (
+            <>
+                <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
+                    You've felt this before. Someone remembers not just what you said, but why. The context. The nuance. The unspoken rules. That's delegation that works. And it's disappearing.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Problem We Don't Talk About</h3>
+                <p className="mb-6">
+                    The distance between what you decide and what actually happens—that's where businesses lose momentum. You make a strategic decision. Clear, well-reasoned, urgent. Then it enters the machinery of execution. Forms. Briefings. Systems. Processes.
+                </p>
+                <p className="mb-6">
+                    Somewhere in that translation, the urgency fades. The nuance gets lost. The intent becomes diluted. By the time the work is done, it's not quite what you meant. This isn't a failure of people. It's not a failure of tools. It's the nature of how work happens today.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">What Delegation Could Feel Like</h3>
+                <p className="mb-6">
+                    Imagine someone who never forgets. Not just the tasks. The reasons behind them. The strategic context. The edge cases you mentioned once, six months ago. Someone who doesn't need re-briefing.
+                </p>
+                <p className="mb-6">
+                    Three kinds of memory matter: What happened. How it's done. What's true for you. Most systems forget all three. What if nothing got lost?
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Invisible Machine</h3>
+                <p className="mb-6">
+                    There is a version of your business where you direct, and the world arranges itself accordingly. You provide the unique human signal—the connection. Infrastructure handles the rest. The machinery in between? Invisible.
+                </p>
+                <p className="mb-6">
+                    When you delegate, nothing gets lost. When you decide, it happens. The gap between intent and execution compresses to nearly zero. What remains is what should remain. Your judgment. Your strategy. Your focus on what actually matters.
+                </p>
+            </>
+        )
+    },
+    {
+        id: 2,
+        title: "The Distance Between Decision and Reality",
+        excerpt: "The gap between strategic intent and operational execution is the invisible killer of business momentum.",
+        date: "Nov 15, 2024",
+        readTime: "5 min read",
+        category: "Strategy",
+        Visual: VisualNet,
+        content: (
+            <>
+                <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
+                    You made a clear decision. Strategic, well-reasoned, urgent. Then it entered the machinery of execution—forms, briefings, configurations, processes. Somewhere in that translation, the urgency faded.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Mapping the Gap</h3>
+                <p className="mb-6">
+                    The moment of strategic clarity is often the high point of momentum. From there, it's a series of handoffs. Intent to instruction. Instruction to configuration. Configuration to execution. Each layer is another game of telephone where meaning degrades.
+                </p>
+                <p className="mb-6">
+                    We've normalized this. We accept "that's not quite what I meant" as the cost of doing business. We resign ourselves to iterative correction. But why have we normalized strategic drag?
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Compression Hypothesis</h3>
+                <p className="mb-6">
+                    What if the gap could approach zero? This isn't about speed—it's about preservation. When direction and execution become continuous, strategic agility becomes a competitive advantage.
+                </p>
+                <p className="mb-6">
+                    The cumulative cost of distance is staggering. Opportunities lost during delay. Momentum that never builds. Innovation that dies in translation. When that latency disappears, time returns to its rightful owner: the human mind.
+                </p>
+            </>
+        )
+    },
+    {
+        id: 3,
+        title: "The Bandwidth Paradox",
+        excerpt: "Why the businesses that need automation most are the ones that can't afford the time to adopt it.",
+        date: "Nov 08, 2024",
+        readTime: "4 min read",
+        category: "Operations",
+        Visual: VisualFlock,
+        content: (
+            <>
+                <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
+                    Here's the cruel irony: the businesses that need operational support most are running so lean they can't afford the time to set it up. Every tool requires configuration, training, ongoing management.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Adoption Tax</h3>
+                <p className="mb-6">
+                    For companies already stretched thin, the burden of adoption becomes heavier than the burden of the status quo. Research, configuration, training, integration—it's a tax on bandwidth that small teams simply cannot pay.
+                </p>
+                <p className="mb-6">
+                    This locks out the very people automation was supposed to serve. Small businesses, startups in growth mode, solo founders wearing all hats. The math doesn't work for those who need it most.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Rethinking the Interface</h3>
+                <p className="mb-6">
+                    What if adoption felt like hiring, not configuring? You wouldn't configure a new hire. You'd brief them. You'd direct them. You'd trust them.
+                </p>
+                <p className="mb-6">
+                    What if the barrier wasn't price, but bandwidth? What if onboarding felt less like "learning a new system" and more like "bringing on a trusted colleague"? Natural language as the only interface. Brief instead of train. Direct instead of manage.
+                </p>
+            </>
+        )
+    },
+    {
+        id: 4,
+        title: "The Invisible Service Standard",
+        excerpt: "The best technology is the technology you never think about. Not hidden—irrelevant to your experience.",
+        date: "Nov 01, 2024",
+        readTime: "4 min read",
+        category: "Service",
+        Visual: VisualMagnet,
+        content: (
+            <>
+                <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
+                    You don't think about how a phone call works. You just talk, and the person on the other end hears you. The technology is invisible—not hidden, but irrelevant to your experience.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Visibility Problem</h3>
+                <p className="mb-6">
+                    Most tools demand constant attention. Configuration, management, monitoring. The cognitive overhead of "using" something consumes mental real estate. Visibility correlates with friction.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Invisible vs. Hidden</h3>
+                <p className="mb-6">
+                    Hidden implies secrecy. Invisible means irrelevant to experience. You could understand it if you wanted, but you don't need to. Like electricity. Like a trusted colleague.
+                </p>
+                <p className="mb-6">
+                    When the process is invisible, the connection becomes infinite. You think about outcomes, not mechanisms. Strategic focus instead of operational focus. Direction instead of management. The space between decision and result disappears.
+                </p>
+            </>
+        )
+    }
+];
+
+export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+    const [activePost, setActivePost] = useState<BlogPost | null>(null);
+    // Initialize theme from localStorage or default to 'dark'
+    const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem('blog-theme');
+            return (savedTheme === 'dark' || savedTheme === 'light') ? savedTheme : 'dark';
+        }
+        return 'dark';
+    });
+
+    // Persist theme changes
+    useEffect(() => {
+        localStorage.setItem('blog-theme', theme);
+    }, [theme]);
+
+    // Routing Logic
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash;
+            if (hash.startsWith('#blog/')) {
+                const postId = hash.replace('#blog/', '');
+                const post = BLOG_POSTS.find(p => p.id === parseInt(postId));
+                if (post) {
+                    setActivePost(post);
+                } else {
+                    // If post not found, redirect to blog list
+                    window.location.hash = '#blog';
+                }
+            } else if (hash === '#blog') {
+                setActivePost(null);
+            } else {
+                // If hash is not blog related, ensure blog is closed
+                setActivePost(null);
+                // Optionally, you might want to call onClose() here if the blog should only be open via #blog hash
+                // However, for this component, it's assumed to be rendered when the user wants to see the blog.
+            }
+        };
+
+        // Check on mount
+        handleHashChange();
+
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
+
+    const handleCardClick = (post: BlogPost) => {
+        window.location.hash = `#blog/${post.id}`;
+    };
+
+    const handleBack = () => {
+        if (activePost) {
+            // Go back to list
+            window.location.hash = '#blog';
+        } else {
+            // Close blog
+            onClose();
+        }
+    };
+
+    // Colors based on theme
+    // We use inline styles for background to ensure it applies correctly over the fixed container
+    const textClass = theme === 'dark' ? 'text-white' : 'text-[#1a1a1a]';
+    const textMutedClass = theme === 'dark' ? 'text-white/60' : 'text-[#1a1a1a]/60';
+    const borderClass = theme === 'dark' ? 'border-white/10' : 'border-black/10';
+
+    // Card Styles with Subtle Depth
+    const cardBaseClass = theme === 'dark'
+        ? 'bg-white/[0.02] border border-white/[0.05] shadow-sm hover:bg-white/[0.04] hover:border-white/10 hover:shadow-md'
+        : 'bg-black/[0.02] border border-black/[0.05] shadow-sm hover:bg-black/[0.04] hover:border-black/10 hover:shadow-md';
+
+    return (
+        <div
+            className={`fixed inset-0 z-[80] ${textClass} overflow-y-auto transition-colors duration-500`}
+            style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
+        >
+
+            {/* Header - Matched padding with App.tsx for alignment */}
+            <div
+                className={`fixed top-0 left-0 w-full p-6 md:p-12 lg:p-16 flex justify-between items-center z-50 transition-colors duration-500`}
+                style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
+            >
+                {/* Back Navigation - Context Aware */}
+                <button
+                    onClick={handleBack}
+                    className={`group flex items-center gap-3 font-mono font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs ${theme === 'dark' ? 'text-white opacity-80 hover:opacity-100' : 'text-black opacity-60 hover:opacity-100'} transition-opacity`}
+                >
+                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                    {activePost ? 'Insights' : 'Common Thread'}
+                </button>
+
+                {/* Theme Toggle - Right Aligned */}
+                <div className="flex items-center gap-3">
+                    <Moon className={`w-4 h-4 ${theme === 'dark' ? 'text-white' : 'text-black/40'}`} />
+                    <button
+                        onClick={toggleTheme}
+                        className={`
+                            w-12 h-6 rounded-full p-1 transition-colors duration-300 relative
+                            ${theme === 'dark' ? 'bg-white/20' : 'bg-black/10'}
+                        `}
+                        aria-label="Toggle Theme"
+                    >
+                        <div
+                            className={`
+                                w-4 h-4 rounded-full shadow-sm transition-transform duration-300
+                                ${theme === 'dark' ? 'bg-white translate-x-0' : 'bg-white translate-x-6'}
+                            `}
+                        />
+                    </button>
+                    <Sun className={`w-4 h-4 ${theme === 'dark' ? 'text-white/40' : 'text-black'}`} />
+                </div>
+            </div>
+
+            {/* Content Area */}
+            <div className="pt-32 md:pt-40 pb-20 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto min-h-screen">
+
+                {activePost ? (
+                    // --- Detail View ---
+                    <div className="animate-in fade-in slide-in-from-bottom-8 duration-500">
+                        {/* Mobile Back Button (Duplicate for convenience) */}
+                        <button
+                            onClick={handleBack}
+                            className={`md:hidden group flex items-center gap-2 mb-8 font-mono text-xs uppercase tracking-widest ${textMutedClass} hover:opacity-100 transition-opacity`}
+                        >
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                            Back to Insights
+                        </button>
+
+                        <article className="max-w-3xl mx-auto">
+                            {/* Hero Visual for Article - Always Dark Background */}
+                            <div className="w-full h-64 md:h-96 mb-12 rounded-lg overflow-hidden relative bg-[#0a0a0a] border border-white/5">
+                                <activePost.Visual />
+                            </div>
+
+                            <div className={`flex items-center gap-4 mb-8 ${textMutedClass} font-mono text-xs tracking-widest uppercase`}>
+                                <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {activePost.date}</span>
+                                <span className="w-px h-3 bg-current opacity-30" />
+                                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {activePost.readTime}</span>
+                                <span className="w-px h-3 bg-current opacity-30" />
+                                <span className="text-blue-400">{activePost.category}</span>
+                            </div>
+
+                            <h1 className="font-serif text-4xl md:text-6xl mb-8 leading-tight">
+                                {activePost.title}
+                            </h1>
+
+                            <div className={`text-lg md:text-xl leading-relaxed opacity-90 font-serif ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {activePost.content}
+                            </div>
+
+                            <div className={`mt-16 pt-8 border-t ${borderClass}`}>
+                                <p className="font-mono text-xs uppercase tracking-widest opacity-50 mb-4">Share this article</p>
+                                <div className="flex gap-4">
+                                    {['Twitter', 'LinkedIn', 'Email'].map(platform => (
+                                        <button key={platform} className={`text-sm hover:underline ${textMutedClass} hover:opacity-100`}>
+                                            {platform}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                ) : (
+                    // --- List View ---
+                    <div className="animate-in fade-in duration-500">
+                        <div className="mb-16 md:mb-24 max-w-4xl">
+                            <h1 className="font-serif text-5xl md:text-7xl mb-6">Insights</h1>
+                            <p className={`text-xl md:text-2xl max-w-2xl ${textMutedClass} font-serif`}>
+                                Thoughts on the intersection of technology, human agency, and the future of work.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {BLOG_POSTS.map((post) => (
+                                <div
+                                    key={post.id}
+                                    className={`group flex flex-col gap-6 p-8 rounded-2xl transition-all duration-300 ${cardBaseClass}`}
+                                >
+                                    {/* Card Visual Preview - Always Dark Background & No Click Propagation */}
+                                    <div
+                                        className="w-full h-48 rounded-lg overflow-hidden relative bg-[#0a0a0a] border border-white/5 opacity-80 group-hover:opacity-100 transition-opacity cursor-default"
+                                    >
+                                        <div className="absolute inset-0">
+                                            <post.Visual />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col gap-4">
+                                        <div className={`flex items-center justify-between font-mono text-xs uppercase tracking-widest ${textMutedClass}`}>
+                                            <span>{post.category}</span>
+                                            <span>{post.date}</span>
+                                        </div>
+
+                                        <div className="inline-block py-2 px-2 -mx-2">
+                                            <h2
+                                                onClick={() => handleCardClick(post)}
+                                                className="font-serif text-3xl md:text-4xl cursor-pointer transition-all duration-500 ease-out transform hover:scale-105"
+                                                style={{ transformOrigin: 'center center' }}
+                                            >
+                                                {post.title}
+                                            </h2>
+                                        </div>
+
+                                        <p className={`line-clamp-3 ${textMutedClass} text-sm md:text-base leading-relaxed`}>
+                                            {post.excerpt}
+                                        </p>
+
+                                        <div className="inline-block py-1 px-1 -mx-1">
+                                            <div
+                                                onClick={() => handleCardClick(post)}
+                                                className={`inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest mt-2 ${theme === 'dark' ? 'text-blue-300' : 'text-blue-600'} cursor-pointer opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:scale-105`}
+                                                style={{ transformOrigin: 'center center' }}
+                                            >
+                                                Read Article <ArrowRight className="w-3 h-3" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+            </div>
+        </div>
+    );
+};

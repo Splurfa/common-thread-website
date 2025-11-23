@@ -1,0 +1,2890 @@
+<!-- 15920982-758d-43de-a173-e42bb35358d5 25f12758-ff7e-42f0-b9d2-e0173123e2e2 -->
+# Fix Layout and Spacing for Main and Supporting Content
+
+## Diagnosis
+
+The previous update to `desktopSupportClass` replaced the layout-affecting properties (`max-h`, `mt`) with transform-only properties. This caused two issues:
+
+1.  **Wrong Positioning:** Without `max-h-0` in the hidden state, the invisible supporting content retained its height, causing the flex container to center the entire block (pushing the visible Main Content up).
+2.  **Missing Spacing:** Without `mt-8 md:mt-6` in the visible state, the supporting content (and separator line) collapsed directly against the main content.
+
+## The Fix
+
+We need to reinstate the layout properties (`max-h`, `mt`) alongside the new transform properties (`translate`, `blur`, `opacity`) to ensure both correct positioning and unified animation.
+
+## Implementation
+
+**File:** `App.tsx`
+
+**Update `desktopSupportClass` logic:**
+
+```tsx
+  // Supporting Content: Slides UP and Fades IN when detail is shown
+  // It follows the exact same motion vector as the main content
+  const desktopSupportClass = !isTransitioning
+    ? (showDetail
+      ? `opacity-100 blur-0 md:-translate-y-12 max-h-[500px] mt-8 md:mt-6` // Visible: Layout + Position + Spacing
+      : `opacity-0 blur-0 translate-y-0 max-h-0 mt-0`)                     // Hidden: Collapsed layout
+    : `opacity-0 blur-sm translate-y-8 max-h-0 mt-0`;                       // Transitioning: Collapsed + Motion
+```
+
+This ensures:
+
+- **Hidden/Transitioning:** Height collapses (`max-h-0`), ensuring Main Content centers perfectly on screen.
+- **Visible:** Height expands and Margin is applied (`mt-8`), creating the necessary gap between Main Content and the line break.
+- **Motion:** The `translate` and `blur` effects remain to keep the "unison" feel.
+
+### To-dos
+
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Apply new hierarchy: Dominant Names/Statements, Receded Titles in Section 5
+- [ ] Verify new visual hierarchy
+- [ ] Refine Section 5 spacing (increase gap between founders, increase margin above statement) and soften statement text (reduce opacity)
+- [ ] Verify spacing and weight adjustments
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Tighten Section 5 spacing: mt-0 for titles, mt-3 for statements to create cohesive blocks
+- [ ] Verify tightened grouping and visual hierarchy
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Apply new hierarchy: Dominant Names/Statements, Receded Titles in Section 5
+- [ ] Verify new visual hierarchy
+- [ ] Refine Section 5 spacing (increase gap between founders, increase margin above statement) and soften statement text (reduce opacity)
+- [ ] Verify spacing and weight adjustments
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Apply new hierarchy: Dominant Names/Statements, Receded Titles in Section 5
+- [ ] Verify new visual hierarchy
+- [ ] Refine Section 5 spacing (increase gap between founders, increase margin above statement) and soften statement text (reduce opacity)
+- [ ] Verify spacing and weight adjustments
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Tighten Section 5 spacing: mt-0 for titles, mt-3 for statements to create cohesive blocks
+- [ ] Verify tightened grouping and visual hierarchy
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Apply new hierarchy: Dominant Names/Statements, Receded Titles in Section 5
+- [ ] Verify new visual hierarchy
+- [ ] Refine Section 5 spacing (increase gap between founders, increase margin above statement) and soften statement text (reduce opacity)
+- [ ] Verify spacing and weight adjustments
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Update section 5 titles to full text and apply amber-200 color with refined spacing
+- [ ] Verify visual hierarchy and spacing
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Align transition timing in nextSlide/prevSlide/changeSlide to 800ms
+- [ ] Implement strict cooldown wheel handler in App.tsx
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
+- [ ] Implement gesture-based locking in desktop wheel handler
+- [ ] Modify handleWheel function to prevent accumulation during processing and add proper debouncing for trackpad gestures
