@@ -216,8 +216,19 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         ? 'bg-white/[0.02] border border-white/[0.05] shadow-sm hover:bg-white/[0.04] hover:border-white/10 hover:shadow-md'
         : 'bg-black/[0.02] border border-black/[0.05] shadow-sm hover:bg-black/[0.04] hover:border-black/10 hover:shadow-md';
 
+    // Scroll Container Ref
+    const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+    // Scroll to top when activePost changes
+    useEffect(() => {
+        if (activePost && scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTop = 0;
+        }
+    }, [activePost]);
+
     return (
         <div
+            ref={scrollContainerRef}
             className={`fixed inset-0 z-[80] ${textClass} overflow-y-auto transition-colors duration-500`}
             style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
         >
