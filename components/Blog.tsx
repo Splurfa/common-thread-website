@@ -275,14 +275,7 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 {activePost ? (
                     // --- Detail View ---
                     <div className="animate-in fade-in slide-in-from-bottom-8 duration-500">
-                        {/* Mobile Back Button (Duplicate for convenience) */}
-                        <button
-                            onClick={handleBack}
-                            className={`md:hidden group flex items-center gap-2 mb-8 font-mono text-xs uppercase tracking-widest ${textMutedClass} hover:opacity-100 transition-opacity`}
-                        >
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            Back to Insights
-                        </button>
+
 
                         <article className="max-w-3xl mx-auto">
                             {/* Hero Visual for Article - Always Dark Background */}
