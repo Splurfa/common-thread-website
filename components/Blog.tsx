@@ -26,46 +26,48 @@ const BLOG_POSTS: BlogPost[] = [
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
-                    You've felt this before. Someone remembers not just what you said, but why. The context. The nuance. The unspoken rules. That's delegation that works. And it's disappearing.
+                    You've felt this before. Someone remembers not just what you said, but why. The context. The nuance. The unspoken rules. Delegation that works. It's disappearing.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Problem We Don't Talk About</h3>
                 <p className="mb-6">
-                    The distance between what you decide and what actually happens: that's where businesses lose momentum. You make a strategic decision. Clear, well-reasoned, urgent. Then it enters the machinery of execution. Forms. Briefings. Systems. Processes.
+                    Strategic intent meets operational friction. Momentum dies in translation. You make a decision. Clear. Reasoned. Urgent. Then it enters the machinery: forms, briefings, systems, processes.
                 </p>
                 <p className="mb-6">
-                    Somewhere in that translation, the urgency fades. The nuance gets lost. The intent becomes diluted. By the time the work is done, it's not quite what you meant. This isn't a failure of people. It's not a failure of tools. It's the nature of how work happens today.
+                    The urgency fades. The nuance evaporates. The intent dilutes. By the time the work is done, it's not quite what you meant. Not a failure of people. Not a failure of systems. The nature of how work happens when distance exists between decision and execution.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">What Delegation Could Feel Like</h3>
                 <p className="mb-6">
-                    Imagine someone who never forgets. Not just the tasks. The reasons behind them. The strategic context. The edge cases you mentioned once, six months ago. Someone who doesn't need re-briefing.
+                    Someone who never forgets. Not just tasks. The reasons behind them. The strategic context. The edge case mentioned once, six months ago. No re-briefing required.
                 </p>
                 <p className="mb-6">
-                    Three kinds of memory matter: What happened. How it's done. What's true for you. Most relationships start from zero each time. What if nothing got lost?
+                    Three kinds of memory matter. What happened. How it's done. What's true for you. Most relationships start from zero each time. What if nothing got lost?
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Invisible Machine</h3>
                 <p className="mb-6">
-                    There is a version of your business where you direct, and the world arranges itself accordingly. You provide the unique human signal: the connection. Your direction flows directly into action. The infrastructure disappears from your experience. The machinery in between? Invisible.
+                    There is a version of your business where you direct, and the world arranges itself accordingly. You provide the unique human signal: the connection. Direction flows directly into action. Infrastructure disappears from your experience. The machinery in between becomes irrelevant.
                 </p>
                 <p className="mb-6">
-                    When you delegate, nothing gets lost. When you decide, it happens. The gap between intent and execution compresses to nearly zero. What remains is what should remain. Your judgment. Your strategy. Your focus on what actually matters.
+                    When you delegate, nothing gets lost. When you decide, it happens. The gap between intent and execution compresses to nearly zero. What remains is what should remain: your judgment, your strategy, your focus on what actually matters.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Building the Standard</h3>
+                <p className="mb-6">
+                    Not speculation. The standard we're building toward.
                 </p>
                 <p className="mb-6">
-                    This is not speculation. This is the standard we're building toward.
+                    The human standard means delegation that preserves context completely. Infrastructure that translates executive intent into operational reality without degradation. The distance between your decision and the world's response approaches zero.
                 </p>
                 <p className="mb-6">
-                    The human standard means delegation that preserves context completely. It means infrastructure that translates executive intent into operational reality without degradation. It means the distance between your decision and the world's response approaches zero.
+                    Most systems ask you to become more mechanical. Speak the language of machines. Think in workflows. Translate intent into configurations. We're building the opposite: you speak, the work happens. Context preserved. What you said and why both remembered.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">The Work Is Real</h3>
+                <p className="mb-6">
+                    This way of working exists. The transformation is proven. What remains is execution.
                 </p>
                 <p className="mb-6">
-                    Most tools ask you to become more mechanical: to speak the language of machines, to think in workflows, to translate your intent into configurations. We're building the opposite: you speak, the work happens. Context is understood. What you said and why—both remembered.
+                    Common Thread builds the invisible machinery that eliminates the gap between strategic clarity and operational execution. Not someday. Now.
                 </p>
                 <p className="mb-6">
-                    This way of working is real. The transformation is proven. What remains is execution.
-                </p>
-                <p className="mb-6">
-                    This is what Common Thread builds: the invisible machinery that eliminates the gap between strategic clarity and operational execution. Not someday. Now.
-                </p>
-                <p className="mb-6">
-                    The question is no longer whether this level of delegation is possible. The question is whether you're ready to operate at this standard.
+                    The question is no longer whether this level of delegation is possible. The question is whether you're ready to work this way.
                 </p>
             </>
         )
@@ -81,43 +83,43 @@ const BLOG_POSTS: BlogPost[] = [
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
-                    You made a clear decision. Strategic, well-reasoned, urgent. Then it entered the machinery of execution: forms, briefings, configurations, processes. Somewhere in that translation, the urgency faded.
+                    You made a clear decision. Strategic. Reasoned. Urgent. Then it entered the machinery: forms, briefings, configurations, processes. Somewhere in that translation, the urgency faded.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">Mapping the Gap</h3>
                 <p className="mb-6">
-                    The moment of strategic clarity is often the high point of momentum. From there, it's a series of handoffs. Intent to instruction. Instruction to configuration. Configuration to execution. Each layer is another game of telephone where meaning degrades.
+                    Strategic clarity is the high point. From there, a series of handoffs. Intent to instruction. Instruction to configuration. Configuration to execution. Each layer another game of telephone. Meaning degrades.
                 </p>
                 <p className="mb-6">
-                    We've normalized this. We accept "that's not quite what I meant" as the cost of doing business. We resign ourselves to iterative correction. But why have we normalized strategic drag?
+                    We've normalized this. "That's not quite what I meant" becomes cost of doing business. Iterative correction becomes routine. Why have we normalized strategic drag?
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Compression Hypothesis</h3>
                 <p className="mb-6">
-                    What if the gap could approach zero? This isn't about speed. It's about preservation. When direction and execution become continuous, strategic agility becomes a competitive advantage.
+                    What if the gap could approach zero? Not about speed. About preservation. When direction and execution become continuous, strategic agility becomes competitive advantage.
                 </p>
                 <p className="mb-6">
-                    The cumulative cost of distance is staggering. Opportunities lost during delay. Momentum that never builds. Innovation that dies in translation. When that latency disappears, time returns to its rightful owner: the human mind.
+                    The cumulative cost of distance is staggering. Opportunities lost in delay. Momentum that never builds. Innovation dying in translation. When that latency disappears, time returns to its rightful owner: the human mind.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">How Latency Disappears</h3>
                 <p className="mb-6">
                     The distance collapses when three things stay intact.
                 </p>
                 <p className="mb-6">
-                    <strong>What happened.</strong> Context doesn't evaporate between conversations. Last quarter's decision informs this quarter's execution. The history travels with the work.
+                    <strong>What happened.</strong> Context doesn't evaporate between conversations. Last quarter's decision informs this quarter's execution. History travels with the work.
                 </p>
                 <p className="mb-6">
-                    <strong>How it's done.</strong> Process becomes muscle memory. The workflow for client X. The format you prefer for reports. The sequence that works. Not documented, but internalized.
+                    <strong>How it's done.</strong> Process becomes muscle memory. The workflow for client X. The format you prefer. The sequence that works. Not documented. Internalized.
                 </p>
                 <p className="mb-6">
-                    <strong>What's true for you.</strong> Your company values precision over speed in finance. Speed over precision in marketing. Different rules for different contexts. These principles shape judgment without explanation.
+                    <strong>What's true for you.</strong> Your company values precision over speed in finance. Speed over precision in marketing. Different rules for different contexts. Principles shaping judgment without explanation.
                 </p>
                 <p className="mb-6">
-                    Most relationships require constant re-briefing. They treat each interaction as new. Context reconstruction becomes the hidden tax you pay before every decision.
+                    Most relationships require constant re-briefing. Each interaction treated as new. Context reconstruction becomes the hidden tax paid before every decision.
                 </p>
                 <p className="mb-6">
-                    When nothing gets lost, you can trust the work. Not just execution, but genuine understanding. The gap between decision and reality compresses to zero.
+                    When nothing gets lost, you can trust the work. Not just execution. Genuine understanding. The gap between decision and reality compresses to zero.
                 </p>
                 <p className="mb-6">
-                    This isn't speculation. The architecture exists. The preservation is real.
+                    Not speculation. The architecture exists. The preservation is real.
                 </p>
                 <p className="mb-6">
                     What changes is how you work. You direct. The work arranges itself accordingly. Intent becomes reality without translation loss.
@@ -126,7 +128,7 @@ const BLOG_POSTS: BlogPost[] = [
                     The distance disappears. The momentum returns.
                 </p>
                 <p className="mb-6">
-                    That's not the future. That's the work.
+                    Not the future. The work.
                 </p>
             </>
         )
@@ -142,34 +144,35 @@ const BLOG_POSTS: BlogPost[] = [
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
-                    Here's the cruel irony: the businesses that need operational support most are running so lean they can't afford the time to set it up. Every tool requires configuration, training, ongoing management.
+                    The cruel irony: businesses that need operational support most are running so lean they can't afford the time to set it up. Every system requires configuration. Training. Ongoing management.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Adoption Tax</h3>
                 <p className="mb-6">
-                    For companies already stretched thin, learning new systems consumes more time than the problems they solve. Research, configuration, training, integration: these tasks demand focus that small teams simply don't have.
+                    For companies already stretched thin, learning new systems consumes more time than the problems they solve. Research. Configuration. Training. Integration. These tasks demand focus small teams don't have.
                 </p>
                 <p className="mb-6">
-                    This locks out the very people automation was supposed to serve. Small businesses, startups in growth mode, solo founders wearing all hats. The math doesn't work for those who need it most.
+                    This locks out the very people operational infrastructure was supposed to serve. Small businesses. Startups in growth mode. Solo founders wearing all hats. The math doesn't work for those who need it most.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">Rethinking the Interface</h3>
                 <p className="mb-6">
-                    What if bringing on support felt like hiring, not setup? You wouldn't configure a new hire. You'd brief them. You'd direct them. You'd trust them.
+                    What if bringing on support felt like hiring, not setup? You wouldn't configure a new hire. You'd brief them. Direct them. Trust them.
                 </p>
                 <p className="mb-6">
-                    What if the barrier wasn't price, but bandwidth? What if onboarding felt less like "learning a new system" and more like "bringing on a trusted colleague"? Natural language as the only interface. Brief instead of train. Direct instead of manage.
+                    What if the barrier wasn't price, but bandwidth? What if onboarding felt less like "learning a new system" and more like "bringing on a trusted colleague"? Natural language as interface. Brief instead of train. Direct instead of manage.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">Breaking the Paradox</h3>
                 <p className="mb-6">
-                    The paradox breaks when you can start immediately. Not "quickly," but now. This isn't a thought experiment. This is how people work with us.
+                    The paradox breaks when you can start immediately. Not quickly. Now. Not a thought experiment. How people work with us.
+                </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Brief, Not Configure</h3>
+                <p className="mb-6">
+                    You don't set up Common Thread. You brief us. The same way you'd brief a trusted colleague who knows your business, remembers your preferences, understands your context.
                 </p>
                 <p className="mb-6">
-                    You don't set up Common Thread. You simply brief us. The same way you'd brief a trusted colleague who knows your business, remembers your preferences, understands your context.
+                    The relationship isn't vendor-customer. Employer-service. You direct. We execute. The machinery remains irrelevant to your experience. Not hidden. Irrelevant. What you preserve is bandwidth. What you gain is the ability to act on opportunity the moment you see it.
                 </p>
                 <p className="mb-6">
-                    The relationship isn't vendor-customer. It's employer-service. You direct. We execute. The machinery remains invisible. Not hidden, but irrelevant to your experience. What you preserve is bandwidth. What you gain is the ability to act on opportunity the moment you see it.
-                </p>
-                <p className="mb-6">
-                    When adoption takes minutes instead of months, the math changes completely. The businesses that need automation most can finally afford it. Not in dollars. In time. The paradox dissolves. Strategic agility becomes accessible.
+                    When adoption takes minutes instead of months, the math changes completely. The businesses that need operational support most can finally afford it. Not in dollars. In time. The paradox dissolves. Strategic agility becomes accessible.
                 </p>
             </>
         )
@@ -185,37 +188,39 @@ const BLOG_POSTS: BlogPost[] = [
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
-                    You don't think about how a phone call works. You just talk, and the person on the other end hears you. The mechanics are invisible. Not hidden, but irrelevant to your experience.
+                    You don't think about how a phone call works. You talk. The person on the other end hears you. The mechanics are irrelevant to your experience. Not hidden. Irrelevant.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Visibility Problem</h3>
                 <p className="mb-6">
-                    Most tools demand constant attention. Configuration, management, monitoring. The cognitive overhead of "using" something consumes mental real estate. Visibility correlates with friction.
+                    Most systems demand constant attention. Configuration. Management. Monitoring. The cognitive overhead of "using" something consumes mental real estate. Visibility correlates with friction.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">Invisible vs. Hidden</h3>
                 <p className="mb-6">
-                    Hidden implies secrecy. Invisible means irrelevant to experience. You could understand it if you wanted, but you don't need to. Like electricity. Like a trusted colleague.
+                    Hidden implies secrecy. Invisible means irrelevant to experience. You could understand it if you wanted. You don't need to. Like electricity. Like a trusted colleague.
                 </p>
                 <p className="mb-6">
                     When the process is invisible, the connection becomes infinite. You think about outcomes, not mechanisms. Strategic focus instead of operational focus. Direction instead of management. The space between decision and result disappears.
                 </p>
                 <h3 className="font-serif text-2xl mb-4 mt-8">The Trust Equation</h3>
                 <p className="mb-6">
-                    True invisibility is not hidden technology. It's technology that earns irrelevance through absolute reliability. The difference matters.
+                    True invisibility is not hidden infrastructure. Infrastructure that earns irrelevance through absolute reliability. The difference matters.
                 </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Opacity vs Irrelevance</h3>
                 <p className="mb-6">
-                    Hidden systems create dependency without understanding: black boxes that demand trust before proving value. Invisible systems prove value so consistently that understanding becomes optional. You could examine the mechanism if you wanted. You just don't need to.
+                    Hidden systems create dependency without understanding. Black boxes demanding trust before proving value. Invisible systems prove value so consistently that understanding becomes optional. You could examine the mechanism if you wanted. You don't need to.
                 </p>
                 <p className="mb-6">
                     This is why electricity is invisible but a locked filing cabinet is merely opaque. One has earned its irrelevance through decades of consistent performance. The other demands acceptance without demonstration.
                 </p>
+                <h3 className="font-serif text-2xl mb-4 mt-8">Earning Irrelevance</h3>
                 <p className="mb-6">
-                    Common Thread operates on this principle. You can see exactly how your direction becomes reality: every decision, every routing choice, every context preservation is visible if you want to look. But when the work consistently delivers what you meant, not just what you said, the mechanism becomes irrelevant to your experience.
+                    Common Thread operates on this principle. You can see exactly how your direction becomes reality. Every decision. Every routing choice. Every context preservation is visible if you want to look. But when the work consistently delivers what you meant, not just what you said, the mechanism becomes irrelevant to your experience.
                 </p>
                 <p className="mb-6">
-                    Trust built on opacity fails under pressure. Trust built on consistent reliability becomes invisible. The technology recedes. What remains is the connection between your intent and its realization: direct, continuous, compressed to nearly zero latency.
+                    Trust built on opacity fails under pressure. Trust built on consistent reliability becomes invisible. Infrastructure recedes. What remains is the connection between your intent and its realization. Direct. Continuous. Compressed to nearly zero latency.
                 </p>
                 <p className="mb-6">
-                    When the machinery proves itself through performance, attention returns to what actually matters. Strategic thinking. Creative direction. Human judgment applied at the highest leverage points. The infrastructure doesn't disappear. It becomes irrelevant to your daily experience. That's not hiding the complexity. That's earning the right to be forgotten.
+                    When the machinery proves itself through performance, attention returns to what actually matters. Strategic thinking. Creative direction. Human judgment applied at the highest leverage points. The infrastructure doesn't disappear. It becomes irrelevant to your daily experience. Not hiding the complexity. Earning the right to be forgotten.
                 </p>
             </>
         )

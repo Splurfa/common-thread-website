@@ -19,8 +19,8 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>Core Mission</SupportingSubheading>
-        <p className="mb-4">Friction between strategic intent and operational reality kills momentum. We exist to remove that latency.</p>
-        <p>We return time to its most valuable owner: the human mind.</p>
+        <p className="mb-4">Strategic intent meets operational friction. Momentum dies in translation.</p>
+        <p>That gap closes now. Time returns to its rightful owner: the human mind.</p>
       </div>
     ),
     Visual: VisualHero
@@ -32,9 +32,9 @@ export const slides: Slide[] = [
     body: "There is a version of your business where you direct, and the world arranges itself accordingly.",
     supportingContent: (
       <div>
-        <SupportingSubheading>True Elevation</SupportingSubheading>
-        <p className="mb-4">Traditional delegation is "lossy": nuance fades in transit. True elevation requires a system that preserves context.</p>
-        <p>We are building the interface for the high-bandwidth transmission of executive will.</p>
+        <SupportingSubheading>What Changes</SupportingSubheading>
+        <p className="mb-4">Most delegation is lossy. Nuance fades. Context gets lost.</p>
+        <p>What you meant becomes what they heard. What if nothing got lost?</p>
       </div>
     ),
     Visual: VisualPhilosophy
@@ -46,9 +46,9 @@ export const slides: Slide[] = [
     body: "You provide the unique human signal: the connection. Your direction flows directly into action.",
     supportingContent: (
       <div>
-        <SupportingSubheading>The Translation Layer</SupportingSubheading>
-        <p className="mb-4">Our translation layer sits between your directive and the machinery of execution. It routes and realizes intent automatically.</p>
-        <p>Input: Decision. Output: Result.</p>
+        <SupportingSubheading>The Space Between</SupportingSubheading>
+        <p className="mb-4">The distance between intent and reality compresses.</p>
+        <p>No management. No translation. What remains is the connection.</p>
       </div>
     ),
     Visual: VisualArchitecture
@@ -60,9 +60,9 @@ export const slides: Slide[] = [
     body: "When the process is invisible, the connection becomes infinite.",
     supportingContent: (
       <div>
-        <SupportingSubheading>Human Focus</SupportingSubheading>
-        <p className="mb-4">Automation isn't about removing the human; it's about removing the robot from the human. Focus on high-leverage creation.</p>
-        <p>The ROI is not just efficiency. It is sanity.</p>
+        <SupportingSubheading>Human Restoration</SupportingSubheading>
+        <p className="mb-4">The work returns to what it should be. The thinking. The strategy. The connection.</p>
+        <p>The ROI is not efficiency. It is sanity.</p>
       </div>
     ),
     Visual: VisualValue
@@ -96,7 +96,7 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>Next Steps</SupportingSubheading>
-        <p className="mb-6">The technology is ready. The question is no longer about capability, but about willingness to adapt.</p>
+        <p className="mb-6">The question is not whether this is possible. The question is whether you are ready to work this way.</p>
         <div className="inline-block py-2 px-2 -mx-2">
           <a
             href="#blog"
