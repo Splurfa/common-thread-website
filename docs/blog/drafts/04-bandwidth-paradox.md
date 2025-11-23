@@ -10,7 +10,7 @@ Before you gain anything, you pay. Research. Evaluation. Configuration. Training
 
 Research and evaluation time eats your bandwidth before you've made a decision. Comparing features you don't fully understand. Reading documentation written for different use cases. Watching demos that don't quite match your workflow. Weeks pass.
 
-Configuration and setup requirements demand expertise you don't have. Translating your business logic into someone else's system architecture. Forms. Fields. Workflows. Automations. The setup phase stretches from days into weeks.
+Configuration and setup requirements demand expertise you don't have. Translating your business logic into someone else's system architecture. Forms, fields, workflows, automations. The setup phase stretches from days into weeks.
 
 Training and onboarding burden multiplies across your team. Everyone needs to learn. Everyone needs support. Everyone has questions. The learning curve isn't just time. Momentum lost.
 
@@ -88,6 +88,6 @@ Time returns to its rightful owner. Not time saved through efficiency gains mont
 
 What if the barrier wasn't price, but bandwidth? What if onboarding felt less like "learning a new system" and more like "bringing on a trusted colleague"? You wouldn't configure a new hire. You'd brief them.
 
-The question is no longer whether powerful capability is possible. Whether it can be accessible to those who need it most.
+The question is no longer whether powerful capability is possible. It's whether it can be accessible to those who need it most.
 
 It can. And it's starting now.

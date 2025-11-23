@@ -2,7 +2,7 @@
 
 You've seen it happen. A smart person makes a terrible decision. An experienced person makes a brilliant decision in seconds. What's the difference?
 
-Not intelligence. Not even knowledge. Structure. The layers of consideration.
+Not intelligence. Not even knowledge. Structure. The layers of consideration that filter the choice.
 
 Good judgment operates through layers of consideration, each filtering and refining the decision. Most systems operate at one layer only: the action layer. They answer "what should I do?" without asking "what should I consider first?" That's the difference between decisions that are correct and decisions that are good.
 
@@ -42,7 +42,7 @@ The output was correct. The decision wasn't good.
 
 ## Why Experience Matters
 
-Experience isn't about accumulating knowledge. Pattern recognition across layers.
+Experience isn't about accumulating knowledge. It's pattern recognition across layers.
 
 The experienced decision-maker has seen how decisions at the principle layer ripple through to strategic outcomes. They've watched tactical choices compound or cancel out over time. They've learned which types of problems require which types of consideration.
 
@@ -64,7 +64,7 @@ It means track record of similar decisions. Not documentation. Living memory. "R
 
 It means awareness of unspoken rules. The cultural DNA. The way you prefer to solve problems. The exceptions to the general approach. The nuance that never gets written down because it's understood. Until you delegate to someone who doesn't understand it.
 
-Not about storing information. Preserving judgment. The ability to think across layers, across time, with context and nuance intact.
+This isn't about storing information. It's about preserving judgment. The ability to think across layers, across time, with context and nuance intact.
 
 ## Delegating Judgment vs. Delegating Tasks
 

@@ -40,9 +40,9 @@ The time between remembering and deciding. That gap. That's the tax. Every singl
 
 ## The Compound Cost
 
-Time spent reconstructing context is the visible cost. But it's not the only cost.
+Time spent reconstructing context is the visible cost. It's not the only cost.
 
-Cognitive overhead of context switching drains energy that could fuel strategic thinking. Decisions delayed while context rebuilds create gaps where opportunities slip through. Strategic thinking postponed because you're too busy explaining becomes strategic thinking that never happens at all.
+Cognitive overhead of context switching drains energy that could fuel strategic thinking. Decisions delayed while context rebuilds create gaps where opportunities slip through. Strategic thinking postponed becomes strategic thinking that never happens at all.
 
 Opportunities missed during the delay accumulate faster than you realize. By the time you've rebuilt the context and made the decision, the window has closed. The market moved. The moment passed.
 
@@ -88,7 +88,7 @@ Why do we accept this?
 
 Why have we normalized starting over every single time? Why do we treat context reconstruction as an unavoidable cost of doing business? Why do we build systems that forget and then act surprised when delegation feels exhausting?
 
-The tools exist. The technology exists. The understanding exists. What's missing isn't capability. Recognition that the tax exists at all.
+The tools exist. The technology exists. The understanding exists. What's missing isn't capability. It's recognition that the tax exists at all.
 
 Most businesses don't track context reconstruction time. They don't measure the cost of re-explanation. They don't quantify the delay between "I need to brief you" and "we can decide now." So they don't see the compound loss.
 
@@ -100,11 +100,11 @@ The question isn't whether the tax exists. The question is whether you're ready 
 
 When context preservation becomes continuous, delegation fundamentally changes.
 
-You're not transferring tasks anymore. You're directing outcomes. The context: the strategic layer, the historical understanding, the nuanced preferences. It travels with the work. Nothing requires reconstruction.
+You're not transferring tasks anymore. You're directing outcomes. The context (the strategic layer, the historical understanding, the nuanced preferences) travels with the work. Nothing requires reconstruction.
 
 Conversations become continuations rather than restarts. You don't begin at zero. You begin where you left off. The relationship accumulates understanding rather than shedding it with each interaction.
 
-Work that required you becomes work that represents you. Because the judgment layer: the layer that requires context: remains intact. The colleague who carries context forward can make decisions you'd make because they have access to what shaped your thinking.
+Work that required you becomes work that represents you. Because the judgment layer (the layer that requires context) remains intact. The colleague who carries context forward can make decisions you'd make because they have access to what shaped your thinking.
 
 Strategic capacity expands because the bottleneck wasn't your thinking. The reconstruction cost before your thinking could engage. Remove that cost, and the thinking scales.
 
@@ -134,7 +134,7 @@ Where "as I mentioned before" becomes a phrase you rarely use. Because the syste
 
 Where the gap between decision and action compresses not because execution is faster, but because reconstruction is unnecessary. The latency disappears. The tax approaches zero.
 
-Not a promise. A question of design. Of what becomes possible when systems stop forgetting and start remembering. When continuity becomes automatic instead of exceptional.
+Not a promise. A question of design. What becomes possible when systems stop forgetting and start remembering? When continuity becomes automatic instead of exceptional?
 
 This way of working exists. The question is whether you're ready to stop accepting the tax as unavoidable. Whether you're willing to work differently. Whether you're prepared to experience what becomes possible when reconstruction cost approaches zero.
 

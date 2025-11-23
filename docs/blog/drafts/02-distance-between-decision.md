@@ -32,7 +32,7 @@ The longer the distance, the greater the loss.
 The more layers, the more drift.
 The more translation, the less momentum.
 
-Here's the part that makes it worse: **you can't see the gap while you're in it.**
+**You can't see the gap while you're in it.**
 
 You think you're aligned. You think the plan is clear. Everyone moving in the same direction. And they are. Mostly. But "mostly aligned" compounds into "completely off course" faster than anyone expects.
 
@@ -60,7 +60,7 @@ Not malicious. Not incompetence. **The nature of distance.**
 
 The more layers between your decision and its execution, the more your intent gets compressed into something smaller. Simpler. More ambiguous than what you started with.
 
-Here's the brutal part: **each person in the chain thinks they have it right.** Working from the best information they have. Doing their job. Executing.
+**Each person in the chain thinks they have it right.** Working from the best information they have. Doing their job. Executing.
 
 But the thing being built is no longer the thing you decided to build.
 
@@ -135,7 +135,7 @@ And *that's* the question worth spending time on.
 
 ## The Return of Momentum
 
-Here's what nobody tells you about momentum: **not about moving fast. About moving uninterrupted.**
+Momentum isn't about moving fast. **It's about moving uninterrupted.**
 
 Momentum doesn't come from sprinting. Comes from continuity. Decisions that flow cleanly into reality without fracturing. Without drifting. Without needing constant correction.
 
@@ -145,11 +145,9 @@ Every time something gets built wrong because it was translated wrong, you're st
 
 Exhausting. Why even fast-moving teams feel stuck.
 
-But when the distance between decision and reality compresses. When the gap shrinks to near zero. Momentum doesn't just return.
+When the distance between decision and reality compresses, momentum compounds.
 
-**It compounds.**
-
-Now, every decision flows cleanly into the next. Every insight builds on the last. Every course correction happens in real time, not three weeks later when someone finally realizes the thing being built isn't the thing you meant.
+Every decision flows cleanly into the next. Every insight builds on the last. Every course correction happens in real time, not three weeks later when someone finally realizes the thing being built isn't the thing you meant.
 
 You're not fighting drift anymore.
 Not managing translation losses.
@@ -157,7 +155,7 @@ Not explaining and re-explaining and re-explaining.
 
 **Just building.**
 
-And that changes everything.
+This is where speed lives. Not in executing faster. In eliminating the friction between deciding and doing. When the gap collapses, velocity becomes inevitable.
 
 ## The Question That Matters
 

@@ -6,7 +6,7 @@ Not mechanical tasks.
 
 When the mechanical disappears, human capacity returns.
 
-The problem isn't that you're busy. That you're busy with work that doesn't require you. The parts of your day where you operate like a machine. Copying. Pasting. Formatting. Re-explaining. Checking boxes. Following procedures you could do in your sleep. Not where you add value. Where your capacity gets consumed.
+The problem isn't that you're busy. It's that you're busy with work that doesn't require you. The parts of your day where you operate like a machine. Copying. Pasting. Formatting. Re-explaining. Checking boxes. Following procedures you could do in your sleep. Not where you add value. Where your capacity gets consumed.
 
 You've felt this. Hours spent managing systems rather than using them. Repetitive re-explanations that never quite stick. Administrative overhead that pushes strategic work to "when I have time." The constant sensation of operating below your actual capacity.
 
@@ -14,21 +14,21 @@ This is what we mean when we talk about restoration. Not efficiency. Humanity.
 
 ## The Mechanical Work We've Normalized
 
-Look at your calendar from last week. How much of that time was spent doing work that required no judgment?
+Look at your calendar from last week. How much of that time required no judgment?
 
-**Repetitive re-explanations.** The same context briefing you've given a dozen times. The same status update formatted slightly differently for different stakeholders. The same coordination overhead. Scheduling. Confirming. Following up. Checking in.
+**Repetitive re-explanations.** The same context briefing you've given a dozen times. The same status update formatted slightly differently for different stakeholders. Scheduling. Confirming. Following up. Checking in.
 
 **Process management instead of strategic thinking.** Maintaining the machinery of how work happens rather than directing what work should happen. Monitoring systems. Updating trackers. Ensuring alignment. Verifying completion.
 
-**Administrative tasks that require no judgment.** Data entry. File organization. Calendar management. Email sorting. Report generation. Tasks where your brain is functioning like a very expensive sorting algorithm.
+**Administrative tasks.** Data entry. File organization. Calendar management. Email sorting. Report generation. Your brain functioning like an expensive sorting algorithm.
 
-**Context reconstruction before every decision.** "Let me remind you of the background here." "As I mentioned before." "To recap where we are." The 15-minute primer required before you can actually discuss the strategic question.
+**Context reconstruction before every decision.** "Let me remind you of the background here." "As I mentioned before." "To recap where we are." The 15-minute primer required before you can discuss the strategic question.
 
-**Status updates and coordination overhead.** Meetings about meetings. Updates about updates. Management of the management layer. The infrastructure required to keep other people informed about what's happening.
+**Coordination overhead.** Meetings about meetings. Updates about updates. The infrastructure required to keep people informed about what's happening.
 
-**The time you spend managing systems rather than using them.** Configuration. Troubleshooting. Integration. Training. Documentation. The care and feeding of the tools meant to help you.
+**Managing systems rather than using them.** Configuration. Troubleshooting. Integration. Training. Documentation. The care and feeding of tools meant to help you.
 
-Not busy work you can eliminate with better time management. Structural. The mechanical work that's been normalized into knowledge work. The repetitive tasks that consume the space where strategic thinking should happen.
+This isn't busy work you can eliminate with better time management. It's structural. The mechanical work that's been normalized into knowledge work. The repetitive tasks that consume the space where strategic thinking should happen.
 
 ## What Gets Buried
 
@@ -46,7 +46,7 @@ Here's what gets obscured underneath the mechanical work: your actual capacity.
 
 **Why high-value work gets postponed.** Not because you don't know it matters. Because the mechanical work is urgent. The systems demand feeding. The coordination overhead must be managed. The repetitive tasks expand to fill available capacity.
 
-What's tragic isn't that you're busy. That you're busy with work that doesn't require you.
+What's tragic isn't that you're busy. It's that you're busy with work that doesn't require you.
 
 ## What Restoration Means
 
@@ -68,9 +68,7 @@ This is what restoration looks like. Not doing the same work faster. Doing funda
 
 ## The Experience of Work Returning to What It Should Be
 
-Most discussions about improving work focus on efficiency metrics. Time saved. Tasks eliminated. The quantifiable gains.
-
-But the transformative change is experiential.
+The transformative change is experiential, not quantifiable.
 
 **Sanity restored.** The difference between ending the day depleted and ending the day energized. Between feeling like a machine executing someone else's process and feeling like a strategist directing meaningful work. Between cognitive exhaustion and cognitive engagement.
 
@@ -80,7 +78,7 @@ But the transformative change is experiential.
 
 **How work feels changes.** Not just what you accomplish. How it feels to accomplish it. Working at your actual capacity rather than below it. Engaging your full intelligence rather than operating on autopilot. The difference between being consumed by work and being energized by it.
 
-The value is not just efficiency. The restoration of your capacity to do work that actually matters. Work that requires your full intelligence.
+The value is restoration, not efficiency. Your capacity to do work that actually matters. Work that requires your full intelligence.
 
 ## What Becomes Possible
 
@@ -102,7 +100,7 @@ The mechanical work that's been consuming your capacity. That's what should disa
 
 ## The Essential Question
 
-The question isn't whether you can eliminate mechanical work. Whether you're ready to reclaim the capacity that's been buried underneath it.
+The question isn't whether you can eliminate mechanical work. It's whether you're ready to reclaim the capacity that's been buried underneath it.
 
 To return to work that requires your full intelligence rather than operating as a very expensive task-execution system.
 
@@ -114,6 +112,6 @@ This is what we mean by return to the essential. Not optimization of the current
 
 ---
 
-**The value is not efficiency. Restoration. The return of your capacity to think strategically, build relationships, recognize patterns, solve problems creatively. To do work that requires your full intelligence rather than mechanical execution.**
+**The value is restoration, not efficiency. The return of your capacity to think strategically, build relationships, recognize patterns, solve problems creatively. To do work that requires your full intelligence rather than mechanical execution.**
 
 **When the mechanical disappears, human capacity returns. What you do with that restored capacity determines everything.**

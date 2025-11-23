@@ -14,13 +14,13 @@ That's the re-explanation tax. The hidden cost of systems that start from zero.
 
 The math is brutal. Five re-explanations weekly. Fifteen minutes each. Seventy-five minutes. Over a year, sixty-five hours. More than a full work week spent reconstructing context that should have been preserved. That's conservative. For most leaders, double. Triple. The cognitive overhead compounds until re-explanation becomes the primary mode of operation.
 
-Not about documentation. You've tried documentation. Captures the "what." Misses the "why." Freezes decisions in time without preserving the evolution of thinking. Documentation tells people what you decided. Doesn't give them the judgment to make the next decision.
+This isn't about documentation. You've tried documentation. It captures the "what." Misses the "why." Freezes decisions in time without preserving the evolution of thinking. Documentation tells people what you decided. It doesn't give them the judgment to make the next decision.
 
 Institutional memory isn't a nice-to-have. It's what separates task completion from relationship preservation. What makes the second conversation faster than the first. What allows understanding to compound instead of evaporate.
 
 ## What Memory Actually Preserves
 
-Memory isn't storage. Continuity. When someone remembers, they carry forward more than facts. Understanding.
+Memory isn't storage. It's continuity. When someone remembers, they carry forward more than facts. They carry understanding.
 
 Strategic context. The "why" behind decisions. Not just "we use this vendor." "We chose this vendor after the last one failed us during the product launch. Reliability matters more than cost for this relationship." That context shapes every future decision about that vendor. Without it, you're optimizing for the wrong variables.
 
@@ -68,10 +68,10 @@ The difference between managing a tool and directing a colleague: "configure thi
 
 When someone never forgets, you stop spending your time on context reconstruction. You start spending it on actual decisions. The cognitive load shifts from "getting them up to speed" to "what should we do next?" Your capacity expands because their understanding expands. Time returns to its rightful use: forward motion.
 
-##
+---
 
 This is what we mean by "The Human Standard." A service that operates like a trusted colleague who's been with you for years. Who knows not just *what* you do, but *why* you do it that way.
 
-This way of working is real. The question is no longer about capability. About willingness to work differently. To delegate in a way that preserves everything. To build relationships with services the way you'd build relationships with people: through continuity, through memory, through trust that compounds over time.
+This way of working is real. The question is no longer about capability. It's about willingness to work differently. To delegate in a way that preserves everything. To build relationships with services the way you'd build relationships with people: through continuity, through memory, through trust that compounds over time.
 
 [Learn more about how we approach delegation →](https://commonthread.ai)

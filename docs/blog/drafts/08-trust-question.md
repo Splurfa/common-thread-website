@@ -2,7 +2,7 @@
 
 You can delegate task execution. You can't delegate judgment.
 
-Except that's exactly what you do with trusted colleagues. They make decisions you'd make. They handle situations the way you'd handle them. They represent you without you. The question isn't whether judgment can be delegated. What makes that trust possible.
+Except that's exactly what you do with trusted colleagues. They make decisions you'd make. They handle situations the way you'd handle them. They represent you without you. The question isn't whether judgment can be delegated. It's what makes that trust possible.
 
 ## The Delegation Ceiling
 
