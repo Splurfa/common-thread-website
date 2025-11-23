@@ -28,28 +28,28 @@ const BLOG_POSTS: BlogPost[] = [
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
                     You've felt this before. Someone remembers not just what you said, but why. The context. The nuance. The unspoken rules. Delegation that works. It's disappearing.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Problem We Don't Talk About</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Problem We Don't Talk About</h3>
                 <p className="mb-6">
                     Strategic intent meets operational friction. Momentum dies in translation. You make a decision. Clear. Reasoned. Urgent. Then it enters the machinery: forms, briefings, systems, processes.
                 </p>
                 <p className="mb-6">
                     The urgency fades. The nuance evaporates. The intent dilutes. By the time the work is done, it's not quite what you meant. Not a failure of people. Not a failure of systems. The nature of how work happens when distance exists between decision and execution.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">What Delegation Could Feel Like</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>What Delegation Could Feel Like</h3>
                 <p className="mb-6">
                     Someone who never forgets. Not just tasks. The reasons behind them. The strategic context. The edge case mentioned once, six months ago. No re-briefing required.
                 </p>
                 <p className="mb-6">
                     Three kinds of memory matter. What happened. How it's done. What's true for you. Most relationships start from zero each time. What if nothing got lost?
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Invisible Machine</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Invisible Machine</h3>
                 <p className="mb-6">
                     There is a version of your business where you direct, and the world arranges itself accordingly. You provide the unique human signal: the connection. Direction flows directly into action. Infrastructure disappears from your experience. The machinery in between becomes irrelevant.
                 </p>
                 <p className="mb-6">
                     When you delegate, nothing gets lost. When you decide, it happens. The gap between intent and execution compresses to nearly zero. What remains is what should remain: your judgment, your strategy, your focus on what actually matters.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Building the Standard</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Building the Standard</h3>
                 <p className="mb-6">
                     Not speculation. The standard we're building toward.
                 </p>
@@ -59,7 +59,7 @@ const BLOG_POSTS: BlogPost[] = [
                 <p className="mb-6">
                     Most systems ask you to become more mechanical. Speak the language of machines. Think in workflows. Translate intent into configurations. We're building the opposite: you speak, the work happens. Context preserved. What you said and why both remembered.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Work Is Real</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Work Is Real</h3>
                 <p className="mb-6">
                     This way of working exists. The transformation is proven. What remains is execution.
                 </p>
@@ -85,21 +85,21 @@ const BLOG_POSTS: BlogPost[] = [
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
                     You made a clear decision. Strategic. Reasoned. Urgent. Then it entered the machinery: forms, briefings, configurations, processes. Somewhere in that translation, the urgency faded.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Mapping the Gap</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Mapping the Gap</h3>
                 <p className="mb-6">
                     Strategic clarity is the high point. From there, a series of handoffs. Intent to instruction. Instruction to configuration. Configuration to execution. Each layer another game of telephone. Meaning degrades.
                 </p>
                 <p className="mb-6">
                     We've normalized this. "That's not quite what I meant" becomes cost of doing business. Iterative correction becomes routine. Why have we normalized strategic drag?
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Compression Hypothesis</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Compression Hypothesis</h3>
                 <p className="mb-6">
                     What if the gap could approach zero? Not about speed. About preservation. When direction and execution become continuous, strategic agility becomes competitive advantage.
                 </p>
                 <p className="mb-6">
                     The cumulative cost of distance is staggering. Opportunities lost in delay. Momentum that never builds. Innovation dying in translation. When that latency disappears, time returns to its rightful owner: the human mind.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">How Latency Disappears</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>How Latency Disappears</h3>
                 <p className="mb-6">
                     The distance collapses when three things stay intact.
                 </p>
@@ -146,25 +146,25 @@ const BLOG_POSTS: BlogPost[] = [
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
                     The cruel irony: businesses that need operational support most are running so lean they can't afford the time to set it up. Every system requires configuration. Training. Ongoing management.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Adoption Tax</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Adoption Tax</h3>
                 <p className="mb-6">
                     For companies already stretched thin, learning new systems consumes more time than the problems they solve. Research. Configuration. Training. Integration. These tasks demand focus small teams don't have.
                 </p>
                 <p className="mb-6">
                     This locks out the very people operational infrastructure was supposed to serve. Small businesses. Startups in growth mode. Solo founders wearing all hats. The math doesn't work for those who need it most.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Rethinking the Interface</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Rethinking the Interface</h3>
                 <p className="mb-6">
                     What if bringing on support felt like hiring, not setup? You wouldn't configure a new hire. You'd brief them. Direct them. Trust them.
                 </p>
                 <p className="mb-6">
                     What if the barrier wasn't price, but bandwidth? What if onboarding felt less like "learning a new system" and more like "bringing on a trusted colleague"? Natural language as interface. Brief instead of train. Direct instead of manage.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Breaking the Paradox</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Breaking the Paradox</h3>
                 <p className="mb-6">
                     The paradox breaks when you can start immediately. Not quickly. Now. Not a thought experiment. How people work with us.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Brief, Not Configure</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Brief, Not Configure</h3>
                 <p className="mb-6">
                     You don't set up Common Thread. You brief us. The same way you'd brief a trusted colleague who knows your business, remembers your preferences, understands your context.
                 </p>
@@ -190,29 +190,29 @@ const BLOG_POSTS: BlogPost[] = [
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
                     You don't think about how a phone call works. You talk. The person on the other end hears you. The mechanics are irrelevant to your experience. Not hidden. Irrelevant.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Visibility Problem</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Visibility Problem</h3>
                 <p className="mb-6">
                     Most systems demand constant attention. Configuration. Management. Monitoring. The cognitive overhead of "using" something consumes mental real estate. Visibility correlates with friction.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Invisible vs. Hidden</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Invisible vs. Hidden</h3>
                 <p className="mb-6">
                     Hidden implies secrecy. Invisible means irrelevant to experience. You could understand it if you wanted. You don't need to. Like electricity. Like a trusted colleague.
                 </p>
                 <p className="mb-6">
                     When the process is invisible, the connection becomes infinite. You think about outcomes, not mechanisms. Strategic focus instead of operational focus. Direction instead of management. The space between decision and result disappears.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">The Trust Equation</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>The Trust Equation</h3>
                 <p className="mb-6">
                     True invisibility is not hidden infrastructure. Infrastructure that earns irrelevance through absolute reliability. The difference matters.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Opacity vs Irrelevance</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Opacity vs Irrelevance</h3>
                 <p className="mb-6">
                     Hidden systems create dependency without understanding. Black boxes demanding trust before proving value. Invisible systems prove value so consistently that understanding becomes optional. You could examine the mechanism if you wanted. You don't need to.
                 </p>
                 <p className="mb-6">
                     This is why electricity is invisible but a locked filing cabinet is merely opaque. One has earned its irrelevance through decades of consistent performance. The other demands acceptance without demonstration.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8">Earning Irrelevance</h3>
+                <h3 className={`font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 ${theme === 'dark' ? 'text-white' : 'text-black/80'}`}>Earning Irrelevance</h3>
                 <p className="mb-6">
                     Common Thread operates on this principle. You can see exactly how your direction becomes reality. Every decision. Every routing choice. Every context preservation is visible if you want to look. But when the work consistently delivers what you meant, not just what you said, the mechanism becomes irrelevant to your experience.
                 </p>
