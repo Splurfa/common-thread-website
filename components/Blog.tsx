@@ -241,7 +241,7 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 {/* Back Navigation - Context Aware */}
                 <button
                     onClick={handleBack}
-                    className={`group flex items-center gap-3 font-mono font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs ${theme === 'dark' ? 'text-white opacity-80 hover:opacity-100' : 'text-black opacity-60 hover:opacity-100'} transition-opacity`}
+                    className={`group flex items-center gap-3 font-mono font-bold tracking-[0.2em] uppercase text-xs md:text-sm ${theme === 'dark' ? 'text-white opacity-80 hover:opacity-100' : 'text-black opacity-60 hover:opacity-100'} transition-opacity`}
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     {activePost ? 'Insights' : 'Common Thread'}
