@@ -19,8 +19,8 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>Core Mission</SupportingSubheading>
-        <p className="mb-4">Usually, when you have a strategic idea, it gets stuck in the gears of your business. It loses momentum in meetings, emails, and confusion.</p>
-        <p>We close that gap. Your time goes back to where it belongs: thinking, not managing.</p>
+        <p className="mb-4">Friction between strategic intent and operational reality kills momentum. We exist to remove that latency.</p>
+        <p>We return time to its most valuable owner: the human mind.</p>
       </div>
     ),
     Visual: VisualHero
@@ -32,9 +32,9 @@ export const slides: Slide[] = [
     body: "There is a version of your business where you direct, and the world arranges itself accordingly.",
     supportingContent: (
       <div>
-        <SupportingSubheading>What Changes</SupportingSubheading>
-        <p className="mb-4">Delegation is often messy. You say one thing, they hear another, and the nuance gets lost.</p>
-        <p>Imagine if nothing got lost. Imagine if your team understood your intent perfectly, every time.</p>
+        <SupportingSubheading>True Elevation</SupportingSubheading>
+        <p className="mb-4">Traditional delegation is "lossy": nuance fades in transit. True elevation requires a system that preserves context.</p>
+        <p>We are building the interface for the high-bandwidth transmission of executive will.</p>
       </div>
     ),
     Visual: VisualPhilosophy
@@ -43,12 +43,12 @@ export const slides: Slide[] = [
     id: 3,
     label: "03 / Mechanism",
     title: "The Invisible Machine.",
-    body: "You provide the unique human signal—the connection. Infrastructure handles the rest.",
+    body: "You provide the unique human signal: the connection. Your direction flows directly into action.",
     supportingContent: (
       <div>
-        <SupportingSubheading>The Space Between</SupportingSubheading>
-        <p className="mb-4">We compress the distance between what you want and what actually happens.</p>
-        <p>No management overhead. No translation errors. Just the connection between you and the result.</p>
+        <SupportingSubheading>The Translation Layer</SupportingSubheading>
+        <p className="mb-4">Our translation layer sits between your directive and the machinery of execution. It routes and realizes intent automatically.</p>
+        <p>Input: Decision. Output: Result.</p>
       </div>
     ),
     Visual: VisualArchitecture
@@ -60,9 +60,9 @@ export const slides: Slide[] = [
     body: "When the process is invisible, the connection becomes infinite.",
     supportingContent: (
       <div>
-        <SupportingSubheading>Human Restoration</SupportingSubheading>
-        <p className="mb-4">Work should be about thinking, strategy, and connection—not checking boxes.</p>
-        <p>The real return on investment isn't just efficiency. It's your sanity.</p>
+        <SupportingSubheading>Human Focus</SupportingSubheading>
+        <p className="mb-4">Automation isn't about removing the human; it's about removing the robot from the human. Focus on high-leverage creation.</p>
+        <p>The ROI is not just efficiency. It is sanity.</p>
       </div>
     ),
     Visual: VisualValue
@@ -96,7 +96,7 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>Next Steps</SupportingSubheading>
-        <p className="mb-6">This isn't about whether it's possible. It's about whether you're ready to work differently.</p>
+        <p className="mb-6">The technology is ready. The question is no longer about capability, but about willingness to adapt.</p>
         <div className="inline-block py-2 px-2 -mx-2">
           <a
             href="#blog"

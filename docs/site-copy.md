@@ -28,7 +28,7 @@ The website is a single-page application with a horizontal slide-based navigatio
 **Body:** There is a version of your business where you simply direct, and the world arranges itself accordingly.
 **Supporting Content:**
 **True Elevation**
-> Traditional delegation is "lossy"—nuance fades in transit. True elevation requires a system that preserves context.
+> Traditional delegation is "lossy": nuance fades in transit. True elevation requires a system that preserves context.
 >
 > We are building the interface for the high-bandwidth transmission of executive will.
 
