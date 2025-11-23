@@ -195,8 +195,7 @@ export default function App() {
     const handleWheel = (e: WheelEvent) => {
       if (window.innerWidth < 768) return; // Desktop only
       if (menuOpen || showBlog || isTransitioning) {
-        e.preventDefault();
-        return;
+        return; // Let blog/menu scroll naturally - don't preventDefault
       }
 
       // Prevent default scrolling behavior
