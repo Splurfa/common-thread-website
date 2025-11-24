@@ -51,7 +51,7 @@ export const Sandbox: React.FC = () => {
     useEffect(() => {
         // Enable scrolling for grid view, disable for slideshow view (all devices)
         if (typeof window === 'undefined') return;
-        
+
         if (viewMode === 'slideshow') {
             // Slideshow: No Scroll (App-like feel)
             document.body.style.overflow = 'hidden';
@@ -74,28 +74,25 @@ export const Sandbox: React.FC = () => {
 
     const drafts = [
         // Published Visuals - Main Site
-        { id: 'P1', title: 'State of Mind (Hero)', Component: VisualHero, isPublished: true },
-        { id: 'P2', title: 'Vision (Equalizer)', Component: VisualPhilosophy, isPublished: true },
-        { id: 'P3', title: 'Mechanism (Architecture)', Component: VisualArchitecture, isPublished: true },
-        { id: 'P4', title: 'Value (Fluid)', Component: VisualValue, isPublished: true },
-        { id: 'P5', title: 'Leadership (Binary)', Component: VisualStewards, isPublished: true },
-        { id: 'P6', title: 'Gateway (Swirl)', Component: VisualGateway, isPublished: true },
+        { id: 'P1', title: 'Neural Swarm', Component: VisualHero, isPublished: true, publishCategory: 'MAIN', publishLabel: '01 / STATE OF MIND' },
+        { id: 'P2', title: 'Ascending Particles', Component: VisualPhilosophy, isPublished: true, publishCategory: 'MAIN', publishLabel: '02 / VISION' },
+        { id: 'P3', title: 'Axis Physics', Component: VisualArchitecture, isPublished: true, publishCategory: 'MAIN', publishLabel: '03 / MECHANISM' },
+        { id: 'P4', title: 'Fluid Flow', Component: VisualValue, isPublished: true, publishCategory: 'MAIN', publishLabel: '04 / VALUE' },
+        { id: 'P5', title: 'Binary Systems', Component: VisualStewards, isPublished: true, publishCategory: 'MAIN', publishLabel: '05 / LEADERSHIP' },
+        { id: 'P6', title: 'Gateway Portal', Component: VisualGateway, isPublished: true, publishCategory: 'MAIN', publishLabel: '06 / GATEWAY' },
 
         // Published Visuals - Insights Page
-        { id: 'P7', title: 'The Latency of Thought (Orbital)', Component: VisualOrbital, isPublished: true },
-        { id: 'P8', title: 'Digital Gravity (Elastic Net)', Component: VisualNet, isPublished: true },
-        { id: 'P9', title: 'Flow State as a Service (Boids Flocking)', Component: VisualFlock, isPublished: true },
-        { id: 'P10', title: 'Breaking the Monolith (Magnet Field)', Component: VisualMagnet, isPublished: true },
-
-        // Production Ready Concepts
-        { id: 1, title: 'Fabric (Spring Mesh)', Component: VisualGrid, isPublished: true },
-        { id: 2, title: 'Data Stream (Depth Rain)', Component: VisualRain, isPublished: true },
-        { id: 3, title: 'Nebula (3D Spiral)', Component: VisualGalaxy, isPublished: true },
-        { id: 4, title: 'Connections (Physics Chain)', Component: VisualChain, isPublished: true },
-        { id: 5, title: 'Sonar / Pulse', Component: VisualPulse },
-        { id: 6, title: 'Noise Field', Component: VisualFlow },
-        { id: 7, title: 'Shatter / Reform', Component: VisualShatter },
-        { id: 8, title: 'Vortex Suction', Component: VisualVortex },
+        { id: 'P7', title: 'Orbital', Component: VisualOrbital, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Human Standard' },
+        { id: 'P8', title: 'Spring Mesh', Component: VisualGrid, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Three Domains' },
+        { id: 'P9', title: 'Physics Chain', Component: VisualChain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Two Ways to Collaborate' },
+        { id: 'P10', title: 'Noise Field', Component: VisualFlow, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Bandwidth Reclamation Problem' },
+        { id: 'P11', title: 'Sonar Pulse', Component: VisualPulse, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Why Empathy Jobs Miss the Point' },
+        { id: 'P12', title: 'Nebula', Component: VisualGalaxy, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Trust Accumulation Curve' },
+        { id: 'P13', title: 'Shatter & Reform', Component: VisualShatter, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'When Perfect Recommendations Fail' },
+        { id: 'P14', title: 'Elastic Net', Component: VisualNet, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Co-Learning Economy' },
+        { id: 'P15', title: 'Data Stream', Component: VisualRain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Delegation Paradox' },
+        { id: 'P16', title: 'Vortex Suction', Component: VisualVortex, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Experience Economy Fallacy' },
+        { id: 'P17', title: 'Boids Flocking', Component: VisualFlock, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Designing Work for Humans' },
     ];
 
     const nextSlide = () => {
@@ -133,12 +130,12 @@ export const Sandbox: React.FC = () => {
 
                 {viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {drafts.map(({ id, title, Component, isPublished }, index) => (
+                        {drafts.map(({ id, title, Component, isPublished, publishCategory, publishLabel }, index) => (
                             <div
                                 key={id}
                                 className={`border rounded-lg overflow-hidden transition-colors ${isPublished ? 'border-blue-500/30 bg-blue-900/10' : 'border-white/10 bg-white/5'}`}
                             >
-                                <div 
+                                <div
                                     className="h-[300px] relative border-b border-white/5 sandbox-graphic-container cursor-crosshair"
                                     onWheel={(e) => {
                                         e.stopPropagation();
@@ -149,17 +146,18 @@ export const Sandbox: React.FC = () => {
                                 >
                                     <Component />
                                 </div>
-                                <div 
+                                <div
                                     className="p-4 cursor-pointer hover:bg-white/5 transition-colors"
                                     onClick={() => { setCurrentIndex(index); setViewMode('slideshow'); }}
                                 >
-                                    <div className="flex justify-between items-center mb-1">
-                                        <div className="font-mono text-xs text-white/40">
-                                            {isPublished ? 'PUBLISHED' : `Draft ${id.toString().padStart(2, '0')}`}
+                                    <div className="flex justify-between items-start mb-3">
+                                        <div className="font-mono text-xs text-white/40 flex flex-col gap-1.5">
+                                            <span className="uppercase tracking-wider text-blue-400/80">PUBLISHED • {publishCategory}</span>
+                                            <span className="text-white/70 font-medium">{publishLabel}</span>
                                         </div>
-                                        {isPublished && <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
+                                        {isPublished && <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] mt-1"></div>}
                                     </div>
-                                    <h3 className="font-serif text-lg">{title}</h3>
+                                    <h3 className="font-serif text-xl">{title}</h3>
                                 </div>
                             </div>
                         ))}
@@ -191,14 +189,19 @@ export const Sandbox: React.FC = () => {
                             </button>
 
                             <div className="text-center">
-                                <div className="inline-flex items-center gap-2 mb-1 justify-center">
+                                <div className="flex flex-col items-center gap-1 mb-3 justify-center">
                                     {drafts[currentIndex].isPublished && (
-                                        <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-mono uppercase tracking-wider border border-blue-500/30">
-                                            Production
-                                        </span>
+                                        <>
+                                            <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 text-[10px] font-mono uppercase tracking-wider border border-blue-500/20">
+                                                PUBLISHED • {drafts[currentIndex].publishCategory}
+                                            </span>
+                                            <span className="text-xs font-mono text-white/60 mt-1">
+                                                {drafts[currentIndex].publishLabel}
+                                            </span>
+                                        </>
                                     )}
                                 </div>
-                                <h2 className="text-xl font-serif">{drafts[currentIndex].title}</h2>
+                                <h2 className="text-2xl font-serif mb-1">{drafts[currentIndex].title}</h2>
                                 <p className="font-mono text-xs text-white/50">
                                     {String(currentIndex + 1).padStart(2, '0')} / {drafts.length}
                                 </p>

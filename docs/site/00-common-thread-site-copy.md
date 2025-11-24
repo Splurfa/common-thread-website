@@ -1,0 +1,116 @@
+# Common Thread - Main Site Copy
+
+---
+
+## 01 / State of Mind
+
+**Title:**  
+Thought. Signal.  
+*Action.*
+
+**Body:**  
+The distance between intent and execution is disappearing.
+
+**Supporting Content:**
+
+**Core Mission**
+
+When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.
+
+Time returns to its rightful owner: the human mind.
+
+---
+
+## 02 / Vision
+
+**Title:**  
+Elevation.
+
+**Body:**  
+There is a version of your business where you direct, and the world arranges itself accordingly.
+
+**Supporting Content:**
+
+**What Changes**
+
+In that version, context travels intact. What you meant and what happens become the same thing.
+
+The signal completes its journey.
+
+---
+
+## 03 / Mechanism
+
+**Title:**  
+The Invisible Machine.
+
+**Body:**  
+Connection is the human signal. Direction becomes action.
+
+**Supporting Content:**
+
+**The Space Between**
+
+Infrastructure handles execution. Complexity recedes from view.
+
+The path clears.
+
+---
+
+## 04 / Value
+
+**Title:**  
+Return to the Essential.
+
+**Body:**  
+When the process is invisible, the connection becomes infinite.
+
+**Supporting Content:**
+
+**Human Restoration**
+
+Work returns to what it should be. Thinking. Strategy. Connection.
+
+ROI is not efficiency. It is sanity.
+
+---
+
+## 05 / Leadership
+
+**Title:**  
+The Architects.
+
+**Body:**  
+We are stewards of connection, ensuring technology amplifies human intent.
+
+**Supporting Content:**
+
+**Derek Yellin**  
+*Chief Executive Officer*
+
+Defining the human vector.
+
+**Justyn Clark**  
+*Chief Technology Officer*
+
+Building the invisible machine.
+
+---
+
+## 06 / Engagement
+
+**Title:**  
+Engagement.
+
+**Body:**  
+This way of working exists.
+
+**Supporting Content:**
+
+**What's Available**
+
+Strategic clarity flows into operational reality. The invisible machinery handles translation.
+
+Connection without friction. Direction without dilution.
+
+[Read our latest insights →](#blog)

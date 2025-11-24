@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { PhysicsCanvas } from './PhysicsCanvas';
 import { Particle, Vector, randomRange } from '../Visuals';
 
-// --- Draft 1: Orbital Attractor ---
+// --- The Human Standard (Orbital Attractor) ---
 export const VisualOrbital: React.FC = () => {
     const particles = useRef<Particle[]>([]);
 
@@ -72,7 +72,7 @@ export const VisualOrbital: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 2: Repulsor Grid -> Fabric ---
+// --- Fabric (Spring Mesh) ---
 export const VisualGrid: React.FC = () => {
     const nodes = useRef<any[]>([]);
     const constraints = useRef<any[]>([]);
@@ -199,7 +199,7 @@ export const VisualGrid: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 3: Elastic Net ---
+// --- The Distance Between Decision and Reality (Elastic Net) ---
 export const VisualNet: React.FC = () => {
     const nodes = useRef<any[]>([]);
 
@@ -294,7 +294,7 @@ export const VisualNet: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 4: Digital Rain -> Data Stream ---
+// --- Data Stream (Depth Rain) ---
 export const VisualRain: React.FC = () => {
     const drops = useRef<any[]>([]);
     const splashes = useRef<any[]>([]);
@@ -383,7 +383,7 @@ export const VisualRain: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 5: Galaxy Spiral -> Nebula ---
+// --- Nebula (3D Spiral) ---
 export const VisualGalaxy: React.FC = () => {
     const stars = useRef<any[]>([]);
 
@@ -455,7 +455,7 @@ export const VisualGalaxy: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 6: Noise Field ---
+// --- Noise Field ---
 export const VisualFlow: React.FC = () => {
     const particles = useRef<Particle[]>([]);
 
@@ -523,7 +523,7 @@ export const VisualFlow: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 7: Tethered Chain -> Connections ---
+// --- Connections (Physics Chain) ---
 export const VisualChain: React.FC = () => {
     // We use Verlet integration for stable string physics
     const chains = useRef<any[][]>([]);
@@ -654,7 +654,7 @@ export const VisualChain: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 8: Shatter ---
+// --- Shatter / Reform ---
 export const VisualShatter: React.FC = () => {
     const shards = useRef<any[]>([]);
     const shattered = useRef(false);
@@ -720,7 +720,7 @@ export const VisualShatter: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 9: Pulse ---
+// --- Sonar / Pulse ---
 export const VisualPulse: React.FC = () => {
     const waves = useRef<any[]>([]);
     const lastPulse = useRef(0);
@@ -775,7 +775,7 @@ export const VisualPulse: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 10: Boids ---
+// --- The Bandwidth Paradox (Boids Flocking) ---
 export const VisualFlock: React.FC = () => {
     const boids = useRef<any[]>([]);
 
@@ -882,7 +882,7 @@ export const VisualFlock: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 11: Magnet Field ---
+// --- The Invisible Service Standard (Magnet Field) ---
 export const VisualMagnet: React.FC = () => {
     const filings = useRef<any[]>([]);
 
@@ -1004,7 +1004,7 @@ export const VisualMagnet: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 12: Vortex Suction ---
+// --- Vortex Suction ---
 export const VisualVortex: React.FC = () => {
     const particles = useRef<Particle[]>([]);
 
