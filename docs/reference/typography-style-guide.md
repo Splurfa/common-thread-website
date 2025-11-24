@@ -1,113 +1,102 @@
-# Typography Style Guide - Common Thread Website
+# Common Thread - Design System & Style Guide
 
-## North Star Components (Main Page)
+> [!IMPORTANT]
+> This document serves as the single source of truth for the Common Thread visual language. All future development must adhere strictly to these standards to maintain the premium, cohesive aesthetic.
 
-### SupportingSubheading
-- **Purpose**: Section headings within supporting content
-- **Component**: `SupportingSubheading` from Typography.tsx
-- **Tailwind Classes**: `font-serif text-[22px] md:text-[22px] text-white leading-tight mb-3 font-semibold tracking-tight`
-- **Computed CSS**:
-  - Font: Serif
-  - Size: 22px (all screens)
-  - Weight: 600 (semibold)
-  - Color: #ffffff (100% opacity) ⭐
-  - Letter spacing: -0.025em
-  - Line height: 1.25
-  - Margin: 12px bottom
+## 1. Core Philosophy
+*   **Minimalist & Cinematic**: High contrast, dark mode only.
+*   **Typography-Driven**: Large, elegant serif headings paired with technical monospace labels.
+*   **Motion-First**: Interactions should feel fluid and physics-based, not static.
+*   **Content-Focused**: The narrative takes center stage; UI elements recede until needed.
 
-### SupportingText / Body Paragraphs
-- **Purpose**: Body content within supporting sections
-- **Component**: `SupportingText` from Typography.tsx
-- **Tailwind Classes**: `font-serif text-lg md:text-lg text-white/70 leading-relaxed max-w-xl`
-- **Computed CSS**:
-  - Font: Serif
-  - Size: 18px
-  - Weight: 400 (normal)
-  - Color: rgba(255, 255, 255, 0.7) - 70% opacity ⭐
-  - Line height: 1.625
-  - Max width: 576px
+## 2. Colors
+The palette is intentionally restrained to emphasize content and motion.
 
-## Blog Component Mapping
+| Token | Value | Tailwind Class | Usage |
+| :--- | :--- | :--- | :--- |
+| **Background** | `#0a0a0a` | `bg-[#0a0a0a]` | Main page background |
+| **Panel BG** | `#0f0f0f` | `bg-[#0f0f0f]` | Visual/Graphic panels |
+| **Text Primary** | `#ffffff` | `text-white` | Headings, Active States |
+| **Text Secondary** | `rgba(255,255,255,0.8)` | `text-white/80` | Body Text |
+| **Text Tertiary** | `rgba(255,255,255,0.7)` | `text-white/70` | Supporting Text |
+| **Text Muted** | `rgba(255,255,255,0.6)` | `text-white/60` | Labels, Inactive States |
+| **Text Subtle** | `rgba(255,255,255,0.3)` | `text-white/30` | Placeholders, Grid Lines |
+| **Border** | `rgba(255,255,255,0.1)` | `border-white/10` | Dividers, Panel Borders |
+| **Border Subtle** | `rgba(255,255,255,0.05)` | `border-white/5` | Grid Lines |
 
-### Blog h3 Headings → SupportingSubheading
-**MUST MATCH**: 100% white opacity for headings
+## 3. Typography
+We use a distinct pairing of Serif (Narrative) and Monospace (Technical).
 
-### Blog Paragraphs → SupportingText
-**MUST MATCH**: 70% white opacity for body text
+### Font Families
+*   **Serif**: `font-serif` (e.g., Times Now, Playfair Display, or similar system serif)
+*   **Monospace**: `font-mono` (e.g., JetBrains Mono, Roboto Mono, or system mono)
 
-## Color Opacity Values
+### Type Scale & Components
 
-| Element | Main Page | Blog Page (Target) | Purpose |
-|---------|-----------|-------------------|---------|
-| Headings | `text-white` (100%) | `text-white` (100%) | Maximum prominence |
-| Body Text | `text-white/70` (70%) | `text-white/70` (70%) | Readable but secondary |
-| Labels | `text-white/60` (60%) | `text-white/60` (60%) | Tertiary information |
+| Component | Font | Size (Desktop) | Size (Mobile) | Tracking | Line Height | Usage |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **SerifDisplay** | Serif | `text-5xl` | `text-4xl` | `tracking-tight` | `1.05` | Main Section Titles |
+| **SubHeading** | Serif | `text-xl` | `text-lg` | Normal | `1.25` | Secondary Titles |
+| **BodyText** | Serif | `text-2xl` | `text-xl` | Normal | `1.625` | Main Narrative Text |
+| **SupportingText** | Serif | `text-lg` | `text-lg` | Normal | `1.625` | Detail/Overlay Content |
+| **MonoLabel** | Mono | `text-sm` | `text-xs` | `tracking-[0.2em]` | Normal | Section Numbers, Labels |
 
-## Theme Variations
+### Special Case: Extreme Landscape
+For short landscape viewports (`height <= 600px`), use specific clamping for balance:
+*   **Title**: `clamp(2rem, 4vh, 2.75rem)`
+*   **Body**: `clamp(1.125rem, 2.5vh, 1.4rem)` (Line Height: `1.35`)
+*   **Support**: `clamp(0.875rem, 1.8vh, 1rem)` (Line Height: `1.35`)
 
-### Dark Mode (Default)
-- Headings: Pure white (#ffffff)
-- Body: White at 70% opacity
-- Background: #0a0a0a
+## 4. Layout & Grid
+The application uses two distinct layout modes based on viewport.
 
-### Light Mode
-- Headings: Near black (#1a1a1a at 80-100%)
-- Body: Black at 70% opacity
-- Background: #f4f4f5
+### Standard Layout (Vertical Scroll)
+*   **Desktop**: Split screen. Left 50% (Narrative), Right 50% (Visuals).
+*   **Mobile**: Stacked. Visuals (Top), Narrative (Bottom).
+*   **Grid**: 12-column grid is implied but often simplified to 50/50 splits.
 
-## Usage Guidelines
+### Extreme Landscape (Tripod Layout)
+Activates when `height <= 600px` AND `orientation: landscape` AND `width >= 480px`.
+*   **Structure**: 50/50 Split.
+*   **Left Panel**: Narrative content, centered vertically.
+    *   **Padding**: `0 3rem` (Strict alignment with Logo/Label).
+*   **Right Panel**: Visuals, full height.
+*   **Tripod Anchors**:
+    1.  **Logo**: Top-Left (`top: 2rem`, `left: 3rem`)
+    2.  **Label**: Bottom-Left (`bottom: 2rem`, `left: 3rem`)
+    3.  **Menu**: Top-Right (`top: 2rem`, `right: 3rem`)
+*   **Navigation**: Bottom-Right of Left Panel (`bottom: 2rem`, `right: 2rem`).
 
-1. **Always use 100% opacity for headings** - They should be the brightest elements
-2. **Use 70% opacity for body text** - Provides hierarchy without overwhelming
-3. **Never let headings inherit dimmed colors from parent containers**
-4. **Match font sizes exactly across components** - Consistency is key
+## 5. Interactions & Motion
+*   **Transitions**: `duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]` (Custom "out-expo" feel).
+*   **Hover States**:
+    *   **Opacity**: Fade from `30%` or `50%` to `100%`.
+    *   **Scale**: Subtle scale up (`scale-105`) on interactive text links.
+*   **Physics Protection**:
+    *   Visual containers must have the `visual-panel-protected` class to allow touch/drag interactions without triggering navigation.
 
-## Implementation Examples
+## 6. Components
 
-### Correct Heading Implementation
-```tsx
-<h3 className="font-serif text-[22px] text-white font-semibold">
-  Section Heading
-</h3>
-```
+### Navigation Arrows
+*   **Size**: `w-8 h-8` (32px).
+*   **Color**: `text-white/50` (Default) -> `text-white` (Hover).
+*   **Disabled**: `opacity-20`.
 
-### Correct Body Text Implementation
-```tsx
-<p className="font-serif text-lg text-white/70 leading-relaxed">
-  Body paragraph content with proper opacity.
-</p>
-```
+### Menu Overlay
+*   **Background**: `bg-black/90` with `backdrop-blur-xl`.
+*   **Animation**: Fade in + Slide up (`translate-y-10` -> `0`).
+*   **Layout**:
+    *   **Portrait**: Vertical stack, centered.
+    *   **Landscape**: 3-Column Grid (`grid-cols-3 gap-x-4 gap-y-6`).
 
-### Common Mistakes to Avoid
+### Dynamic Overlay (Extreme Landscape)
+*   **Behavior**: Slides in from the right over the visual panel.
+*   **Style**: Glassmorphism (`bg-[#0a0a0a]/85`, `backdrop-blur-20px`).
+*   **Border**: 1px left border `border-white/10`.
 
-❌ **Wrong**: Applying opacity to parent container affecting headings
-```tsx
-<div className="text-white/70">
-  <h3>Heading</h3> {/* Inherits 70% opacity - TOO DIM */}
-</div>
-```
-
-✅ **Correct**: Apply opacity directly to elements
-```tsx
-<div>
-  <h3 className="text-white">Heading</h3> {/* 100% opacity */}
-  <p className="text-white/70">Body</p> {/* 70% opacity */}
-</div>
-```
-
-## Component Reference
-
-### Available Typography Components
-
-All components located in `src/components/ui/Typography.tsx`:
-
-- `SupportingSubheading` - Section headings (22px, semibold, 100% white)
-- `SupportingText` - Body paragraphs (18px, normal, 70% white)
-- Additional components available in Typography.tsx for other use cases
-
-## Accessibility Considerations
-
-- **Contrast Ratios**: Ensure 70% white on dark background meets WCAG AA standards
-- **Font Scaling**: All sizes use px but should scale with user preferences
-- **Readability**: Line height of 1.625 optimized for comfortable reading
-- **Hierarchy**: Opacity creates clear visual hierarchy without compromising legibility
+## 7. Best Practices
+1.  **Never use pure black (`#000`)**: Use `#0a0a0a` for a softer, premium feel.
+2.  **Avoid system fonts**: Always use the `font-serif` and `font-mono` utilities.
+3.  **Respect the grid**: Do not use arbitrary margins. Stick to the `rem` scale (1, 2, 3, 4, 6, 8, 12).
+4.  **Mobile First**: Ensure touch targets are at least 44px (or have sufficient padding).
+5.  **Performance**: Use `will-change-transform` sparingly for complex animations.
