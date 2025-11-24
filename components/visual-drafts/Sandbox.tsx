@@ -8,7 +8,6 @@ import {
     VisualGalaxy,
     VisualFlow,
     VisualChain,
-    VisualShatter,
     VisualPulse,
     VisualFlock,
     VisualMagnet,
@@ -91,11 +90,11 @@ export const Sandbox: React.FC = () => {
         { id: 'flow', title: 'Dense Flow', Component: VisualFlow, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Bandwidth Reclamation Problem' },
         { id: 'pulse', title: 'Sonar Pulse', Component: VisualPulse, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Sandbox (Unused)' },
         { id: 'galaxy', title: 'Galaxy', Component: VisualGalaxy, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Trust Accumulation Curve' },
-        { id: 'shatter', title: 'Shatter', Component: VisualShatter, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Delegation Paradox' },
+        { id: 'chain', title: 'Chain', Component: VisualChain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Delegation Paradox' },
         { id: 'net', title: 'Network', Component: VisualNet, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Co-Learning Economy' },
         { id: 'rain', title: 'Rain', Component: VisualRain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'When Perfect Recommendations Fail' },
         { id: 'vortex', title: 'Vortex', Component: VisualVortex, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Two Ways to Collaborate' },
-        { id: 'flock', title: 'Flock', Component: VisualFlock, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Designing Work for Humans' },
+        { id: 'pulse', title: 'Sonar Pulse', Component: VisualPulse, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Experience Economy Fallacy' },
     ];
 
     const nextSlide = () => {

@@ -95,40 +95,44 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
         >
 
-            {/* Header - Glass Morphism */}
-            <div
-                className={`fixed top-0 left-0 w-full p-6 md:p-12 lg:p-16 flex justify-between items-center z-50 transition-all duration-500 backdrop-blur-xl border-b ${theme === 'dark' ? 'border-white/5 bg-[#0a0a0a]/80' : 'border-black/5 bg-[#f4f4f5]/80'}`}
-            >
-                {/* Gradient Fade for smooth transition */}
-                <div className={`absolute inset-x-0 -bottom-8 h-8 pointer-events-none bg-gradient-to-b ${theme === 'dark' ? 'from-[#0a0a0a]/80 to-transparent' : 'from-[#f4f4f5]/80 to-transparent'}`} />
-                {/* Back Navigation - Context Aware */}
-                <button
-                    onClick={handleBack}
-                    className={`group flex items-center gap-3 font-mono font-bold tracking-[0.2em] uppercase text-xs md:text-sm ${theme === 'dark' ? 'text-white opacity-80 hover:opacity-100' : 'text-black opacity-60 hover:opacity-100'} transition-opacity`}
-                >
-                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    {activePost ? 'Insights' : 'Common Thread'}
-                </button>
+            {/* Header - Fluid Glass Gradient */}
+            <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+                {/* Background with Blur and Gradient Mask */}
+                <div
+                    className={`absolute inset-0 h-48 md:h-64 transition-all duration-500 backdrop-blur-xl [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)] ${theme === 'dark' ? 'bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent' : 'bg-gradient-to-b from-[#f4f4f5] via-[#f4f4f5]/80 to-transparent'}`}
+                />
 
-                {/* Theme Toggle - Right Aligned */}
-                <div className="flex items-center gap-3">
-                    <Moon className={`w-4 h-4 ${theme === 'dark' ? 'text-white' : 'text-black/40'}`} />
+                {/* Content */}
+                <div className="relative z-10 w-full p-6 md:p-12 lg:p-16 flex justify-between items-center pointer-events-auto">
+                    {/* Back Navigation - Context Aware */}
                     <button
-                        onClick={toggleTheme}
-                        className={`
-                            w-12 h-6 rounded-full p-1 transition-colors duration-300 relative
-                            ${theme === 'dark' ? 'bg-white/20' : 'bg-black/10'}
-                        `}
-                        aria-label="Toggle Theme"
+                        onClick={handleBack}
+                        className={`group flex items-center gap-3 font-mono font-bold tracking-[0.2em] uppercase text-xs md:text-sm ${theme === 'dark' ? 'text-white opacity-80 hover:opacity-100' : 'text-black opacity-60 hover:opacity-100'} transition-opacity`}
                     >
-                        <div
-                            className={`
-                                w-4 h-4 rounded-full shadow-sm transition-transform duration-300
-                                ${theme === 'dark' ? 'bg-white translate-x-0' : 'bg-white translate-x-6'}
-                            `}
-                        />
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        {activePost ? 'Insights' : 'Common Thread'}
                     </button>
-                    <Sun className={`w-4 h-4 ${theme === 'dark' ? 'text-white/40' : 'text-black'}`} />
+
+                    {/* Theme Toggle - Right Aligned */}
+                    <div className="flex items-center gap-3">
+                        <Moon className={`w-4 h-4 ${theme === 'dark' ? 'text-white' : 'text-black/40'}`} />
+                        <button
+                            onClick={toggleTheme}
+                            className={`
+                                w-12 h-6 rounded-full p-1 transition-colors duration-300 relative
+                                ${theme === 'dark' ? 'bg-white/20' : 'bg-black/10'}
+                            `}
+                            aria-label="Toggle Theme"
+                        >
+                            <div
+                                className={`
+                                    w-4 h-4 rounded-full shadow-sm transition-transform duration-300
+                                    ${theme === 'dark' ? 'bg-white translate-x-0' : 'bg-white translate-x-6'}
+                                `}
+                            />
+                        </button>
+                        <Sun className={`w-4 h-4 ${theme === 'dark' ? 'text-white/40' : 'text-black'}`} />
+                    </div>
                 </div>
             </div>
 

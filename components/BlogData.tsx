@@ -6,7 +6,6 @@ import {
     VisualFlow,
     VisualPulse,
     VisualGalaxy,
-    VisualShatter,
     VisualNet,
     VisualRain,
     VisualVortex,
@@ -825,7 +824,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: "Nov 19, 2025",
         readTime: "4 min read",
         category: "Leadership",
-        Visual: VisualShatter,
+        Visual: VisualChain,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -956,7 +955,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: "Sept 25, 2025",
         readTime: "4 min read",
         category: "Economics",
-        Visual: VisualChain,
+        Visual: VisualPulse,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
