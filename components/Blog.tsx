@@ -95,11 +95,12 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
         >
 
-            {/* Header - Matched padding with App.tsx for alignment */}
+            {/* Header - Glass Morphism */}
             <div
-                className={`fixed top-0 left-0 w-full p-6 md:p-12 lg:p-16 flex justify-between items-center z-50 transition-colors duration-500`}
-                style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#f4f4f5' }}
+                className={`fixed top-0 left-0 w-full p-6 md:p-12 lg:p-16 flex justify-between items-center z-50 transition-all duration-500 backdrop-blur-xl border-b ${theme === 'dark' ? 'border-white/5 bg-[#0a0a0a]/80' : 'border-black/5 bg-[#f4f4f5]/80'}`}
             >
+                {/* Gradient Fade for smooth transition */}
+                <div className={`absolute inset-x-0 -bottom-8 h-8 pointer-events-none bg-gradient-to-b ${theme === 'dark' ? 'from-[#0a0a0a]/80 to-transparent' : 'from-[#f4f4f5]/80 to-transparent'}`} />
                 {/* Back Navigation - Context Aware */}
                 <button
                     onClick={handleBack}

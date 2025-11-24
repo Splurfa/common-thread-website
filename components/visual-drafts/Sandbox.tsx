@@ -12,7 +12,8 @@ import {
     VisualPulse,
     VisualFlock,
     VisualMagnet,
-    VisualVortex
+    VisualVortex,
+    VisualDomains
 } from './Drafts';
 
 import {
@@ -82,17 +83,19 @@ export const Sandbox: React.FC = () => {
         { id: 'P6', title: 'Gateway Portal', Component: VisualGateway, isPublished: true, publishCategory: 'MAIN', publishLabel: '06 / GATEWAY' },
 
         // Published Visuals - Insights Page
-        { id: 'P7', title: 'Orbital', Component: VisualOrbital, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Human Standard' },
-        { id: 'P8', title: 'Spring Mesh', Component: VisualGrid, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Three Domains' },
-        { id: 'P9', title: 'Physics Chain', Component: VisualChain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Two Ways to Collaborate' },
-        { id: 'P10', title: 'Noise Field', Component: VisualFlow, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Bandwidth Reclamation Problem' },
-        { id: 'P11', title: 'Sonar Pulse', Component: VisualPulse, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Why Empathy Jobs Miss the Point' },
-        { id: 'P12', title: 'Nebula', Component: VisualGalaxy, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Trust Accumulation Curve' },
-        { id: 'P13', title: 'Shatter & Reform', Component: VisualShatter, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'When Perfect Recommendations Fail' },
-        { id: 'P14', title: 'Elastic Net', Component: VisualNet, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Co-Learning Economy' },
-        { id: 'P15', title: 'Data Stream', Component: VisualRain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Delegation Paradox' },
-        { id: 'P16', title: 'Vortex Suction', Component: VisualVortex, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Experience Economy Fallacy' },
-        { id: 'P17', title: 'Boids Flocking', Component: VisualFlock, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Designing Work for Humans' },
+        // The structure of these items has been updated to match the new format
+        { id: 'domains', title: 'Three Domains', Component: VisualDomains, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Three Domains' },
+        { id: 'orbital', title: 'Orbital', Component: VisualOrbital, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Human Standard' },
+        { id: 'grid', title: 'Ripple Grid', Component: VisualGrid, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Why "Empathy Jobs" Miss the Point' },
+        { id: 'chain', title: 'Chain', Component: VisualChain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Experience Economy Fallacy' },
+        { id: 'flow', title: 'Dense Flow', Component: VisualFlow, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Bandwidth Reclamation Problem' },
+        { id: 'pulse', title: 'Sonar Pulse', Component: VisualPulse, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Sandbox (Unused)' },
+        { id: 'galaxy', title: 'Galaxy', Component: VisualGalaxy, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Trust Accumulation Curve' },
+        { id: 'shatter', title: 'Shatter', Component: VisualShatter, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'The Delegation Paradox' },
+        { id: 'net', title: 'Network', Component: VisualNet, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Co-Learning Economy' },
+        { id: 'rain', title: 'Rain', Component: VisualRain, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'When Perfect Recommendations Fail' },
+        { id: 'vortex', title: 'Vortex', Component: VisualVortex, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Two Ways to Collaborate' },
+        { id: 'flock', title: 'Flock', Component: VisualFlock, isPublished: true, publishCategory: 'INSIGHT', publishLabel: 'Designing Work for Humans' },
     ];
 
     const nextSlide = () => {

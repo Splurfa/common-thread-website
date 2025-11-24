@@ -10,7 +10,8 @@ import {
     VisualNet,
     VisualRain,
     VisualVortex,
-    VisualFlock
+    VisualFlock,
+    VisualDomains
 } from './visual-drafts/Drafts';
 
 export interface BlogPost {
@@ -29,7 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 1,
         title: "The Human Standard",
         excerpt: "Context builds over time. Without it, judgment breaks on contact with reality.",
-        date: "Nov 22, 2024",
+        date: "Sept 12, 2025",
         readTime: "4 min read",
         category: "Philosophy",
         Visual: VisualOrbital,
@@ -102,10 +103,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 2,
         title: "The Three Domains",
         excerpt: "As routine cognition automates, connection remains—not the last skill standing, but the foundation making all other work possible.",
-        date: "Nov 23, 2024",
+        date: "Oct 04, 2025",
         readTime: "4 min read",
         category: "Future of Work",
-        Visual: VisualGrid,
+        Visual: VisualDomains,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -196,10 +197,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 3,
         title: "Two Ways to Collaborate",
         excerpt: "Task delegation and continuous integration both work—but neither addresses the human connection layer where judgment actually becomes functional.",
-        date: "Nov 23, 2024",
+        date: "Sept 28, 2025",
         readTime: "4 min read",
         category: "AI Integration",
-        Visual: VisualChain,
+        Visual: VisualVortex,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -308,7 +309,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 4,
         title: "The Bandwidth Reclamation Problem",
         excerpt: "When process work disappears, the cognitive bandwidth it consumed doesn't vanish—it redirects toward thinking that compounds.",
-        date: "Nov 23, 2024",
+        date: "Nov 15, 2025",
         readTime: "4 min read",
         category: "Productivity",
         Visual: VisualFlow,
@@ -420,10 +421,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 5,
         title: "Why \"Empathy Jobs\" Miss the Point",
         excerpt: "The safe-jobs narrative focuses on empathy outputs—but human connection isn't measured in deliverables.",
-        date: "Nov 23, 2024",
+        date: "Oct 22, 2025",
         readTime: "4 min read",
         category: "Future of Work",
-        Visual: VisualPulse,
+        Visual: VisualGrid,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -543,7 +544,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 6,
         title: "The Trust Accumulation Curve",
         excerpt: "Trust isn't built in transactions. It compounds through proximity over time—and there's no algorithmic shortcut.",
-        date: "Nov 23, 2024",
+        date: "Sept 18, 2025",
         readTime: "4 min read",
         category: "Strategy",
         Visual: VisualGalaxy,
@@ -620,10 +621,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 7,
         title: "When Perfect Recommendations Fail",
         excerpt: "The most technically correct AI output can fail completely when it misses the relational context that makes recommendations land.",
-        date: "Nov 23, 2024",
+        date: "Nov 02, 2025",
         readTime: "4 min read",
         category: "Strategy",
-        Visual: VisualShatter,
+        Visual: VisualRain,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -716,7 +717,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 8,
         title: "The Co-Learning Economy",
         excerpt: "When learning becomes mutual between humans and AI, capability compounds—but the infrastructure enabling it requires human connection as the interface.",
-        date: "Nov 23, 2024",
+        date: "Oct 11, 2025",
         readTime: "4 min read",
         category: "Future of Work",
         Visual: VisualNet,
@@ -821,10 +822,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 9,
         title: "The Delegation Paradox",
         excerpt: "As process work automates, human judgment does not become less valuable—it concentrates, making every remaining decision carry more weight.",
-        date: "Nov 23, 2024",
+        date: "Nov 19, 2025",
         readTime: "4 min read",
         category: "Leadership",
-        Visual: VisualRain,
+        Visual: VisualShatter,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -952,10 +953,10 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 10,
         title: "The Experience Economy Fallacy",
         excerpt: "Most experiences can be productized. What survives is connection through repeated return.",
-        date: "Nov 23, 2024",
+        date: "Sept 25, 2025",
         readTime: "4 min read",
         category: "Economics",
-        Visual: VisualVortex,
+        Visual: VisualChain,
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
@@ -1033,7 +1034,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: 11,
         title: "Designing Work for Humans",
         excerpt: "Automation does not eliminate work. It returns humans to the work only humans can do.",
-        date: "Nov 23, 2024",
+        date: "Oct 30, 2025",
         readTime: "4 min read",
         category: "Design",
         Visual: VisualFlock,

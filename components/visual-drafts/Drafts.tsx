@@ -84,6 +84,16 @@ export const VisualGrid: React.FC = () => {
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
         currentBuffer.current.fill(0);
         previousBuffer.current.fill(0);
+
+        // Add initial subtle ripples so it's not blank
+        for (let i = 0; i < 5; i++) {
+            const x = Math.floor(Math.random() * cols);
+            const y = Math.floor(Math.random() * rows);
+            const idx = x + y * cols;
+            if (idx >= 0 && idx < cols * rows) {
+                previousBuffer.current[idx] = 300;
+            }
+        }
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
@@ -139,17 +149,22 @@ export const VisualGrid: React.FC = () => {
                 const idx = y * cols + x;
                 const val = currentBuffer.current[idx];
 
+                // Draw a faint base grid
+                const xPos = x * scaleX + scaleX / 2;
+                const yPos = y * scaleY + scaleY / 2;
+
+                // Always draw very faint dot
+                const baseAlpha = 0.05;
+
                 // Only draw significant ripples
-                if (Math.abs(val) > 0.1) {
-                    const xPos = x * scaleX + scaleX / 2;
-                    const yPos = y * scaleY + scaleY / 2;
+                if (Math.abs(val) > 0.1 || (x % 5 === 0 && y % 5 === 0)) { // Draw some base grid points
 
                     const yOff = yPos - val * 0.5;
 
                     // Much smaller, finer dots
-                    const radius = Math.min(Math.abs(val) * 0.05, 1.5);
+                    const radius = Math.min(Math.abs(val) * 0.05, 1.5) + (Math.abs(val) < 0.1 ? 0.5 : 0);
                     // Lower opacity
-                    const alpha = Math.min(Math.abs(val) * 0.01, 0.4);
+                    const alpha = Math.max(Math.min(Math.abs(val) * 0.01, 0.4), baseAlpha);
 
                     ctx.beginPath();
                     ctx.arc(xPos, yOff, radius, 0, Math.PI * 2);
@@ -745,6 +760,7 @@ export const VisualShatter: React.FC = () => {
 export const VisualPulse: React.FC = () => {
     const waves = useRef<any[]>([]);
     const lastPulse = useRef(0);
+    const lastMovePulse = useRef(0);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
         waves.current = [];
@@ -760,25 +776,26 @@ export const VisualPulse: React.FC = () => {
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
         const mx = isIdle ? 50 + Math.sin(time) * 30 : mouse.x * 100;
         const my = isIdle ? 50 + Math.cos(time) * 30 : mouse.y * 100;
-        const isPressed = isIdle ? (Math.random() > 0.98) : mouse.isPressed; // Random auto-pulse
+        const isPressed = isIdle ? (Math.random() > 0.99) : mouse.isPressed; // Slower auto-pulse
 
         const now = Date.now();
 
-        // Auto pulse or mouse pulse
-        if (now - lastPulse.current > 1000) {
-            waves.current.push({ x: 50, y: 50, r: 0, alpha: 1 });
+        // Auto pulse (heartbeat)
+        if (now - lastPulse.current > 2000) { // Slower heartbeat
+            waves.current.push({ x: 50, y: 50, r: 0, alpha: 0.6 });
             lastPulse.current = now;
         }
 
-        // Mouse movement creates waves
-        if (Math.random() > 0.9 || isPressed) {
-            waves.current.push({ x: mx, y: my, r: 0, alpha: isPressed ? 0.8 : 0.5 });
+        // Mouse movement creates waves - throttled
+        if (isPressed || (now - lastMovePulse.current > 100 && Math.random() > 0.8)) {
+            waves.current.push({ x: mx, y: my, r: 0, alpha: isPressed ? 0.6 : 0.3 });
+            lastMovePulse.current = now;
         }
 
         for (let i = waves.current.length - 1; i >= 0; i--) {
             const w = waves.current[i];
-            w.r += 0.5;
-            w.alpha -= 0.01;
+            w.r += 0.2; // Slower expansion
+            w.alpha -= 0.003; // Slower fade
 
             if (w.alpha <= 0) {
                 waves.current.splice(i, 1);
@@ -1099,6 +1116,139 @@ export const VisualVortex: React.FC = () => {
             ctx.arc(p.pos.x * scaleX, p.pos.y * scaleY, p.radius, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.fill();
+        });
+    };
+
+    return <PhysicsCanvas onInit={init} onUpdate={update} />;
+};
+
+// --- Three Domains (Interacting Fields) ---
+export const VisualDomains: React.FC = () => {
+    const particles = useRef<any[]>([]);
+
+    const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
+        particles.current = [];
+        const count = 600;
+
+        // Three centers
+        const centers = [
+            { x: 30, y: 35 }, // Top Left
+            { x: 70, y: 35 }, // Top Right
+            { x: 50, y: 75 }  // Bottom Center
+        ];
+
+        for (let i = 0; i < count; i++) {
+            const domain = Math.floor(Math.random() * 3);
+            const center = centers[domain];
+
+            // Spawn around center (Gaussian-ish)
+            const angle = Math.random() * Math.PI * 2;
+            const dist = Math.random() * 20; // Cluster radius
+
+            particles.current.push({
+                x: center.x + Math.cos(angle) * dist,
+                y: center.y + Math.sin(angle) * dist,
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2,
+                size: Math.random() * 2 + 0.5, // Varied size
+                alpha: 0.1 + Math.random() * 0.5,
+                domain: domain
+            });
+        }
+    };
+
+    const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
+        ctx.clearRect(0, 0, width, height);
+        const scaleX = width / 100;
+        const scaleY = height / 100;
+
+        // Three centers
+        const centers = [
+            { x: 30, y: 35 }, // Top Left
+            { x: 70, y: 35 }, // Top Right
+            { x: 50, y: 75 }  // Bottom Center
+        ];
+
+        // Mouse interaction
+        const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
+        const mx = mouse.x * 100;
+        const my = mouse.y * 100;
+
+        particles.current.forEach(p => {
+            // Attraction to assigned domain center
+            const center = centers[p.domain];
+
+            // If mouse is pressed, attract to mouse instead
+            const targetX = mouse.isPressed ? mx : center.x;
+            const targetY = mouse.isPressed ? my : center.y;
+
+            const dx = targetX - p.x;
+            const dy = targetY - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            // Gentle attraction
+            const force = mouse.isPressed ? 0.05 : 0.003;
+            p.vx += dx * force;
+            p.vy += dy * force;
+
+            // Repulsion from other domains (subtle)
+            centers.forEach((c, i) => {
+                if (i !== p.domain && !mouse.isPressed) {
+                    const rdx = c.x - p.x;
+                    const rdy = c.y - p.y;
+                    const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+                    if (rdist < 25) {
+                        p.vx -= (rdx / rdist) * 0.008;
+                        p.vy -= (rdy / rdist) * 0.008;
+                    }
+                }
+            });
+
+            // Damping
+            p.vx *= 0.95;
+            p.vy *= 0.95;
+
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Render
+            ctx.beginPath();
+
+            if (p.domain === 2) {
+                // Domain 2 (Bottom): Triangle
+                const s = p.size * 1.2;
+                const px = p.x * scaleX;
+                const py = p.y * scaleY;
+
+                // Triangle pointing up
+                ctx.moveTo(px, py - s);
+                ctx.lineTo(px + s, py + s);
+                ctx.lineTo(px - s, py + s);
+                ctx.closePath();
+            } else {
+                // Domain 0 (Top Left) & 1 (Top Right): Spheres (Circles)
+                ctx.arc(p.x * scaleX, p.y * scaleY, p.size, 0, Math.PI * 2);
+            }
+
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+            ctx.fill();
+
+            // Connect nearby particles within same domain (faint)
+            particles.current.forEach(p2 => {
+                if (p !== p2 && p.domain === p2.domain) {
+                    const ddx = p.x - p2.x;
+                    const ddy = p.y - p2.y;
+                    const ddist = Math.sqrt(ddx * ddx + ddy * ddy);
+                    if (ddist < 6) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x * scaleX, p.y * scaleY);
+                        ctx.lineTo(p2.x * scaleX, p2.y * scaleY);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.03})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
         });
     };
 
