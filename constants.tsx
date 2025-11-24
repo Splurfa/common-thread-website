@@ -73,7 +73,7 @@ export const slides: Slide[] = [
     title: "The Architects.",
     body: "We are stewards of connection, ensuring technology amplifies human intent.",
     supportingContent: (
-      <div className="grid grid-cols-1 gap-12 md:gap-16">
+      <div className="grid grid-cols-1 gap-8 md:gap-16">
         <div>
           <SupportingSubheading className="mb-0">Derek Yellin</SupportingSubheading>
           <MonoLabel className="block mt-2 text-white/40 text-[10px] md:text-xs">Chief Executive Officer</MonoLabel>
