@@ -27,38 +27,40 @@ const MenuOverlay = ({ isOpen, onClose, currentSlideId, onNavigate }: any) => {
                 <X className="w-8 h-8" />
             </button>
 
-            <div className={`flex flex-col items-center gap-8 transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <div className="flex flex-col gap-6 text-center">
+            <div className={`w-full max-w-4xl px-12 transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                {/* Landscape Grid Layout */}
+                <div className="grid grid-cols-3 gap-x-4 gap-y-6 items-center justify-items-center">
                     {slides.map((slide, index) => (
                         <button
                             key={slide.id}
                             onClick={() => { onNavigate(index); onClose(); }}
-                            className={`font-serif text-3xl md:text-4xl hover:text-white transition-colors ${currentSlideId === slide.id ? 'text-white italic' : 'text-white/30'}`}
+                            className={`font-serif text-2xl md:text-3xl hover:text-white transition-colors whitespace-nowrap ${currentSlideId === slide.id ? 'text-white italic' : 'text-white/30'}`}
                         >
-                            <span className="font-mono text-xs tracking-widest block mb-1 opacity-50">{slide.label.split('/')[0]}</span>
+                            <span className="font-mono text-[10px] tracking-widest block mb-1 opacity-50">{slide.label.split('/')[0]}</span>
                             {slide.label.split('/')[1].trim()}
                         </button>
                     ))}
 
-                    {/* Blog Link */}
-                    <div className="inline-block py-2 px-2 -mx-2 mt-4">
+                    {/* Blog Link - Fits in the grid */}
+                    <div className="flex flex-col items-center">
                         <a
                             href="#blog"
                             onClick={onClose}
-                            className="font-serif text-3xl md:text-4xl text-white/30 hover:text-white transition-all duration-500 ease-out transform hover:scale-105"
-                            style={{ transformOrigin: 'center center' }}
+                            className="font-serif text-2xl md:text-3xl text-white/30 hover:text-white transition-all duration-500 ease-out transform hover:scale-105 text-center"
                         >
-                            <span className="font-mono text-xs tracking-widest block mb-1 opacity-50">07</span>
+                            <span className="font-mono text-[10px] tracking-widest block mb-1 opacity-50">07</span>
                             Insights
                         </a>
                     </div>
                 </div>
 
-                <div className="w-12 h-px bg-white/20 my-4" />
+                <div className="w-full h-px bg-white/10 my-8" />
 
-                <a href="mailto:hello@common-thread.io" className="font-mono text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors flex items-center gap-2">
-                    Contact Us <ExternalLink className="w-3 h-3" />
-                </a>
+                <div className="flex justify-center">
+                    <a href="mailto:hello@common-thread.io" className="font-mono text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors flex items-center gap-2">
+                        Contact Us <ExternalLink className="w-3 h-3" />
+                    </a>
+                </div>
             </div>
         </div>
     );
@@ -131,8 +133,28 @@ export function ExtremeLandscapeLayout({
       z-index: 50;
       opacity: 0.6;
       transition: opacity 0.3s ease;
+      
+      /* Alignment with Arrows (h-8 = 2rem) */
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      
+      /* Typography matching header (overriding MonoLabel defaults if necessary) */
+      font-family: monospace; /* Ensure mono */
+      font-size: 0.75rem; /* text-xs */
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
     .extreme-label:hover { opacity: 1; }
+    
+    /* Target the MonoLabel inside to ensure styles apply */
+    .extreme-label > * {
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+    }
 
     /* Nav Arrows - Integrated into Left Panel (Bottom-Right) */
     .extreme-nav-arrows {
@@ -174,15 +196,17 @@ export function ExtremeLandscapeLayout({
     .extreme-title {
       font-size: clamp(2rem, 4vh, 2.75rem); /* Balanced Title */
       line-height: 1.1;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem; /* Tightened from 1rem */
     }
     .extreme-body {
       font-size: clamp(1.125rem, 2.5vh, 1.4rem); /* Balanced Body */
+      line-height: 1.35; /* Tightened line spacing */
       max-width: 40ch;
       /* Removed opacity to let BodyText (text-white/80) handle color */
     }
     .extreme-support {
       font-size: clamp(0.875rem, 1.8vh, 1rem); /* Small Supporting Text */
+      line-height: 1.35; /* Tightened line spacing */
       max-width: 45ch;
       /* Removed color override to let SupportingText (text-white/70) handle color */
     }
@@ -276,7 +300,7 @@ export function ExtremeLandscapeLayout({
             </div>
 
             {/* --- VISUAL PANEL (Right Panel) --- */}
-            <div className="extreme-right-panel">
+            <div className="extreme-right-panel visual-panel-protected">
                 {/* Grid Background */}
                 <div
                     className="absolute inset-0 opacity-[0.03] pointer-events-none"
