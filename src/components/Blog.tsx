@@ -130,7 +130,12 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
         if (activePost) {
             // When opening a post, always scroll to top
-            scrollContainerRef.current.scrollTop = 0;
+            // Use setTimeout to ensure DOM has updated and browser hasn't interfered
+            setTimeout(() => {
+                if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollTop = 0;
+                }
+            }, 10);
         } else {
             // When returning to list, restore saved position
             // Small timeout to ensure layout is ready
@@ -138,7 +143,7 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 if (scrollContainerRef.current) {
                     scrollContainerRef.current.scrollTop = savedScrollPosition;
                 }
-            }, 0);
+            }, 10);
         }
     }, [activePost, savedScrollPosition]);
 
