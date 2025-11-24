@@ -14,9 +14,9 @@ function useLayoutMode() {
       // Also check aspect ratio to avoid false positives on small but standard windows
       const isLandscape = window.matchMedia('(orientation: landscape)').matches;
       const isShort = window.innerHeight <= 600;
-      const isDesktopWidth = window.innerWidth >= 768;
+      const isWideEnough = window.innerWidth >= 480; // Relaxed from 768 to support mobile landscape
 
-      setIsExtremeLandscape(isLandscape && isShort && isDesktopWidth);
+      setIsExtremeLandscape(isLandscape && isShort && isWideEnough);
     };
 
     checkLayout();
