@@ -103,7 +103,7 @@ export function ExtremeLandscapeLayout({
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 4rem; /* Generous horizontal padding */
+      padding: 0 3rem; /* Reduced from 4rem to match logo/label alignment */
       z-index: 20;
     }
 
@@ -138,7 +138,7 @@ export function ExtremeLandscapeLayout({
     .extreme-nav-arrows {
       position: absolute;
       bottom: 2rem;
-      right: 4rem; /* Aligned with content padding */
+      right: 2rem; /* Moved further right (was 4rem) to avoid collision */
       z-index: 50;
       display: flex;
       gap: 1.5rem;
