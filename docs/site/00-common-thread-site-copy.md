@@ -13,7 +13,7 @@ The distance between intent and execution is about to disappear.
 
 **Supporting Content:**
 
-**Core Mission**
+**The Synergy**
 
 When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.
 

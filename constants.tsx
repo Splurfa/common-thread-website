@@ -18,7 +18,7 @@ export const slides: Slide[] = [
     body: "The distance between intent and execution is about to disappear.",
     supportingContent: (
       <div>
-        <SupportingSubheading>Core Mission</SupportingSubheading>
+        <SupportingSubheading>The Synergy</SupportingSubheading>
         <p className="mb-4">When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.</p>
         <p>Time returns to its rightful owner: the human mind.</p>
       </div>
