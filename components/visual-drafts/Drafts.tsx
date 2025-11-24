@@ -72,128 +72,92 @@ export const VisualOrbital: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Fabric (Spring Mesh) ---
+// --- Fabric (Ripple Grid) ---
 export const VisualGrid: React.FC = () => {
-    const nodes = useRef<any[]>([]);
-    const constraints = useRef<any[]>([]);
+    // Using a heightmap based ripple simulation
+    const cols = 50; // Higher res for finer look
+    const rows = 50;
+    const currentBuffer = useRef<Float32Array>(new Float32Array(cols * rows));
+    const previousBuffer = useRef<Float32Array>(new Float32Array(cols * rows));
+    const damping = 0.95; // Damping
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        nodes.current = [];
-        constraints.current = [];
-        const rows = 12;
-        const cols = 12;
-        const spacingX = 60 / (cols - 1);
-        const spacingY = 60 / (rows - 1);
-        
-        // Create nodes (Centered grid)
-        for (let y = 0; y < rows; y++) {
-            for (let x = 0; x < cols; x++) {
-                nodes.current.push({
-                    x: 20 + x * spacingX,
-                    y: 20 + y * spacingY,
-                    baseX: 20 + x * spacingX,
-                    baseY: 20 + y * spacingY,
-                    vx: 0,
-                    vy: 0
-                });
-            }
-        }
-
-        // Create constraints (Springs)
-        for (let y = 0; y < rows; y++) {
-            for (let x = 0; x < cols; x++) {
-                const i = y * cols + x;
-                // Right neighbor
-                if (x < cols - 1) constraints.current.push({ p1: i, p2: i + 1, len: spacingX });
-                // Bottom neighbor
-                if (y < rows - 1) constraints.current.push({ p1: i, p2: i + cols, len: spacingY });
-            }
-        }
+        currentBuffer.current.fill(0);
+        previousBuffer.current.fill(0);
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
+        // Clear with slight fade
         ctx.clearRect(0, 0, width, height);
-        const scaleX = width / 100;
-        const scaleY = height / 100;
 
+        const scaleX = width / cols;
+        const scaleY = height / rows;
+
+        // Interaction: Add ripple on mouse move/click
         const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time * 0.5) * 30 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time * 0.3) * 30 : mouse.y * 100;
-        const isPressed = isIdle ? false : mouse.isPressed;
 
-        // 1. Accumulate Forces
-        nodes.current.forEach(p => {
-            // Spring to base (Keep the overall shape)
-            const kBase = 0.05;
-            p.vx += (p.baseX - p.x) * kBase;
-            p.vy += (p.baseY - p.y) * kBase;
+        let mx = mouse.x * cols;
+        let my = mouse.y * rows;
 
-            // Mouse Interaction (Repulsion)
-            const dx = p.x - mx;
-            const dy = p.y - my;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            if (dist < 25) {
-                const force = (25 - dist) * (isPressed ? 0.5 : 0.2);
-                p.vx += (dx / dist) * force;
-                p.vy += (dy / dist) * force;
-            }
-        });
-
-        // 2. Resolve Constraints (Springs between nodes)
-        const iterations = 3; // More stable with iterations
-        for (let i = 0; i < iterations; i++) {
-            constraints.current.forEach(c => {
-                const n1 = nodes.current[c.p1];
-                const n2 = nodes.current[c.p2];
-                
-                const dx = n2.x - n1.x;
-                const dy = n2.y - n1.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const diff = (dist - c.len) * 0.1; // Stiffness
-                
-                if (dist > 0) {
-                    const offX = (dx / dist) * diff;
-                    const offY = (dy / dist) * diff;
-                    
-                    n1.vx += offX;
-                    n1.vy += offY;
-                    n2.vx -= offX;
-                    n2.vy -= offY;
+        if (isIdle) {
+            if (Math.random() < 0.01) { // Less frequent
+                mx = Math.random() * cols;
+                my = Math.random() * rows;
+                const idx = Math.floor(mx) + Math.floor(my) * cols;
+                if (idx >= 0 && idx < cols * rows) {
+                    previousBuffer.current[idx] = 200;
                 }
-            });
+            }
+        } else {
+            const idx = Math.floor(mx) + Math.floor(my) * cols;
+            if (idx >= 0 && idx < cols * rows) {
+                previousBuffer.current[idx] = mouse.isPressed ? 500 : 100;
+            }
         }
 
-        // 3. Integration
-        nodes.current.forEach(p => {
-            p.vx *= 0.9;
-            p.vy *= 0.9;
-            p.x += p.vx;
-            p.y += p.vy;
-        });
+        // Process Ripple Simulation
+        for (let i = cols; i < cols * rows - cols; i++) {
+            currentBuffer.current[i] = (
+                previousBuffer.current[i - 1] +
+                previousBuffer.current[i + 1] +
+                previousBuffer.current[i - cols] +
+                previousBuffer.current[i + cols]
+            ) / 2 - currentBuffer.current[i];
 
-        // 4. Draw
-        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        constraints.current.forEach(c => {
-            const n1 = nodes.current[c.p1];
-            const n2 = nodes.current[c.p2];
-            ctx.moveTo(n1.x * scaleX, n1.y * scaleY);
-            ctx.lineTo(n2.x * scaleX, n2.y * scaleY);
-        });
-        ctx.stroke();
+            currentBuffer.current[i] *= damping;
+        }
 
-        ctx.fillStyle = 'rgba(255,255,255,0.8)';
-        nodes.current.forEach(p => {
-            // Speed affects size
-            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-            const r = 1 + speed;
-            ctx.beginPath();
-            ctx.arc(p.x * scaleX, p.y * scaleY, r, 0, Math.PI * 2);
-            ctx.fill();
-        });
+        // Swap buffers
+        const temp = previousBuffer.current;
+        previousBuffer.current = currentBuffer.current;
+        currentBuffer.current = temp;
+
+        // Render
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                const idx = y * cols + x;
+                const val = currentBuffer.current[idx];
+
+                // Only draw significant ripples
+                if (Math.abs(val) > 0.1) {
+                    const xPos = x * scaleX + scaleX / 2;
+                    const yPos = y * scaleY + scaleY / 2;
+
+                    const yOff = yPos - val * 0.5;
+
+                    // Much smaller, finer dots
+                    const radius = Math.min(Math.abs(val) * 0.05, 1.5);
+                    // Lower opacity
+                    const alpha = Math.min(Math.abs(val) * 0.01, 0.4);
+
+                    ctx.beginPath();
+                    ctx.arc(xPos, yOff, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                    ctx.fill();
+                }
+            }
+        }
     };
 
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
@@ -337,11 +301,11 @@ export const VisualRain: React.FC = () => {
             if (d.y > 100) {
                 // Splash effect
                 if (Math.random() > 0.6) {
-                    for(let i=0; i<2; i++) {
+                    for (let i = 0; i < 2; i++) {
                         splashes.current.push({
                             x: d.x,
                             y: 100,
-                            vx: (Math.random()-0.5) * 1.5,
+                            vx: (Math.random() - 0.5) * 1.5,
                             vy: -Math.random() * 1.5,
                             life: 1.0,
                             color: `rgba(255,255,255,${d.z * 0.5})`
@@ -362,7 +326,7 @@ export const VisualRain: React.FC = () => {
         });
 
         // 2. Update & Draw Splashes
-        for(let i=splashes.current.length-1; i>=0; i--) {
+        for (let i = splashes.current.length - 1; i >= 0; i--) {
             const s = splashes.current[i];
             s.x += s.vx;
             s.y += s.vy;
@@ -421,7 +385,7 @@ export const VisualGalaxy: React.FC = () => {
 
             // 3D Projection approximation
             const zVolume = (s.z - 0.5) * 30; // Depth [-15, 15]
-            
+
             // X/Y on plane
             const xBase = Math.cos(s.angle) * s.radius;
             const yBase = Math.sin(s.angle) * s.radius;
@@ -437,7 +401,7 @@ export const VisualGalaxy: React.FC = () => {
             // Perspective scale
             const perspective = 1 + (zVolume * tiltY) * 0.01;
             const scale = s.size * perspective * (0.6 + s.z * 0.6);
-            
+
             // Opacity
             // Fade distant/small stars
             const alpha = 0.3 + (s.z * 0.7);
@@ -448,75 +412,93 @@ export const VisualGalaxy: React.FC = () => {
             ctx.globalAlpha = alpha;
             ctx.fill();
         });
-        
+
         ctx.globalAlpha = 1;
     };
 
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Noise Field ---
+// --- Noise Field (Dense Flow) ---
 export const VisualFlow: React.FC = () => {
-    const particles = useRef<Particle[]>([]);
+    const particles = useRef<any[]>([]);
+    // Simple pseudo-random noise function
+    const noise = (x: number, y: number) => {
+        const sin = Math.sin(x * 12.9898 + y * 78.233);
+        return (sin * 43758.5453) % 1;
+    };
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        particles.current = Array.from({ length: 150 }).map((_, i) => ({
-            id: i,
-            pos: { x: Math.random() * 100, y: Math.random() * 100 },
-            vel: { x: 0, y: 0 },
-            acc: { x: 0, y: 0 },
-            radius: randomRange(0.5, 1.5),
-            life: 1,
-            color: 'rgba(255,255,255,0.4)',
-            mass: 1
+        // Reduced count from 2000 to 800 for less "busyness"
+        particles.current = Array.from({ length: 800 }).map(() => ({
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+            vx: 0,
+            vy: 0,
+            life: Math.random(),
+            maxLife: 1 + Math.random(),
+            // Lower opacity for subtler look
+            color: `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`
         }));
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
-        ctx.clearRect(0, 0, width, height);
+        // Fade out for trails - increased fade for cleaner look
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.fillRect(0, 0, width, height);
+
         const scaleX = width / 100;
         const scaleY = height / 100;
+        const time = Date.now() * 0.0001; // Slower time
 
-        // Auto-animation: Virtual mouse
-        const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time) * 30 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time * 1.2) * 30 : mouse.y * 100;
-        const isPressed = isIdle ? false : mouse.isPressed;
+        const mx = isIdle ? 50 : mouse.x * 100;
+        const my = isIdle ? 50 : mouse.y * 100;
 
         particles.current.forEach(p => {
-            // Simple flow field approximation using sin/cos
-            const angle = Math.sin(p.pos.x * 0.1) + Math.cos(p.pos.y * 0.1);
-            p.acc.x += Math.cos(angle) * (isPressed ? 0.1 : 0.02); // Stronger flow on click
-            p.acc.y += Math.sin(angle) * (isPressed ? 0.1 : 0.02);
+            // Noise-based flow
+            const scale = 0.03; // Larger noise scale = smoother flow
+            const n = noise(p.x * scale + time, p.y * scale + time) * Math.PI * 4;
 
-            // Mouse attraction
-            const dx = mx - p.pos.x;
-            const dy = my - p.pos.y;
+            // Flow vector
+            const fx = Math.cos(n);
+            const fy = Math.sin(n);
+
+            // Mouse influence
+            const dx = mx - p.x;
+            const dy = my - p.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 30) {
-                p.acc.x += (dx / dist) * 0.05;
-                p.acc.y += (dy / dist) * 0.05;
+            const influence = Math.max(0, (30 - dist) / 30);
+
+            // Apply forces - gentler
+            p.vx += fx * 0.03;
+            p.vy += fy * 0.03;
+
+            if (influence > 0) {
+                if (mouse.isPressed) {
+                    p.vx += (dx / dist) * influence * 0.3;
+                    p.vy += (dy / dist) * influence * 0.3;
+                } else {
+                    p.vx += (Math.random() - 0.5) * influence * 0.3;
+                    p.vy += (Math.random() - 0.5) * influence * 0.3;
+                }
             }
 
-            p.vel.x += p.acc.x;
-            p.vel.y += p.acc.y;
-            p.vel.x *= 0.95;
-            p.vel.y *= 0.95;
-            p.pos.x += p.vel.x;
-            p.pos.y += p.vel.y;
-            p.acc = { x: 0, y: 0 };
+            // Friction and movement
+            p.vx *= 0.95;
+            p.vy *= 0.95;
+            p.x += p.vx;
+            p.y += p.vy;
 
-            // Wrap
-            if (p.pos.x < 0) p.pos.x = 100;
-            if (p.pos.x > 100) p.pos.x = 0;
-            if (p.pos.y < 0) p.pos.y = 100;
-            if (p.pos.y > 100) p.pos.y = 0;
+            // Wrap around
+            if (p.x < 0) p.x = 100;
+            if (p.x > 100) p.x = 0;
+            if (p.y < 0) p.y = 100;
+            if (p.y > 100) p.y = 0;
 
-            ctx.beginPath();
-            ctx.arc(p.pos.x * scaleX, p.pos.y * scaleY, p.radius, 0, Math.PI * 2);
+            // Render
             ctx.fillStyle = p.color;
-            ctx.fill();
+            ctx.fillRect(p.x * scaleX, p.y * scaleY, 1.5, 1.5);
         });
     };
 
@@ -590,7 +572,7 @@ export const VisualChain: React.FC = () => {
                     p.x += Math.cos(angle) * force;
                     p.y += Math.sin(angle) * force;
                 }
-                
+
                 // Idle wind
                 if (isIdle) {
                     p.x += Math.sin(time * 2 + p.y * 0.1 + chainIndex) * 0.02;
@@ -606,7 +588,7 @@ export const VisualChain: React.FC = () => {
                     const dx = p2.x - p1.x;
                     const dy = p2.y - p1.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    
+
                     if (dist === 0) continue; // Prevent NaN
 
                     const diff = dist - segmentLength;
@@ -623,8 +605,8 @@ export const VisualChain: React.FC = () => {
                         p2.y -= offsetY;
                     } else {
                         // If p1 is pinned, p2 takes all movement
-                         p2.x -= offsetX * 2;
-                         p2.y -= offsetY * 2;
+                        p2.x -= offsetX * 2;
+                        p2.y -= offsetY * 2;
                     }
                 }
             }
@@ -643,7 +625,7 @@ export const VisualChain: React.FC = () => {
             ctx.stroke();
 
             // End cap
-            const last = chain[chain.length-1];
+            const last = chain[chain.length - 1];
             ctx.beginPath();
             ctx.arc(last.x * scaleX, last.y * scaleY, 3, 0, Math.PI * 2);
             ctx.fillStyle = 'white';
@@ -654,23 +636,36 @@ export const VisualChain: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Shatter / Reform ---
+// --- Shatter / Reform (Crystalline Mosaic) ---
 export const VisualShatter: React.FC = () => {
     const shards = useRef<any[]>([]);
-    const shattered = useRef(false);
+    const state = useRef<'solid' | 'shattering' | 'reforming'>('solid');
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
         shards.current = [];
-        // Create a circle of shards
-        for (let i = 0; i < 50; i++) {
-            const angle = (i / 50) * Math.PI * 2;
+        const hexRadius = 30;
+        const centerX = 50;
+        const centerY = 50;
+
+        // Slightly more shards but very delicate
+        for (let i = 0; i < 40; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const r = Math.sqrt(Math.random()) * hexRadius;
+            const x = centerX + Math.cos(angle) * r;
+            const y = centerY + Math.sin(angle) * r;
+
             shards.current.push({
-                baseX: 50 + Math.cos(angle) * 10,
-                baseY: 50 + Math.sin(angle) * 10,
-                x: 50 + Math.cos(angle) * 10,
-                y: 50 + Math.sin(angle) * 10,
-                vx: 0, vy: 0,
-                angle: angle
+                baseX: x,
+                baseY: y,
+                x: x,
+                y: y,
+                vx: 0,
+                vy: 0,
+                angle: Math.random() * Math.PI * 2,
+                rotation: 0,
+                vRotation: 0,
+                size: 2 + Math.random() * 3,
+                color: `rgba(255, 255, 255, ${0.3 + Math.random() * 0.4})` // Lower opacity
             });
         }
     };
@@ -680,40 +675,66 @@ export const VisualShatter: React.FC = () => {
         const scaleX = width / 100;
         const scaleY = height / 100;
 
-        // Auto-animation: Virtual mouse
-        const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time) * 20 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time) * 20 : mouse.y * 100;
-        const isPressed = isIdle ? (Math.sin(time * 3) > 0.8) : mouse.isPressed; // Auto-shatter occasionally
 
-        const distToCenter = Math.sqrt(Math.pow(mx - 50, 2) + Math.pow(my - 50, 2));
+        if (mouse.isPressed) {
+            state.current = 'shattering';
+        } else if (!isIdle && state.current === 'shattering') {
+            state.current = 'reforming';
+        }
 
-        if (distToCenter < 15 || isPressed) shattered.current = true;
-        else if (distToCenter > 40) shattered.current = false;
+        if (isIdle && Math.random() < 0.005) {
+            state.current = state.current === 'solid' ? 'shattering' : 'solid';
+        }
+
+        const mx = isIdle ? 50 : mouse.x * 100;
+        const my = isIdle ? 50 : mouse.y * 100;
 
         shards.current.forEach(s => {
-            if (shattered.current) {
-                // Explode out
-                s.vx += Math.cos(s.angle) * (isPressed ? 1.0 : 0.5);
-                s.vy += Math.sin(s.angle) * (isPressed ? 1.0 : 0.5);
+            if (state.current === 'shattering') {
+                const dx = s.x - mx;
+                const dy = s.y - my;
+                const dist = Math.sqrt(dx * dx + dy * dy) + 0.1;
+
+                const force = 150 / (dist * dist);
+                s.vx += (dx / dist) * force;
+                s.vy += (dy / dist) * force;
+                s.vRotation += (Math.random() - 0.5) * 0.5;
             } else {
-                // Return to base
-                s.vx += (s.baseX - s.x) * 0.1;
-                s.vy += (s.baseY - s.y) * 0.1;
+                const dx = s.baseX - s.x;
+                const dy = s.baseY - s.y;
+                s.vx += dx * 0.05;
+                s.vy += dy * 0.05;
+
+                s.rotation *= 0.9;
+                s.vRotation *= 0.9;
             }
 
-            s.vx *= 0.9;
-            s.vy *= 0.9;
+            s.vx *= 0.92;
+            s.vy *= 0.92;
             s.x += s.vx;
             s.y += s.vy;
+            s.rotation += s.vRotation;
 
+            ctx.save();
+            ctx.translate(s.x * scaleX, s.y * scaleY);
+            ctx.rotate(s.rotation);
             ctx.beginPath();
-            ctx.moveTo(s.x * scaleX, s.y * scaleY);
-            ctx.lineTo((s.x + Math.cos(s.angle) * 2) * scaleX, (s.y + Math.sin(s.angle) * 2) * scaleY);
-            ctx.strokeStyle = 'white';
-            ctx.lineWidth = 2;
+            const sz = s.size * scaleX;
+            ctx.moveTo(0, -sz);
+            ctx.lineTo(sz, sz);
+            ctx.lineTo(-sz, sz);
+            ctx.closePath();
+
+            // Stroke only for delicate look
+            ctx.strokeStyle = s.color;
+            ctx.lineWidth = 0.5; // Very thin lines
             ctx.stroke();
+            // Optional: very faint fill
+            ctx.fillStyle = s.color.replace(')', ', 0.1)').replace('rgb', 'rgba');
+            ctx.fill();
+
+            ctx.restore();
         });
     };
 
@@ -912,7 +933,7 @@ export const VisualMagnet: React.FC = () => {
         // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        
+
         // In idle, we simulate a wandering magnetic anomaly
         const mx = isIdle ? 50 + Math.sin(time * 0.5) * 40 : mouse.x * 100;
         const my = isIdle ? 50 + Math.cos(time * 0.3) * 40 : mouse.y * 100;
@@ -922,7 +943,7 @@ export const VisualMagnet: React.FC = () => {
 
         filings.current.forEach(f => {
             // 1. Spring force to base position (Elastic Recovery)
-            const k = 0.03; 
+            const k = 0.03;
             const damping = 0.92;
             f.vx += (f.baseX - f.x) * k;
             f.vy += (f.baseY - f.y) * k;
@@ -934,20 +955,20 @@ export const VisualMagnet: React.FC = () => {
 
             // "Breaking the Monolith" logic
             // The field is rigid until disrupted
-            
+
             if (isPressed) {
                 // Violent Repulsion (Breaking)
                 if (dist < 40) {
-                     const force = (40 - dist) * 1.5;
-                     f.vx -= (dx / dist) * force;
-                     f.vy -= (dy / dist) * force;
+                    const force = (40 - dist) * 1.5;
+                    f.vx -= (dx / dist) * force;
+                    f.vy -= (dy / dist) * force;
                 }
             } else {
                 // Hover: Magnetic repulsion/displacement (Tactile feel)
                 if (dist < 30) {
-                     const force = (30 - dist) * 0.1;
-                     f.vx -= (dx / dist) * force;
-                     f.vy -= (dy / dist) * force;
+                    const force = (30 - dist) * 0.1;
+                    f.vx -= (dx / dist) * force;
+                    f.vy -= (dy / dist) * force;
                 }
             }
 
@@ -963,11 +984,11 @@ export const VisualMagnet: React.FC = () => {
 
             // Visualization
             const speed = Math.sqrt(f.vx * f.vx + f.vy * f.vy);
-            
+
             // Calculate rotation
             // Idle/Base: Align with noise/flow
             let angle = Math.sin(time + f.baseX * 0.1) * 0.3 + Math.cos(time + f.baseY * 0.1) * 0.3;
-            
+
             // Influence by mouse field if close
             if (dist < 50) {
                 const fieldAngle = Math.atan2(dy, dx);
@@ -980,10 +1001,10 @@ export const VisualMagnet: React.FC = () => {
                 } else {
                     // Align away/towards center? 
                     // Let's make them point at the mouse like compass needles
-                    angle = fieldAngle; 
+                    angle = fieldAngle;
                 }
             } else if (speed > 0.2) {
-                 angle = Math.atan2(f.vy, f.vx);
+                angle = Math.atan2(f.vy, f.vx);
             }
 
             const len = 2 + speed * 4;
@@ -993,8 +1014,8 @@ export const VisualMagnet: React.FC = () => {
             ctx.translate(f.x * scaleX, f.y * scaleY);
             ctx.rotate(angle);
             ctx.beginPath();
-            ctx.moveTo(-len/2, 0);
-            ctx.lineTo(len/2, 0);
+            ctx.moveTo(-len / 2, 0);
+            ctx.lineTo(len / 2, 0);
             ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
             ctx.stroke();
             ctx.restore();
@@ -1004,21 +1025,26 @@ export const VisualMagnet: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Vortex Suction ---
+// --- Vortex Suction (Dense) ---
 export const VisualVortex: React.FC = () => {
     const particles = useRef<Particle[]>([]);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        particles.current = Array.from({ length: 200 }).map((_, i) => ({
-            id: i,
-            pos: { x: Math.random() * 100, y: Math.random() * 100 },
-            vel: { x: 0, y: 0 },
-            acc: { x: 0, y: 0 },
-            radius: randomRange(0.5, 1.5),
-            life: 1,
-            color: 'rgba(255, 255, 255, 0.6)',
-            mass: 1
-        }));
+        particles.current = Array.from({ length: 1000 }).map((_, i) => {
+            const angle = Math.random() * Math.PI * 2;
+            // Bias distribution towards center for density
+            const r = Math.pow(Math.random(), 2) * 60;
+            return {
+                id: i,
+                pos: { x: 50 + Math.cos(angle) * r, y: 50 + Math.sin(angle) * r },
+                vel: { x: 0, y: 0 },
+                acc: { x: 0, y: 0 },
+                radius: Math.random() < 0.8 ? randomRange(0.5, 1.0) : randomRange(1.5, 2.5), // Mix of small and large
+                life: 1,
+                color: 'rgba(255, 255, 255, 0.6)',
+                mass: 1
+            };
+        });
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
@@ -1026,11 +1052,10 @@ export const VisualVortex: React.FC = () => {
         const scaleX = width / 100;
         const scaleY = height / 100;
 
-        // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time) * 20 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time) * 20 : mouse.y * 100;
+        const mx = isIdle ? 50 : mouse.x * 100;
+        const my = isIdle ? 50 : mouse.y * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
         particles.current.forEach(p => {
@@ -1039,34 +1064,40 @@ export const VisualVortex: React.FC = () => {
             const dist = Math.sqrt(dx * dx + dy * dy) + 0.1;
             const angle = Math.atan2(dy, dx);
 
-            // Vortex force (tangential) + Suction (radial)
-            const suction = isPressed ? 1.0 : 0.2;
-            const rotation = isPressed ? 2.0 : 0.5;
+            // Forces - Slowed down significantly
+            const suction = isPressed ? 0.8 : 0.15; // Reduced from 2.0 / 0.5
+            const rotation = isPressed ? 1.5 : 0.3; // Reduced from 4.0 / 1.0
 
-            p.acc.x += Math.cos(angle) * (suction / dist); // Suction
+            // Tangential (Rotation) + Radial (Suction)
+            p.acc.x += Math.cos(angle) * (suction / dist);
             p.acc.y += Math.sin(angle) * (suction / dist);
+            p.acc.x += Math.cos(angle + Math.PI / 2) * (rotation / Math.sqrt(dist));
+            p.acc.y += Math.sin(angle + Math.PI / 2) * (rotation / Math.sqrt(dist));
 
-            p.acc.x += Math.cos(angle + Math.PI / 2) * (rotation / dist); // Rotation
-            p.acc.y += Math.sin(angle + Math.PI / 2) * (rotation / dist);
-
+            // Physics
             p.vel.x += p.acc.x;
             p.vel.y += p.acc.y;
-            p.vel.x *= 0.95;
-            p.vel.y *= 0.95;
+            p.vel.x *= 0.94; // Increased drag (lower number) to slow movement
+            p.vel.y *= 0.94;
             p.pos.x += p.vel.x;
             p.pos.y += p.vel.y;
             p.acc = { x: 0, y: 0 };
 
-            // Reset if too close
-            if (dist < 2) {
-                p.pos.x = Math.random() * 100;
-                p.pos.y = Math.random() * 100;
+            // Reset if sucked in too close or drifted too far
+            if (dist < 1 || dist > 80) {
+                const a = Math.random() * Math.PI * 2;
+                const r = 50 + Math.random() * 10;
+                p.pos.x = mx + Math.cos(a) * r;
+                p.pos.y = my + Math.sin(a) * r;
                 p.vel = { x: 0, y: 0 };
             }
 
+            // Render with depth approximation (opacity based on velocity/dist)
+            const alpha = Math.min(1, (p.vel.x * p.vel.x + p.vel.y * p.vel.y) * 0.5 + 0.2);
+
             ctx.beginPath();
             ctx.arc(p.pos.x * scaleX, p.pos.y * scaleY, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.fill();
         });
     };
