@@ -22,8 +22,8 @@ const MenuOverlay = ({ isOpen, onClose, currentSlideId, onNavigate }: any) => {
     if (!visible) return null;
 
     return (
-        <div className={`fixed inset-0 z-[100] flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isAnimating ? 'bg-black/90 backdrop-blur-xl opacity-100' : 'bg-black/0 backdrop-blur-none opacity-0'}`}>
-            <button onClick={onClose} className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+        <div className={`fixed inset-0 z-[200] flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isAnimating ? 'bg-black/90 backdrop-blur-xl opacity-100' : 'bg-black/0 backdrop-blur-none opacity-0'}`}>
+            <button onClick={onClose} className="absolute top-8 right-12 text-white/50 hover:text-white transition-colors">
                 <X className="w-8 h-8" />
             </button>
 
@@ -237,13 +237,6 @@ export function ExtremeLandscapeLayout({
                 <Blog onClose={() => window.location.hash = ''} />
             )}
 
-            <MenuOverlay
-                isOpen={menuOpen}
-                onClose={() => setMenuOpen(false)}
-                currentSlideId={currentContent.id}
-                onNavigate={changeSlide}
-            />
-
             {/* --- TRIPOD LAYOUT --- */}
 
             {/* 1. Top-Left: Logo */}
@@ -325,6 +318,13 @@ export function ExtremeLandscapeLayout({
                     </SupportingText>
                 </div>
             </div>
+
+            <MenuOverlay
+                isOpen={menuOpen}
+                onClose={() => setMenuOpen(false)}
+                currentSlideId={currentContent.id}
+                onNavigate={changeSlide}
+            />
 
         </div>
     );
