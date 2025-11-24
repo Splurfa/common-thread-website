@@ -18,7 +18,7 @@ const BLOG_POSTS: BlogPost[] = [
     {
         id: 1,
         title: "The Human Standard",
-        excerpt: "Delegation means loss. Context fades in transit. What if nothing got lost?",
+        excerpt: "Context builds over time. Without it, judgment breaks on contact with reality.",
         date: "Nov 22, 2024",
         readTime: "4 min read",
         category: "Philosophy",
@@ -26,48 +26,64 @@ const BLOG_POSTS: BlogPost[] = [
         content: (
             <>
                 <p className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left">
-                    In October's strategy meeting, a key client mentioned concerns about response time during the pricing discussion. By January's renewal, that context had evaporated. The team proposed the same pricing structure that triggered the original concern. Valuable context lost in a three-month gap.
-                </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Missing Infrastructure Layer</h3>
-                <p className="mb-6">
-                    Most systems treat every interaction as new. Client preferences stated in one conversation don't carry forward to the next. Strategic context from a quarterly review doesn't inform the following quarter's execution. The cost of this stateless approach compounds over time.
+                    Judgment happens everywhere. Decisions get made, recommendations flow, plans take shape. What separates functional from broken isn't the quality of logic—it's understanding the people involved.
                 </p>
                 <p className="mb-6">
-                    Re-briefing becomes the hidden tax on every decision. Before executing, context must be reconstructed. What was said in previous meetings. What worked last time. What matters most for this particular stakeholder. This reconstruction consumes time and introduces errors.
+                    The right answer delivered to the wrong person at the wrong moment fails. Not because the reasoning is flawed, but because the <strong>connection</strong> isn't there.
+                </p>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Proximity Principle</h3>
+                <p className="mb-6">
+                    Work with someone long enough and you read between the lines: quick agreement signals uncertainty, silence reveals which issues surface.
                 </p>
                 <p className="mb-6">
-                    What's missing isn't process documentation. It's memory infrastructure—systems that preserve context automatically, making re-explanation unnecessary.
-                </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">Three Types of Memory That Matter</h3>
-                <p className="mb-6">
-                    <strong>Episodic memory</strong> captures specific events and their context. Last quarter, Client X raised response time concerns during the pricing discussion. That context prevents renewal friction this quarter. Without episodic memory, the same issue surfaces repeatedly.
+                    This doesn't live in transcripts or documented workflows. It exists in pattern recognition built through proximity over time: the psychological understanding that develops, trust that permits difficult conversations, knowledge of what matters beyond what gets explicitly stated.
                 </p>
                 <p className="mb-6">
-                    <strong>Procedural memory</strong> internalizes how work gets done. The CFO wants summaries before details. Marketing prefers directional guidance over precise specifications. These preferences aren't documented—they're learned through repetition and recalled automatically.
+                    Connection over time builds infrastructure, making judgment land instead of bounce. Without it, decisions execute technically but break contextually.
+                </p>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">Work That Connects</h3>
+                <p className="mb-6">
+                    Creation carrying relational weight hits differently than creation optimized for general correctness. When insight is shaped by knowing who struggles with what, the language they actually use when being honest, it produces work that moves people rather than merely informing them.
                 </p>
                 <p className="mb-6">
-                    <strong>Semantic memory</strong> encodes principles that shape judgment. Finance prioritizes precision over speed. Marketing prioritizes speed over precision. Legal prioritizes completeness over brevity. These context-dependent rules guide every decision without requiring re-statement.
+                    The common thread running through valuable work: connection provides context that separates meaningful from merely competent.
+                </p>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Context Gap</h3>
+                <p className="mb-6">
+                    Perfect recommendations can ignore what's unstated—the political reality, personal history, relationship dynamics that shape implementation. Something might be optimal on paper and still fail in practice. Without considering concerns and constraints, trust in the source doesn't exist.
                 </p>
                 <p className="mb-6">
-                    When all three memory types persist, delegation preserves complete context. The reasons behind decisions travel with the work itself.
+                    Functional judgment needs relational context. The alternative produces technically correct decisions that break on contact with human reality.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Human Standard</h3>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Human Legacy</h3>
                 <p className="mb-6">
-                    Working with someone who has perfect recall changes what's possible. Strategic insights don't need repeating. Edge cases mentioned once stay remembered. Delegation becomes lossless—what matters in the decision reaches execution intact.
-                </p>
-                <p className="mb-6">
-                    This isn't about eliminating human judgment. It's about eliminating everything else—the re-briefings, the context reconstruction, the preventable errors from forgotten details. Memory infrastructure handles persistence so strategic thinking can focus on what actually requires judgment.
-                </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">Memory in Practice</h3>
-                <p className="mb-6">
-                    Preparing the quarterly board deck demonstrates all three memory types working together. Episodic memory: last quarter's feedback about data visualization density shapes this quarter's approach. Procedural memory: the board's preferred flow—strategic context first, financial details second—becomes automatic. Semantic memory: the company's emphasis on growth metrics over profitability metrics guides which numbers receive prominence.
+                    Connection doesn't happen fast. Trust builds through repeated reliability. Understanding deepens through sustained attention over months and years. This infrastructure of context accumulates slowly, which is exactly what makes it valuable.
                 </p>
                 <p className="mb-6">
-                    Without memory infrastructure, each deck starts from zero. With it, each deck builds on everything learned before.
+                    Replacing experienced people with pure logic often backfires for this reason. Years of working together create communication shortcuts impossible to replicate quickly—challenges that land because the relationship can withstand them, understanding that transforms information exchange into genuine collaboration.
                 </p>
-                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">Building Memory Infrastructure</h3>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">Impact Over Efficiency</h3>
                 <p className="mb-6">
-                    Memory is infrastructure. We're building it.
+                    Traditional optimization eliminates human involvement to reduce cost, which works fine when relational context doesn't matter.
+                </p>
+                <p className="mb-6">
+                    But for work requiring strategic judgment, creative synthesis, anything involving human psychology—removing the connection infrastructure breaks the value proposition entirely. You get cheaper execution that produces technically correct but functionally useless output.
+                </p>
+                <p className="mb-6">
+                    The alternative: optimize for impact. Preserve the human connection that makes judgment functional, then amplify it by removing the complexity that obscures it. When capable people operate with full relational context, judgment becomes exponentially more valuable.
+                </p>
+                <h3 className="font-serif text-[22px] md:text-[22px] leading-tight mb-3 font-semibold tracking-tight mt-8 text-white">The Standard</h3>
+                <p className="mb-6">
+                    The human standard recognizes what makes contribution irreplaceable: relational context accumulated through sustained connection.
+                </p>
+                <p className="mb-6">
+                    Infrastructure that handles operational complexity while preserving human connection doesn't replace judgment—it amplifies it by removing noise so relational context operates at full strength.
+                </p>
+                <p className="mb-6">
+                    Work returns to what it should be when connection stays central: impact through relationships that carry meaning, not efficiency for its own sake.
+                </p>
+                <p className="mb-6">
+                    The work that matters most carries this thread—human connection as the infrastructure that makes everything else functional.
                 </p>
             </>
         )

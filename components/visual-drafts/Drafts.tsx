@@ -72,15 +72,41 @@ export const VisualOrbital: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 2: Repulsor Grid ---
+// --- Draft 2: Repulsor Grid -> Fabric ---
 export const VisualGrid: React.FC = () => {
-    const points = useRef<Vector[]>([]);
+    const nodes = useRef<any[]>([]);
+    const constraints = useRef<any[]>([]);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        points.current = [];
-        for (let x = 5; x < 100; x += 5) {
-            for (let y = 5; y < 100; y += 5) {
-                points.current.push({ x, y });
+        nodes.current = [];
+        constraints.current = [];
+        const rows = 12;
+        const cols = 12;
+        const spacingX = 60 / (cols - 1);
+        const spacingY = 60 / (rows - 1);
+        
+        // Create nodes (Centered grid)
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                nodes.current.push({
+                    x: 20 + x * spacingX,
+                    y: 20 + y * spacingY,
+                    baseX: 20 + x * spacingX,
+                    baseY: 20 + y * spacingY,
+                    vx: 0,
+                    vy: 0
+                });
+            }
+        }
+
+        // Create constraints (Springs)
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                const i = y * cols + x;
+                // Right neighbor
+                if (x < cols - 1) constraints.current.push({ p1: i, p2: i + 1, len: spacingX });
+                // Bottom neighbor
+                if (y < rows - 1) constraints.current.push({ p1: i, p2: i + cols, len: spacingY });
             }
         }
     };
@@ -90,34 +116,82 @@ export const VisualGrid: React.FC = () => {
         const scaleX = width / 100;
         const scaleY = height / 100;
 
-        // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
         const mx = isIdle ? 50 + Math.sin(time * 0.5) * 30 : mouse.x * 100;
         const my = isIdle ? 50 + Math.cos(time * 0.3) * 30 : mouse.y * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
-        points.current.forEach(pt => {
-            const dx = pt.x - mx;
-            const dy = pt.y - my;
+        // 1. Accumulate Forces
+        nodes.current.forEach(p => {
+            // Spring to base (Keep the overall shape)
+            const kBase = 0.05;
+            p.vx += (p.baseX - p.x) * kBase;
+            p.vy += (p.baseY - p.y) * kBase;
+
+            // Mouse Interaction (Repulsion)
+            const dx = p.x - mx;
+            const dy = p.y - my;
             const dist = Math.sqrt(dx * dx + dy * dy);
-
-            let drawX = pt.x;
-            let drawY = pt.y;
-
-            const range = isPressed ? 40 : (isIdle ? 30 : 20);
-            const strength = isPressed ? 1.5 : (isIdle ? 0.8 : 0.5);
-
-            if (dist < range) {
-                const force = (range - dist) * strength;
-                const angle = Math.atan2(dy, dx);
-                drawX += Math.cos(angle) * force;
-                drawY += Math.sin(angle) * force;
+            
+            if (dist < 25) {
+                const force = (25 - dist) * (isPressed ? 0.5 : 0.2);
+                p.vx += (dx / dist) * force;
+                p.vy += (dy / dist) * force;
             }
+        });
 
+        // 2. Resolve Constraints (Springs between nodes)
+        const iterations = 3; // More stable with iterations
+        for (let i = 0; i < iterations; i++) {
+            constraints.current.forEach(c => {
+                const n1 = nodes.current[c.p1];
+                const n2 = nodes.current[c.p2];
+                
+                const dx = n2.x - n1.x;
+                const dy = n2.y - n1.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const diff = (dist - c.len) * 0.1; // Stiffness
+                
+                if (dist > 0) {
+                    const offX = (dx / dist) * diff;
+                    const offY = (dy / dist) * diff;
+                    
+                    n1.vx += offX;
+                    n1.vy += offY;
+                    n2.vx -= offX;
+                    n2.vy -= offY;
+                }
+            });
+        }
+
+        // 3. Integration
+        nodes.current.forEach(p => {
+            p.vx *= 0.9;
+            p.vy *= 0.9;
+            p.x += p.vx;
+            p.y += p.vy;
+        });
+
+        // 4. Draw
+        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        constraints.current.forEach(c => {
+            const n1 = nodes.current[c.p1];
+            const n2 = nodes.current[c.p2];
+            ctx.moveTo(n1.x * scaleX, n1.y * scaleY);
+            ctx.lineTo(n2.x * scaleX, n2.y * scaleY);
+        });
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+        nodes.current.forEach(p => {
+            // Speed affects size
+            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            const r = 1 + speed;
             ctx.beginPath();
-            ctx.arc(drawX * scaleX, drawY * scaleY, 1, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.1, 1 - dist / 30)})`;
+            ctx.arc(p.x * scaleX, p.y * scaleY, r, 0, Math.PI * 2);
             ctx.fill();
         });
     };
@@ -220,17 +294,20 @@ export const VisualNet: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 4: Digital Rain ---
+// --- Draft 4: Digital Rain -> Data Stream ---
 export const VisualRain: React.FC = () => {
     const drops = useRef<any[]>([]);
+    const splashes = useRef<any[]>([]);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        drops.current = Array.from({ length: 50 }).map(() => ({
+        drops.current = Array.from({ length: 100 }).map(() => ({
             x: Math.random() * 100,
             y: Math.random() * 100,
-            speed: randomRange(0.2, 0.8),
-            len: randomRange(2, 5)
+            z: Math.random() * 0.5 + 0.5, // Depth for parallax/speed
+            speed: randomRange(0.5, 2.0),
+            len: randomRange(5, 15)
         }));
+        splashes.current = [];
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
@@ -238,92 +315,141 @@ export const VisualRain: React.FC = () => {
         const scaleX = width / 100;
         const scaleY = height / 100;
 
-        // Auto-animation: Virtual mouse
-        const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time) * 30 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time) * 30 : mouse.y * 100;
+        const mx = isIdle ? -100 : mouse.x * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
-        ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+        // 1. Update & Draw Drops
         ctx.lineWidth = 1;
-
         drops.current.forEach(d => {
-            d.y += d.speed * (isPressed ? 3 : 1); // Speed up on click
+            // Speed influenced by depth
+            d.y += d.speed * d.z * (isPressed ? 3 : 1);
 
-            // Mouse distortion
-            const dx = d.x - mx;
-            const dy = d.y - my;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            let drawX = d.x;
-            if (dist < 15) {
-                drawX += (dx / dist) * 5;
+            // Interaction: "Wind" from mouse cursor
+            if (!isIdle) {
+                const dx = d.x - mx;
+                // Repel horizontally
+                if (Math.abs(dx) < 15) {
+                    d.x += (dx / Math.abs(dx || 0.1)) * 0.5;
+                }
             }
 
             if (d.y > 100) {
-                d.y = -10;
+                // Splash effect
+                if (Math.random() > 0.6) {
+                    for(let i=0; i<2; i++) {
+                        splashes.current.push({
+                            x: d.x,
+                            y: 100,
+                            vx: (Math.random()-0.5) * 1.5,
+                            vy: -Math.random() * 1.5,
+                            life: 1.0,
+                            color: `rgba(255,255,255,${d.z * 0.5})`
+                        });
+                    }
+                }
+                d.y = -d.len;
                 d.x = Math.random() * 100;
             }
 
+            // Draw Drop
+            const alpha = d.z * 0.4;
+            ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
             ctx.beginPath();
-            ctx.moveTo(drawX * scaleX, d.y * scaleY);
-            ctx.lineTo(drawX * scaleX, (d.y - d.len) * scaleY);
+            ctx.moveTo(d.x * scaleX, d.y * scaleY);
+            ctx.lineTo(d.x * scaleX, (d.y - d.len * d.z) * scaleY);
             ctx.stroke();
         });
+
+        // 2. Update & Draw Splashes
+        for(let i=splashes.current.length-1; i>=0; i--) {
+            const s = splashes.current[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.vy += 0.1; // Gravity
+            s.life -= 0.05;
+
+            if (s.life <= 0) {
+                splashes.current.splice(i, 1);
+                continue;
+            }
+
+            ctx.fillStyle = `rgba(255,255,255,${s.life * 0.5})`;
+            ctx.beginPath();
+            ctx.fillRect(s.x * scaleX, s.y * scaleY, 1.5, 1.5);
+        }
     };
 
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 5: Galaxy Spiral ---
+// --- Draft 5: Galaxy Spiral -> Nebula ---
 export const VisualGalaxy: React.FC = () => {
     const stars = useRef<any[]>([]);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        stars.current = Array.from({ length: 200 }).map(() => ({
+        stars.current = Array.from({ length: 400 }).map(() => ({
             angle: Math.random() * Math.PI * 2,
-            radius: randomRange(5, 40),
-            speed: randomRange(0.002, 0.01),
-            size: randomRange(0.5, 1.5)
+            radius: randomRange(5, 50),
+            speed: randomRange(0.002, 0.008) * (Math.random() > 0.5 ? 1 : 0.8), // Differential rotation
+            size: randomRange(0.5, 2),
+            z: Math.random(), // 0 to 1
+            color: Math.random() > 0.85 ? '#AADDFF' : 'white'
         }));
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
-        ctx.clearRect(0, 0, width, height);
+        // Trail effect: Soft clear
+        // We paint a semi-transparent black rectangle to fade out previous frames
+        ctx.fillStyle = 'rgba(0,0,0,0.15)';
+        ctx.fillRect(0, 0, width, height);
+
         const scaleX = width / 100;
         const scaleY = height / 100;
-
-        // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
+
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
         const mx = isIdle ? 50 + Math.sin(time * 0.5) * 40 : mouse.x * 100;
         const my = isIdle ? 50 + Math.cos(time * 0.5) * 40 : mouse.y * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
-        // Tilt based on mouse Y
-        const tilt = (my - 50) * 0.01;
+        const tiltX = (mx - 50) * 0.015;
+        const tiltY = (my - 50) * 0.015;
 
         stars.current.forEach(s => {
-            s.angle += s.speed * (isPressed ? 5 : 1); // Spin faster on click
+            s.angle += s.speed * (isPressed ? 8 : 1);
 
-            // Elliptical orbit
-            let x = 50 + Math.cos(s.angle) * s.radius;
-            let y = 50 + Math.sin(s.angle) * s.radius * (1 + tilt);
+            // 3D Projection approximation
+            const zVolume = (s.z - 0.5) * 30; // Depth [-15, 15]
+            
+            // X/Y on plane
+            const xBase = Math.cos(s.angle) * s.radius;
+            const yBase = Math.sin(s.angle) * s.radius;
 
-            // Mouse influence
-            const dx = x - mx;
-            const dy = y - my;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 20) {
-                x += (dx / dist) * 2;
-                y += (dy / dist) * 2;
-            }
+            // Apply tilt
+            // Rotating the entire galaxy plane based on mouse
+            const x = xBase + zVolume * tiltX;
+            const y = yBase * 0.6 + zVolume * tiltY; // 0.6 aspect ratio for tilted disk look
+
+            const px = 50 + x;
+            const py = 50 + y;
+
+            // Perspective scale
+            const perspective = 1 + (zVolume * tiltY) * 0.01;
+            const scale = s.size * perspective * (0.6 + s.z * 0.6);
+            
+            // Opacity
+            // Fade distant/small stars
+            const alpha = 0.3 + (s.z * 0.7);
 
             ctx.beginPath();
-            ctx.arc(x * scaleX, y * scaleY, s.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${0.8 - dist / 100})`;
+            ctx.arc(px * scaleX, py * scaleY, Math.max(0.1, scale), 0, Math.PI * 2);
+            ctx.fillStyle = s.color;
+            ctx.globalAlpha = alpha;
             ctx.fill();
         });
+        
+        ctx.globalAlpha = 1;
     };
 
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
@@ -397,60 +523,130 @@ export const VisualFlow: React.FC = () => {
     return <PhysicsCanvas onInit={init} onUpdate={update} />;
 };
 
-// --- Draft 7: Tethered Chain ---
+// --- Draft 7: Tethered Chain -> Connections ---
 export const VisualChain: React.FC = () => {
-    const chain = useRef<Vector[]>([]);
+    // We use Verlet integration for stable string physics
+    const chains = useRef<any[][]>([]);
 
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        chain.current = Array.from({ length: 20 }).map(() => ({ x: 50, y: 50 }));
+        chains.current = [];
+        const chainCount = 5;
+        for (let i = 0; i < chainCount; i++) {
+            const chain = [];
+            const startX = 20 + i * (60 / (chainCount - 1));
+            const segments = 15;
+            for (let j = 0; j < segments; j++) {
+                chain.push({
+                    x: startX,
+                    y: 10 + j * 5,
+                    oldX: startX,
+                    oldY: 10 + j * 5,
+                    pinned: j === 0 // Pin the top node
+                });
+            }
+            chains.current.push(chain);
+        }
     };
 
     const update = (ctx: CanvasRenderingContext2D, width: number, height: number, mouse: { x: number, y: number, isPressed: boolean }) => {
         ctx.clearRect(0, 0, width, height);
         const scaleX = width / 100;
         const scaleY = height / 100;
-
-        // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
+
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
         const mx = isIdle ? 50 + Math.sin(time) * 30 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.sin(time * 2) * 15 : mouse.y * 100;
+        const my = isIdle ? 50 + Math.cos(time * 0.5) * 30 : mouse.y * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
-        // Head follows mouse
-        chain.current[0].x += (mx - chain.current[0].x) * 0.2;
-        chain.current[0].y += (my - chain.current[0].y) * 0.2;
+        const gravity = 0.2;
+        const friction = 0.95;
+        const segmentLength = 5;
 
-        // Segments follow previous
-        for (let i = 1; i < chain.current.length; i++) {
-            const prev = chain.current[i - 1];
-            const curr = chain.current[i];
-            const dx = prev.x - curr.x;
-            const dy = prev.y - curr.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const targetDist = isPressed ? 4 : 2; // Stretch on click
+        chains.current.forEach((chain, chainIndex) => {
+            // 1. Verlet Integration
+            chain.forEach(p => {
+                if (p.pinned) return;
 
-            if (dist > targetDist) {
-                const angle = Math.atan2(dy, dx);
-                curr.x = prev.x - Math.cos(angle) * targetDist;
-                curr.y = prev.y - Math.sin(angle) * targetDist;
+                const vx = (p.x - p.oldX) * friction;
+                const vy = (p.y - p.oldY) * friction;
+
+                p.oldX = p.x;
+                p.oldY = p.y;
+
+                p.x += vx;
+                p.y += vy;
+                p.y += gravity;
+
+                // Interaction
+                const dx = p.x - mx;
+                const dy = p.y - my;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 20) {
+                    const force = (20 - dist) * 0.1;
+                    const angle = Math.atan2(dy, dx);
+                    // Push away
+                    p.x += Math.cos(angle) * force;
+                    p.y += Math.sin(angle) * force;
+                }
+                
+                // Idle wind
+                if (isIdle) {
+                    p.x += Math.sin(time * 2 + p.y * 0.1 + chainIndex) * 0.02;
+                }
+            });
+
+            // 2. Constraints (Iterative for stability)
+            for (let k = 0; k < 5; k++) {
+                for (let i = 0; i < chain.length - 1; i++) {
+                    const p1 = chain[i];
+                    const p2 = chain[i + 1];
+
+                    const dx = p2.x - p1.x;
+                    const dy = p2.y - p1.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist === 0) continue; // Prevent NaN
+
+                    const diff = dist - segmentLength;
+                    const percent = diff / dist / 2;
+                    const offsetX = dx * percent;
+                    const offsetY = dy * percent;
+
+                    if (!p1.pinned) {
+                        p1.x += offsetX;
+                        p1.y += offsetY;
+                    }
+                    if (!p2.pinned) {
+                        p2.x -= offsetX;
+                        p2.y -= offsetY;
+                    } else {
+                        // If p1 is pinned, p2 takes all movement
+                         p2.x -= offsetX * 2;
+                         p2.y -= offsetY * 2;
+                    }
+                }
             }
-        }
 
-        // Draw
-        ctx.beginPath();
-        ctx.moveTo(chain.current[0].x * scaleX, chain.current[0].y * scaleY);
-        for (let i = 1; i < chain.current.length; i++) {
-            ctx.lineTo(chain.current[i].x * scaleX, chain.current[i].y * scaleY);
-        }
-        ctx.strokeStyle = 'white';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        chain.current.forEach(p => {
+            // 3. Draw
             ctx.beginPath();
-            ctx.arc(p.x * scaleX, p.y * scaleY, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255,255,255,0.8)';
+            ctx.moveTo(chain[0].x * scaleX, chain[0].y * scaleY);
+            for (let i = 1; i < chain.length; i++) {
+                const p = chain[i];
+                // Smooth curve using quadratic bezier
+                // For last segment just draw line
+                ctx.lineTo(p.x * scaleX, p.y * scaleY);
+            }
+            ctx.strokeStyle = `rgba(255,255,255,${0.5 + (chainIndex % 2) * 0.2})`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // End cap
+            const last = chain[chain.length-1];
+            ctx.beginPath();
+            ctx.arc(last.x * scaleX, last.y * scaleY, 3, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
             ctx.fill();
         });
     };
@@ -693,9 +889,17 @@ export const VisualMagnet: React.FC = () => {
     const init = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
         filings.current = [];
         // Grid of lines
-        for (let x = 5; x < 100; x += 3) {
-            for (let y = 5; y < 100; y += 3) {
-                filings.current.push({ x, y });
+        for (let x = 4; x < 100; x += 3) {
+            for (let y = 4; y < 100; y += 3) {
+                filings.current.push({
+                    baseX: x,
+                    baseY: y,
+                    x: x,
+                    y: y,
+                    vx: 0,
+                    vy: 0,
+                    angle: 0
+                });
             }
         }
     };
@@ -708,26 +912,90 @@ export const VisualMagnet: React.FC = () => {
         // Auto-animation: Virtual mouse
         const time = Date.now() * 0.001;
         const isIdle = mouse.x < 0 || mouse.x > 1 || mouse.y < 0 || mouse.y > 1;
-        const mx = isIdle ? 50 + Math.sin(time) * 30 : mouse.x * 100;
-        const my = isIdle ? 50 + Math.cos(time * 0.8) * 30 : mouse.y * 100;
+        
+        // In idle, we simulate a wandering magnetic anomaly
+        const mx = isIdle ? 50 + Math.sin(time * 0.5) * 40 : mouse.x * 100;
+        const my = isIdle ? 50 + Math.cos(time * 0.3) * 40 : mouse.y * 100;
         const isPressed = isIdle ? false : mouse.isPressed;
 
-        ctx.strokeStyle = 'rgba(255,255,255,0.4)';
         ctx.lineWidth = 1;
 
         filings.current.forEach(f => {
+            // 1. Spring force to base position (Elastic Recovery)
+            const k = 0.03; 
+            const damping = 0.92;
+            f.vx += (f.baseX - f.x) * k;
+            f.vy += (f.baseY - f.y) * k;
+
+            // 2. Mouse Interaction
             const dx = mx - f.x;
             const dy = my - f.y;
-            const angle = Math.atan2(dy, dx);
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
-            const len = isPressed ? 3 : 1.5;
+            // "Breaking the Monolith" logic
+            // The field is rigid until disrupted
+            
+            if (isPressed) {
+                // Violent Repulsion (Breaking)
+                if (dist < 40) {
+                     const force = (40 - dist) * 1.5;
+                     f.vx -= (dx / dist) * force;
+                     f.vy -= (dy / dist) * force;
+                }
+            } else {
+                // Hover: Magnetic repulsion/displacement (Tactile feel)
+                if (dist < 30) {
+                     const force = (30 - dist) * 0.1;
+                     f.vx -= (dx / dist) * force;
+                     f.vy -= (dy / dist) * force;
+                }
+            }
+
+            // Add some noise/turbulence
+            f.vx += (Math.random() - 0.5) * 0.05;
+            f.vy += (Math.random() - 0.5) * 0.05;
+
+            // Physics Integration
+            f.vx *= damping;
+            f.vy *= damping;
+            f.x += f.vx;
+            f.y += f.vy;
+
+            // Visualization
+            const speed = Math.sqrt(f.vx * f.vx + f.vy * f.vy);
+            
+            // Calculate rotation
+            // Idle/Base: Align with noise/flow
+            let angle = Math.sin(time + f.baseX * 0.1) * 0.3 + Math.cos(time + f.baseY * 0.1) * 0.3;
+            
+            // Influence by mouse field if close
+            if (dist < 50) {
+                const fieldAngle = Math.atan2(dy, dx);
+                // Blend based on distance
+                const influence = Math.max(0, 1 - dist / 50);
+                // Simple interpolation (lerp) for angle isn't perfect but works for small deltas
+                // If moving fast, align with velocity (chaos)
+                if (speed > 0.5) {
+                    angle = Math.atan2(f.vy, f.vx);
+                } else {
+                    // Align away/towards center? 
+                    // Let's make them point at the mouse like compass needles
+                    angle = fieldAngle; 
+                }
+            } else if (speed > 0.2) {
+                 angle = Math.atan2(f.vy, f.vx);
+            }
+
+            const len = 2 + speed * 4;
+            const alpha = 0.2 + Math.min(0.8, speed * 0.8);
 
             ctx.save();
             ctx.translate(f.x * scaleX, f.y * scaleY);
             ctx.rotate(angle);
             ctx.beginPath();
-            ctx.moveTo(-len, 0);
-            ctx.lineTo(len, 0);
+            ctx.moveTo(-len/2, 0);
+            ctx.lineTo(len/2, 0);
+            ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
             ctx.stroke();
             ctx.restore();
         });

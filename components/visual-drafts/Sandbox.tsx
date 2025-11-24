@@ -87,11 +87,11 @@ export const Sandbox: React.FC = () => {
         { id: 'P9', title: 'Flow State as a Service (Boids Flocking)', Component: VisualFlock, isPublished: true },
         { id: 'P10', title: 'Breaking the Monolith (Magnet Field)', Component: VisualMagnet, isPublished: true },
 
-        // Drafts
-        { id: 1, title: 'Repulsor Grid', Component: VisualGrid },
-        { id: 2, title: 'Digital Rain', Component: VisualRain },
-        { id: 3, title: 'Galaxy Spiral', Component: VisualGalaxy },
-        { id: 4, title: 'Tethered Chain', Component: VisualChain },
+        // Production Ready Concepts
+        { id: 1, title: 'Fabric (Spring Mesh)', Component: VisualGrid, isPublished: true },
+        { id: 2, title: 'Data Stream (Depth Rain)', Component: VisualRain, isPublished: true },
+        { id: 3, title: 'Nebula (3D Spiral)', Component: VisualGalaxy, isPublished: true },
+        { id: 4, title: 'Connections (Physics Chain)', Component: VisualChain, isPublished: true },
         { id: 5, title: 'Sonar / Pulse', Component: VisualPulse },
         { id: 6, title: 'Noise Field', Component: VisualFlow },
         { id: 7, title: 'Shatter / Reform', Component: VisualShatter },

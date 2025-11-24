@@ -15,12 +15,12 @@ export const slides: Slide[] = [
     id: 1,
     label: "01 / State of Mind",
     title: (<span>Thought. Signal. <br /><span className="italic text-white/50">Action.</span></span>),
-    body: "The distance between intent and execution disappears here.",
+    body: "The distance between intent and execution is disappearing.",
     supportingContent: (
       <div>
         <SupportingSubheading>Core Mission</SupportingSubheading>
-        <p className="mb-4">Strategic intent meets operational friction. Momentum dies in translation.</p>
-        <p>That gap closes now. Time returns to its rightful owner: the human mind.</p>
+        <p className="mb-4">When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.</p>
+        <p>Time returns to its rightful owner: the human mind.</p>
       </div>
     ),
     Visual: VisualHero
@@ -33,8 +33,8 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>What Changes</SupportingSubheading>
-        <p className="mb-4">Most delegation is lossy. Nuance fades. Context gets lost.</p>
-        <p>What you meant becomes what they heard. What if nothing got lost?</p>
+        <p className="mb-4">In that version, context travels intact. What you meant and what happens become the same thing.</p>
+        <p>The signal completes its journey.</p>
       </div>
     ),
     Visual: VisualPhilosophy
@@ -43,12 +43,12 @@ export const slides: Slide[] = [
     id: 3,
     label: "03 / Mechanism",
     title: "The Invisible Machine.",
-    body: "You provide the unique human signal: the connection. Your direction flows directly into action.",
+    body: "Connection is the human signal. Direction becomes action.",
     supportingContent: (
       <div>
         <SupportingSubheading>The Space Between</SupportingSubheading>
-        <p className="mb-4">The distance between intent and reality compresses.</p>
-        <p>No management. No translation. What remains is the connection.</p>
+        <p className="mb-4">Infrastructure handles execution. Complexity recedes from view.</p>
+        <p>The path clears.</p>
       </div>
     ),
     Visual: VisualArchitecture
@@ -61,8 +61,8 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>Human Restoration</SupportingSubheading>
-        <p className="mb-4">The work returns to what it should be. The thinking. The strategy. The connection.</p>
-        <p>The ROI is not efficiency. It is sanity.</p>
+        <p className="mb-4">Work returns to what it should be. Thinking. Strategy. Connection.</p>
+        <p>ROI is not efficiency. It is sanity.</p>
       </div>
     ),
     Visual: VisualValue
@@ -91,12 +91,13 @@ export const slides: Slide[] = [
   {
     id: 6,
     label: "06 / Engagement",
-    title: "Begin the Transition.",
-    body: "Identify the gap between your potential and your reality.",
+    title: "Engagement.",
+    body: "This way of working exists.",
     supportingContent: (
       <div>
-        <SupportingSubheading>Next Steps</SupportingSubheading>
-        <p className="mb-6">The question is not whether this is possible. The question is whether you are ready to work this way.</p>
+        <SupportingSubheading>What's Available</SupportingSubheading>
+        <p className="mb-6">Strategic clarity flows into operational reality. The invisible machinery handles translation.</p>
+        <p className="mb-6">Connection without friction. Direction without dilution.</p>
         <div className="inline-block py-2 px-2 -mx-2">
           <a
             href="#blog"
