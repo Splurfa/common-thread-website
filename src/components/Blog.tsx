@@ -96,9 +96,7 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         setTheme(prev => prev === 'dark' ? 'light' : 'dark');
     };
 
-    const handleCardClick = (post: BlogPost) => {
-        window.location.hash = `#blog/${post.id}`;
-    };
+
 
     const handleBack = () => {
         if (activePost) {
@@ -123,13 +121,34 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     // Scroll Container Ref
     const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+    // Store scroll position to restore when returning from an article
+    const [savedScrollPosition, setSavedScrollPosition] = useState(0);
 
-    // Scroll to top when activePost changes (both directions)
+    // Handle scroll restoration
     useEffect(() => {
-        if (scrollContainerRef.current) {
+        if (!scrollContainerRef.current) return;
+
+        if (activePost) {
+            // When opening a post, always scroll to top
             scrollContainerRef.current.scrollTop = 0;
+        } else {
+            // When returning to list, restore saved position
+            // Small timeout to ensure layout is ready
+            setTimeout(() => {
+                if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollTop = savedScrollPosition;
+                }
+            }, 0);
         }
-    }, [activePost]);
+    }, [activePost, savedScrollPosition]);
+
+    const handleCardClick = (post: BlogPost) => {
+        // Save current scroll position before navigating away
+        if (scrollContainerRef.current) {
+            setSavedScrollPosition(scrollContainerRef.current.scrollTop);
+        }
+        window.location.hash = `#blog/${post.id}`;
+    };
 
     return (
         <div
