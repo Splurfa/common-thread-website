@@ -251,14 +251,14 @@ export const VisualPhilosophy: React.FC = () => {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 20) {
-           p.acc.x += (dx / dist) * 0.02;
-           p.acc.y -= 0.05; // Lift up
+          p.acc.x += (dx / dist) * 0.02;
+          p.acc.y -= 0.05; // Lift up
         }
 
         p.vel.x += p.acc.x;
         p.vel.y += p.acc.y;
         p.vel.x *= 0.95; // Damping
-        
+
         // Constant upward drift
         if (p.vel.y > -0.2) p.vel.y -= 0.01;
 
@@ -267,7 +267,7 @@ export const VisualPhilosophy: React.FC = () => {
         p.acc = { x: 0, y: 0 };
 
         ctx.beginPath();
-        ctx.arc(p.pos.x * scaleX, p.pos.y * scaleY, p.radius * (width/100 * 0.5), 0, Math.PI * 2);
+        ctx.arc(p.pos.x * scaleX, p.pos.y * scaleY, p.radius * (width / 100 * 0.5), 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
       });
@@ -841,7 +841,7 @@ export const VisualGateway: React.FC = () => {
       >
         <div className={`absolute inset-0 bg-white transition-transform duration-[2000ms] ease-in-out origin-left ${buttonState === 'loading' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 group-hover:duration-300'}`} />
         <span className={`relative z-10 font-mono text-sm tracking-widest uppercase flex items-center justify-center gap-4 font-semibold transition-colors duration-300 ${buttonState === 'loading' ? 'text-black' : 'group-hover:text-black'}`}>
-          {buttonState === 'idle' && <>Join the movement <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></>}
+          {buttonState === 'idle' && <>CONNECT <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></>}
           {buttonState === 'loading' && <>Initializing...</>}
           {buttonState === 'done' && <>Redirecting <ExternalLink className="w-4 h-4" /></>}
         </span>
