@@ -302,7 +302,8 @@ export function StandardLayout({
                 {/* Visual Container */}
                 <div className={`relative z-10 w-full h-full flex items-center justify-center transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95 blur-sm' : 'opacity-100 scale-100 blur-0'}`}>
                     <div className="w-full h-full">
-                        <CurrentVisual />
+                        {/* Performance Optimization: Unmount visual when blog is open to save GPU/CPU */}
+                        {!showBlog && <CurrentVisual />}
                     </div>
                 </div>
             </div>

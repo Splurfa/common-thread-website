@@ -1,7 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, X, Sun, Moon, ArrowRight, Clock, Calendar } from 'lucide-react';
 import { SerifDisplay, MonoLabel, BodyText } from './Typography';
 import { BLOG_POSTS, BlogPost } from './BlogData';
+
+// --- Lazy Visual Wrapper ---
+// Only renders the visual when it enters the viewport
+const LazyVisual: React.FC<{ Visual: React.FC }> = ({ Visual }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Set visible when intersecting
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                } else {
+                    // Optional: Set to false to pause when out of view
+                    // For maximum performance, we unmount/pause when out of view
+                    setIsVisible(false);
+                }
+            },
+            {
+                root: null, // viewport
+                rootMargin: '100px', // Pre-load slightly before entering
+                threshold: 0.01 // Trigger as soon as 1% is visible
+            }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
+    return (
+        <div ref={containerRef} className="w-full h-full">
+            {isVisible ? <Visual /> : <div className="w-full h-full bg-transparent" />}
+        </div>
+    );
+};
 
 export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const [activePost, setActivePost] = useState<BlogPost | null>(null);
@@ -199,7 +242,8 @@ export const Blog: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                                         className="w-full h-48 rounded-lg overflow-hidden relative bg-[#0a0a0a] border border-white/5 opacity-80 group-hover:opacity-100 transition-opacity cursor-default"
                                     >
                                         <div className="absolute inset-0">
-                                            <post.Visual />
+                                            {/* Optimized: Lazy Load Visual */}
+                                            <LazyVisual Visual={post.Visual} />
                                         </div>
                                     </div>
 

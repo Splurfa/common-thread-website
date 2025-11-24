@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { slides } from './constants';
-import { Sandbox } from './components/visual-drafts/Sandbox';
+// Lazy load Sandbox to avoid bundling it with the main app
+const Sandbox = React.lazy(() => import('./components/visual-drafts/Sandbox'));
 import { StandardLayout } from './components/layouts/StandardLayout';
 import { ExtremeLandscapeLayout } from './components/layouts/ExtremeLandscapeLayout';
 
@@ -30,7 +31,11 @@ function useLayoutMode() {
 export default function App() {
   // Simple "router" for sandbox
   if (typeof window !== 'undefined' && window.location.search.includes('sandbox')) {
-    return <Sandbox />;
+    return (
+      <Suspense fallback={<div className="w-full h-screen bg-black text-white flex items-center justify-center">Loading Sandbox...</div>}>
+        <Sandbox />
+      </Suspense>
+    );
   }
 
   const isExtremeLandscape = useLayoutMode();
