@@ -15,7 +15,7 @@ export const slides: Slide[] = [
     id: 1,
     label: "01 / State of Mind",
     title: (<span>Thought. Signal. <span className="italic text-white/50">Action.</span></span>),
-    body: "The distance between intent and execution is disappearing.",
+    body: "The distance between intent and execution is about to disappear.",
     supportingContent: (
       <div>
         <SupportingSubheading>Core Mission</SupportingSubheading>

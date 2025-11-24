@@ -9,7 +9,7 @@ Thought. Signal.
 *Action.*
 
 **Body:**  
-The distance between intent and execution is disappearing.
+The distance between intent and execution is about to disappear.
 
 **Supporting Content:**
 
