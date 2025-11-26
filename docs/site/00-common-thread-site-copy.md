@@ -100,14 +100,14 @@ Building the invisible machine.
 ## 06 / Engagement
 
 **Title:**
-Engagement.
+Our Invitation.
 
 **Body:**
 This way of working exists, and it starts with a conversation.
 
 **Supporting Content:**
 
-**Our Invitation**
+**The Path Forward**
 
 You share the vision. We find the openings. Together, we see what's possible.
 
