@@ -1,39 +1,39 @@
-# Common Thread - Main Site Copy
+# Common Thread - Site Copy (Final)
 
 ---
 
 ## 01 / State of Mind
 
-**Title:**  
-Thought. Signal.  
+**Title:**
+Thought. Signal.
 *Action.*
 
-**Body:**  
+**Body:**
 The distance between intent and execution is about to disappear.
 
 **Supporting Content:**
 
 **The Synergy**
 
-When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.
+We learn how you operate. We find the leverage points and the friction.
 
-Time returns to its rightful owner: the human mind.
+The distance closes from there.
 
 ---
 
 ## 02 / Vision
 
-**Title:**  
+**Title:**
 Elevation.
 
-**Body:**  
+**Body:**
 There is a version of your business where you direct, and the world arranges itself accordingly.
 
 **Supporting Content:**
 
 **What Changes**
 
-In that version, context travels intact. What you meant and what happens become the same thing.
+In this version, your intention is the only requirement. Everything else falls into place.
 
 The signal completes its journey.
 
@@ -41,17 +41,17 @@ The signal completes its journey.
 
 ## 03 / Mechanism
 
-**Title:**  
+**Title:**
 The Invisible Machine.
 
-**Body:**  
-Connection is the human signal. Direction becomes action.
+**Body:**
+Your best work, amplified.
 
 **Supporting Content:**
 
 **The Space Between**
 
-Infrastructure handles execution. Complexity recedes from view.
+We absorb the complexity. Your capacity grows without compromising your standards.
 
 The path clears.
 
@@ -59,10 +59,10 @@ The path clears.
 
 ## 04 / Value
 
-**Title:**  
+**Title:**
 Return to the Essential.
 
-**Body:**  
+**Body:**
 When the process is invisible, the connection becomes infinite.
 
 **Supporting Content:**
@@ -77,20 +77,20 @@ ROI is not efficiency. It is sanity.
 
 ## 05 / Leadership
 
-**Title:**  
+**Title:**
 The Architects.
 
-**Body:**  
+**Body:**
 We are stewards of connection, ensuring technology amplifies human intent.
 
 **Supporting Content:**
 
-**Derek Yellin**  
+**Derek Yellin**
 *Chief Executive Officer*
 
 Defining the human vector.
 
-**Justyn Clark**  
+**Justyn Clark**
 *Chief Technology Officer*
 
 Building the invisible machine.
@@ -99,18 +99,16 @@ Building the invisible machine.
 
 ## 06 / Engagement
 
-**Title:**  
+**Title:**
 Engagement.
 
-**Body:**  
-This way of working exists.
+**Body:**
+This way of working exists, and it starts with a conversation.
 
 **Supporting Content:**
 
-**What's Available**
+**The Path Forward**
 
-Strategic clarity flows into operational reality. The invisible machinery handles translation.
-
-Connection without friction. Direction without dilution.
+You share the vision. We find the openings. Together, we see what's possible.
 
 [Read our latest insights →](#blog)

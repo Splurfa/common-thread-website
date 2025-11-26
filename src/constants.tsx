@@ -19,8 +19,8 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>The Synergy</SupportingSubheading>
-        <p className="mb-4">When latency approaches zero, work changes fundamentally. Strategy and execution become continuous.</p>
-        <p>Time returns to its rightful owner: the human mind.</p>
+        <p className="mb-4">We learn how you operate. We find the leverage points and the friction.</p>
+        <p>The distance closes from there.</p>
       </div>
     ),
     Visual: VisualHero
@@ -33,7 +33,7 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>What Changes</SupportingSubheading>
-        <p className="mb-4">In that version, context travels intact. What you meant and what happens become the same thing.</p>
+        <p className="mb-4">In this version, your intention is the only requirement. Everything else falls into place.</p>
         <p>The signal completes its journey.</p>
       </div>
     ),
@@ -43,11 +43,11 @@ export const slides: Slide[] = [
     id: 3,
     label: "03 / Mechanism",
     title: "The Invisible Machine.",
-    body: "Connection is the human signal. Direction becomes action.",
+    body: "Your best work, amplified.",
     supportingContent: (
       <div>
         <SupportingSubheading>The Space Between</SupportingSubheading>
-        <p className="mb-4">Infrastructure handles execution. Complexity recedes from view.</p>
+        <p className="mb-4">We absorb the complexity. Your capacity grows without compromising your standards.</p>
         <p>The path clears.</p>
       </div>
     ),
@@ -92,12 +92,11 @@ export const slides: Slide[] = [
     id: 6,
     label: "06 / Engagement",
     title: "Engagement.",
-    body: "This way of working exists.",
+    body: "This way of working exists, and it starts with a conversation.",
     supportingContent: (
       <div>
-        <SupportingSubheading>What's Available</SupportingSubheading>
-        <p className="mb-6">Strategic clarity flows into operational reality. The invisible machinery handles translation.</p>
-        <p className="mb-6">Connection without friction. Direction without dilution.</p>
+        <SupportingSubheading>The Path Forward</SupportingSubheading>
+        <p className="mb-6">You share the vision. We find the openings. Together, we see what's possible.</p>
         <div className="inline-block py-2 px-2 -mx-2">
           <a
             href="#blog"
