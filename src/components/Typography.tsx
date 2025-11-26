@@ -26,14 +26,14 @@ export const BodyText: React.FC<TypographyProps> = ({ children, className = '' }
 );
 
 export const SupportingSubheading: React.FC<TypographyProps> = ({ children, className = '' }) => (
-  <h4 className={`font-serif text-[22px] md:text-[22px] text-white leading-tight mb-3 font-semibold tracking-tight ${className}`}>
+  <h4 className={`font-serif text-xl md:text-2xl text-white leading-tight mb-3 tracking-tight ${className}`}>
     {children}
   </h4>
 );
 
 export const SupportingText: React.FC<TypographyProps> = ({ children, className = '' }) => (
   <div className={`
-    font-serif text-lg md:text-lg text-white/70 leading-relaxed
+    font-serif text-lg md:text-xl text-white/80 leading-relaxed
     max-w-xl
     ${className}
   `}>

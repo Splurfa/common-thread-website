@@ -208,7 +208,7 @@ export function ExtremeLandscapeLayout({
       font-size: clamp(0.875rem, 1.8vh, 1rem); /* Small Supporting Text */
       line-height: 1.35; /* Tightened line spacing */
       max-width: 45ch;
-      /* Removed color override to let SupportingText (text-white/70) handle color */
+      /* Removed color override to let SupportingText (text-white/80) handle color */
     }
 
     /* Menu Button */

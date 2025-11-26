@@ -18,7 +18,7 @@ The palette is intentionally restrained to emphasize content and motion.
 | **Panel BG** | `#0f0f0f` | `bg-[#0f0f0f]` | Visual/Graphic panels |
 | **Text Primary** | `#ffffff` | `text-white` | Headings, Active States |
 | **Text Secondary** | `rgba(255,255,255,0.8)` | `text-white/80` | Body Text |
-| **Text Tertiary** | `rgba(255,255,255,0.7)` | `text-white/70` | Supporting Text |
+| **Text Tertiary** | `rgba(255,255,255,0.8)` | `text-white/80` | Supporting Text |
 | **Text Muted** | `rgba(255,255,255,0.6)` | `text-white/60` | Labels, Inactive States |
 | **Text Subtle** | `rgba(255,255,255,0.3)` | `text-white/30` | Placeholders, Grid Lines |
 | **Border** | `rgba(255,255,255,0.1)` | `border-white/10` | Dividers, Panel Borders |
@@ -33,13 +33,23 @@ We use a distinct pairing of Serif (Narrative) and Monospace (Technical).
 
 ### Type Scale & Components
 
-| Component | Font | Size (Desktop) | Size (Mobile) | Tracking | Line Height | Usage |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **SerifDisplay** | Serif | `text-5xl` | `text-4xl` | `tracking-tight` | `1.05` | Main Section Titles |
-| **SubHeading** | Serif | `text-xl` | `text-lg` | Normal | `1.25` | Secondary Titles |
-| **BodyText** | Serif | `text-2xl` | `text-xl` | Normal | `1.625` | Main Narrative Text |
-| **SupportingText** | Serif | `text-lg` | `text-lg` | Normal | `1.625` | Detail/Overlay Content |
-| **MonoLabel** | Mono | `text-sm` | `text-xs` | `tracking-[0.2em]` | Normal | Section Numbers, Labels |
+| Component | Font | Size (Desktop) | Size (Mobile) | Weight | Tracking | Line Height | Usage |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **SerifDisplay** | Serif | `text-5xl` | `text-4xl` | Normal | `tracking-tight` | `1.05` | Main Section Titles |
+| **SubHeading** / **SupportingSubheading** | Serif | `text-xl` | `text-lg` | Normal | `tracking-tight` | `1.25` | Secondary Titles, Supporting Section Headings |
+| **BodyText** | Serif | `text-2xl` | `text-xl` | Normal | Normal | `1.625` | Main Narrative Text |
+| **SupportingText** | Serif | `text-xl` | `text-lg` | Normal | Normal | `1.625` | Detail/Overlay Content |
+| **MonoLabel** | Mono | `text-sm` | `text-xs` | Normal | `tracking-[0.2em]` | Normal | Section Numbers, Labels |
+
+**Heading Hierarchy Principle ("Big Brother / Little Brother"):**
+Main headings (`SerifDisplay`) and supporting headings (`SubHeading`/`SupportingSubheading`) should maintain visual consistency through shared characteristics:
+*   **Same font family**: Both use `font-serif`
+*   **Same font weight**: Both use normal weight (never semibold or bold)
+*   **Same tracking**: Both use `tracking-tight` for cohesive feel
+*   **Scaled relationship**: Supporting headings are proportionally smaller versions of main headings, maintaining the same visual DNA
+
+**Desktop Readability Considerations:**
+Supporting text (`SupportingText`) uses a larger size on desktop (`text-xl`, 20px) compared to mobile (`text-lg`, 18px) to improve readability at typical desktop viewing distances. The increased size, combined with `text-white/80` opacity, ensures comfortable reading while maintaining the subtle, refined aesthetic.
 
 ### Special Case: Extreme Landscape
 For short landscape viewports (`height <= 600px`), use specific clamping for balance:

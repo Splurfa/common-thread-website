@@ -32,7 +32,7 @@ export const slides: Slide[] = [
     body: "There is a version of your business where you direct, and the world arranges itself accordingly.",
     supportingContent: (
       <div>
-        <SupportingSubheading>What Changes</SupportingSubheading>
+        <SupportingSubheading>The Shift</SupportingSubheading>
         <p className="mb-4">In this version, your intention is the only requirement. Everything else falls into place.</p>
         <p>The signal completes its journey.</p>
       </div>

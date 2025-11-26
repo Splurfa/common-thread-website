@@ -31,7 +31,7 @@ There is a version of your business where you direct, and the world arranges its
 
 **Supporting Content:**
 
-**What Changes**
+**The Shift**
 
 In this version, your intention is the only requirement. Everything else falls into place.
 
