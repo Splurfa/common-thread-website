@@ -107,7 +107,7 @@ This way of working exists, and it starts with a conversation.
 
 **Supporting Content:**
 
-**The Path Forward**
+**Our Invitation**
 
 You share the vision. We find the openings. Together, we see what's possible.
 

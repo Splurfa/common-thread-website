@@ -95,7 +95,7 @@ export const slides: Slide[] = [
     body: "This way of working exists, and it starts with a conversation.",
     supportingContent: (
       <div>
-        <SupportingSubheading>The Path Forward</SupportingSubheading>
+        <SupportingSubheading>Our Invitation</SupportingSubheading>
         <p className="mb-6">You share the vision. We find the openings. Together, we see what's possible.</p>
         <div className="inline-block py-2 px-2 -mx-2">
           <a
