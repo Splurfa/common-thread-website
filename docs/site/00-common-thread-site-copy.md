@@ -13,7 +13,7 @@ The distance between intent and execution is about to disappear.
 
 **Supporting Content:**
 
-**The Synergy**
+**The Foundation**
 
 We learn how you operate. We find the leverage points and the friction.
 
@@ -67,7 +67,7 @@ When the process is invisible, the connection becomes infinite.
 
 **Supporting Content:**
 
-**Human Restoration**
+**The Human Standard**
 
 Work returns to what it should be. Thinking. Strategy. Connection.
 

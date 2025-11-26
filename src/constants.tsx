@@ -18,7 +18,7 @@ export const slides: Slide[] = [
     body: "The distance between intent and execution is about to disappear.",
     supportingContent: (
       <div>
-        <SupportingSubheading>The Synergy</SupportingSubheading>
+        <SupportingSubheading>The Foundation</SupportingSubheading>
         <p className="mb-4">We learn how you operate. We find the leverage points and the friction.</p>
         <p>The distance closes from there.</p>
       </div>
@@ -60,7 +60,7 @@ export const slides: Slide[] = [
     body: "When the process is invisible, the connection becomes infinite.",
     supportingContent: (
       <div>
-        <SupportingSubheading>Human Restoration</SupportingSubheading>
+        <SupportingSubheading>The Human Standard</SupportingSubheading>
         <p className="mb-4">Work returns to what it should be. Thinking. Strategy. Connection.</p>
         <p>ROI is not efficiency. It is sanity.</p>
       </div>
