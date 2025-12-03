@@ -44,6 +44,97 @@ export const visionModalContent = {
   )
 };
 
+export const mechanismModalContent = {
+  title: "What You Don't Have to Do Anymore",
+  content: (
+    <div className="space-y-8">
+      <div>
+        <h3 className="font-mono text-xs uppercase tracking-widest text-white/50 mb-3">The Marketing Leader</h3>
+        <p className="text-white/90 leading-relaxed mb-4">
+          No more formatting campaign reports at midnight. No more chasing analytics across three different dashboards,
+          copying numbers into slides, making sure the percentages add up.
+        </p>
+        <p className="text-white/70 leading-relaxed">
+          You focus on the story. The message. What resonates with your audience and why.
+          The production, the measurement, the follow-through—that happens in the background.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="font-mono text-xs uppercase tracking-widest text-white/50 mb-3">The Operations Manager</h3>
+        <p className="text-white/90 leading-relaxed mb-4">
+          No more reminding people about deadlines, hunting down status updates, consolidating scattered information
+          from email threads and Slack channels into something coherent.
+        </p>
+        <p className="text-white/70 leading-relaxed">
+          You focus on the decisions that matter. Where the bottlenecks are. What needs to change.
+          The routine coordination, the status tracking, the information synthesis—it just happens.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="font-mono text-xs uppercase tracking-widest text-white/50 mb-3">The Business Owner</h3>
+        <p className="text-white/90 leading-relaxed mb-4">
+          No more writing the same email twelve different ways. No more remembering to follow up, to check in,
+          to send that thing you promised. No more late nights creating first drafts of documents that someone
+          else could handle if you could just articulate what you need.
+        </p>
+        <p className="text-white/70 leading-relaxed">
+          You focus on vision. Strategy. The relationships that matter. The creative work only you can do.
+          Everything else—the execution, the follow-through, the thousand small things that keep you
+          from your actual work—fades into the background.
+        </p>
+      </div>
+
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-white/60 leading-relaxed italic">
+          This is not about working less. It's about working on what you were meant to work on.
+          The distance between your judgment and its execution—that's what disappears.
+        </p>
+      </div>
+    </div>
+  )
+};
+
+export const valueModalContent = {
+  title: "The Return",
+  content: (
+    <div className="space-y-6">
+      <p className="text-white/90 leading-relaxed">
+        The hours come back first. Not in spreadsheets or time logs, but in the sudden realization
+        that you left work at a reasonable hour. That you answered your kid's question without
+        glancing at your phone. That Sunday evening doesn't carry that particular weight anymore.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        Then the decisions simplify. Not because there are fewer of them, but because the noise
+        falls away. What remains are the choices that actually matter—the ones only you can make.
+        The rest handles itself, invisibly, the way breathing happens without conscious thought.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        Focus returns like an old friend. That deep-work state you used to find before everything
+        became urgent. The ability to hold a complex thought long enough to see where it leads.
+        Strategic thinking instead of tactical firefighting.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        Mental space opens up. The background anxiety of things undone, messages unanswered,
+        details untracked—it quiets. Not because you're ignoring it, but because it's handled.
+        You trust the system the way you trust gravity.
+      </p>
+
+      <div className="pt-4 border-t border-white/10">
+        <p className="text-white/70 leading-relaxed italic">
+          This is the return. Not measured in saved minutes or productivity gains, but in
+          reclaimed humanity. In the ability to be present. In work that feels like work again,
+          not an endless state of emergency.
+        </p>
+      </div>
+    </div>
+  )
+};
+
 export const slides: Slide[] = [
   {
     id: 1,
