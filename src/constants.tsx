@@ -10,6 +10,40 @@ import {
   VisualGateway
 } from './components/Visuals';
 
+export const visionModalContent = {
+  title: "What This Looks Like",
+  content: (
+    <div className="space-y-6">
+      <p className="text-white/90 leading-relaxed">
+        You wake up with an idea for a campaign. By the time you've finished describing it over coffee,
+        the first draft is waiting in your inbox—on brand, on message, ready to refine.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        Your quarterly board report compiles itself from live data, formatted exactly how your investors
+        prefer it, highlighting the metrics that matter to them. You review it once and send.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        A client question arrives at 2am. By morning, they have an answer—in your voice, aligned with
+        your values, solving their actual problem. You see the resolution, not the request.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        You think about following up with that prospect. The system already did, three days ago,
+        when the timing was right. Now they're ready to talk.
+      </p>
+
+      <div className="pt-4 border-t border-white/10">
+        <p className="text-white/70 leading-relaxed italic">
+          This is not automation. This is alignment. The distance between what you intend
+          and what actually happens—that distance goes to zero.
+        </p>
+      </div>
+    </div>
+  )
+};
+
 export const slides: Slide[] = [
   {
     id: 1,
@@ -19,8 +53,13 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>The Foundation</SupportingSubheading>
-        <p className="mb-4">We learn how you operate. We find the leverage points and the friction.</p>
-        <p>The distance closes from there.</p>
+        <p className="mb-4">We begin by understanding how you work—where the friction lives, where the leverage points hide. From there, the distance between what you envision and what actually happens starts to close, gradually at first, then all at once.</p>
+        <a
+          href="mailto:hello@common-thread.io"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-blue-300 hover:text-white transition-colors mt-6"
+        >
+          Start a conversation →
+        </a>
       </div>
     ),
     Visual: VisualHero
