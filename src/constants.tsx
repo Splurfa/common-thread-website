@@ -135,6 +135,108 @@ export const valueModalContent = {
   )
 };
 
+export const engagementModalContent = {
+  title: "What Working With Us Feels Like",
+  content: (
+    <div className="space-y-6">
+      <p className="text-white/90 leading-relaxed">
+        There's this moment, usually a few weeks in, where you notice the absence of something.
+        That low-grade anxiety about whether things are moving forward, whether someone saw
+        your message, whether you need to follow up again. It's just... gone.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        You find yourself starting conversations differently. Not with instructions or requests,
+        but with half-formed thoughts. "I'm thinking about..." and then watching as that thread
+        gets picked up, understood, extended. It stops feeling like delegation and starts
+        feeling like thinking out loud with someone who gets it.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        The thing that catches people off guard is how often something gets done before they
+        realize they needed it. Not in a presumptuous way—it's still your call, always—but
+        in that way where you open your inbox and think "oh, right, I was going to handle that."
+        Past tense. Already there.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        And then there's the space. The mental space that opens up when you're not carrying
+        the cognitive load of tracking everything, remembering everything, being the connective
+        tissue for everything. You realize you're thinking strategically again, not just
+        tactically. You have room to wonder, to explore, to actually lead.
+      </p>
+
+      <div className="pt-4 border-t border-white/10">
+        <p className="text-white/70 leading-relaxed italic">
+          This is what partnership feels like. Not vendor and client. Not even colleague
+          and colleague. Something closer to extension—where your judgment and intention
+          flow through without friction, without translation, without loss.
+        </p>
+      </div>
+    </div>
+  )
+};
+
+export const derekBioContent = {
+  name: "Derek Yellin",
+  role: "Chief Executive Officer",
+  tagline: "Defining the human vector.",
+  bio: (
+    <div className="space-y-4">
+      <p className="text-white/90 leading-relaxed">
+        Derek's work has always been about understanding the space between what people intend
+        and what actually happens. Before Common Thread, he spent fifteen years inside
+        businesses—some scaling rapidly, others struggling to coordinate their own complexity.
+        He learned that the problem is never the technology. It's the translation layer.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        The best tools disappear. They become extensions of thought, not obstacles to it.
+        Derek's philosophy is simple: if a system requires you to think like a machine,
+        the system is broken. Technology should adapt to human intent, not the other way around.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        At Common Thread, he's building that translation layer—one that understands context,
+        preserves judgment, and closes the distance between vision and execution. The goal
+        isn't efficiency for its own sake. It's restoring the conditions under which
+        people do their best work.
+      </p>
+    </div>
+  ),
+  linkedIn: "https://linkedin.com/in/derekyelling"
+};
+
+export const justynBioContent = {
+  name: "Justyn Clark",
+  role: "Chief Technology Officer",
+  tagline: "Building the invisible machine.",
+  bio: (
+    <div className="space-y-4">
+      <p className="text-white/90 leading-relaxed">
+        Justyn builds systems that disappear. His background spans financial infrastructure,
+        distributed systems, and enterprise platforms—places where complexity is the norm
+        and failure is expensive. What he learned: the most powerful technology is the kind
+        you never think about. It simply works.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        Great architecture is invisible. It absorbs complexity without creating friction.
+        It scales without demanding attention. Justyn's approach is rooted in restraint—
+        solving the right problem elegantly rather than building elaborate solutions to
+        the wrong one. Less code, more clarity. Less configuration, more intelligence.
+      </p>
+
+      <p className="text-white/90 leading-relaxed">
+        At Common Thread, he's architecting systems that think like humans but execute like machines.
+        Systems that understand intent, preserve nuance, and handle the thousand details that
+        stand between decision and outcome. Technology that earns trust by never asking for it.
+      </p>
+    </div>
+  ),
+  linkedIn: "https://linkedin.com/in/justynclark"
+};
+
 export const slides: Slide[] = [
   {
     id: 1,
