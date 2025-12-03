@@ -43,6 +43,9 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
     <div
       ref={backdropRef}
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? "modal-title" : undefined}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
     >
       <div
@@ -59,7 +62,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
         </button>
 
         {title && (
-          <h2 className="font-serif text-2xl md:text-3xl text-white mb-6">{title}</h2>
+          <h2 id="modal-title" className="font-serif text-2xl md:text-3xl text-white mb-6">{title}</h2>
         )}
 
         <div className="font-serif text-white/70 leading-relaxed">

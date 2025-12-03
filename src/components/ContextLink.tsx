@@ -11,18 +11,10 @@ export const ContextLink: React.FC<ContextLinkProps> = ({
   onClick,
   className = ''
 }) => {
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      onClick();
-    }
-  };
-
   return (
     <button
       type="button"
       onClick={onClick}
-      onKeyDown={handleKeyPress}
       className={`
         inline
         text-blue-300
@@ -33,8 +25,6 @@ export const ContextLink: React.FC<ContextLinkProps> = ({
         focus:outline-none focus:ring-2 focus:ring-blue-300/50 focus:ring-offset-2 focus:ring-offset-transparent
         ${className}
       `}
-      role="button"
-      tabIndex={0}
     >
       {children}
     </button>
