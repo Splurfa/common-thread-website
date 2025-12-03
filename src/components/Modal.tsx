@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,17 +9,23 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, title, children }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key
+  // Handle Escape key and body overflow
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    // Focus the modal content when opened
+    contentRef.current?.focus();
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
@@ -27,25 +34,28 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
 
   // Close on backdrop click
   const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === modalRef.current) onClose();
+    if (e.target === backdropRef.current) onClose();
   };
 
   if (!isOpen) return null;
 
   return (
     <div
-      ref={modalRef}
+      ref={backdropRef}
       onClick={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
     >
-      <div className="relative max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto bg-[#0a0a0a] border border-white/10 rounded-lg p-8 md:p-12">
-        {/* Close button */}
+      <div
+        ref={contentRef}
+        tabIndex={-1}
+        className="relative max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto bg-[#0a0a0a] border border-white/10 rounded-lg p-8 md:p-12 outline-none"
+      >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors font-mono text-sm"
+          className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors"
           aria-label="Close modal"
         >
-          ✕
+          <X className="w-5 h-5" />
         </button>
 
         {title && (

@@ -23,42 +23,134 @@ const MenuOverlay = ({ isOpen, onClose, currentSlideId, onNavigate }: any) => {
 
     return (
         <div className={`fixed inset-0 z-[100] flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isAnimating ? 'bg-black/90 backdrop-blur-xl opacity-100' : 'bg-black/0 backdrop-blur-none opacity-0'}`}>
-            <button onClick={onClose} className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+            {/* Close Button */}
+            <button
+                onClick={onClose}
+                className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-10 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Close menu"
+            >
                 <X className="w-8 h-8" />
             </button>
 
-            <div className={`flex flex-col items-center gap-8 transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <div className="flex flex-col gap-6 text-center">
-                    {slides.map((slide, index) => (
-                        <button
-                            key={slide.id}
-                            onClick={() => { onNavigate(index); onClose(); }}
-                            className={`font-serif text-3xl md:text-4xl hover:text-white transition-colors ${currentSlideId === slide.id ? 'text-white italic' : 'text-white/30'}`}
-                        >
-                            <span className="font-mono text-xs tracking-widest block mb-1 opacity-50">{slide.label.split('/')[0]}</span>
-                            {slide.label.split('/')[1].trim()}
-                        </button>
-                    ))}
+            {/* Menu Content Container */}
+            <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-20">
+                {/* Two-column layout on desktop, single column on mobile */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 lg:gap-32">
 
-                    {/* Blog Link */}
-                    <div className="inline-block py-2 px-2 -mx-2 mt-4">
-                        <a
-                            href="#blog"
-                            onClick={onClose}
-                            className="font-serif text-3xl md:text-4xl text-white/30 hover:text-white transition-all duration-500 ease-out transform hover:scale-105"
-                            style={{ transformOrigin: 'center center' }}
-                        >
-                            <span className="font-mono text-xs tracking-widest block mb-1 opacity-50">07</span>
-                            Insights
-                        </a>
+                    {/* Left Column: Navigation */}
+                    <div className={`flex flex-col items-center md:items-start justify-center transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className="flex flex-col gap-8 md:gap-10 text-center md:text-left w-full">
+                            {/* Navigation Items with Staggered Animation */}
+                            {slides.map((slide, index) => (
+                                <button
+                                    key={slide.id}
+                                    onClick={() => { onNavigate(index); onClose(); }}
+                                    className={`
+                                        font-serif text-3xl md:text-4xl lg:text-5xl
+                                        hover:text-white transition-all duration-300
+                                        min-h-[44px] flex flex-col items-center md:items-start justify-center
+                                        ${currentSlideId === slide.id ? 'text-white italic' : 'text-white/30'}
+                                        ${isAnimating ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                                    `}
+                                    style={{
+                                        transitionDelay: isAnimating ? `${200 + index * 80}ms` : '0ms'
+                                    }}
+                                >
+                                    <span className="font-mono text-xs tracking-widest mb-2 opacity-50 uppercase">
+                                        {slide.label.split('/')[0]}
+                                    </span>
+                                    <span>{slide.label.split('/')[1].trim()}</span>
+                                </button>
+                            ))}
+
+                            {/* Blog Link */}
+                            <div className="inline-block py-2 md:py-0 mt-4 md:mt-2">
+                                <a
+                                    href="#blog"
+                                    onClick={onClose}
+                                    className={`
+                                        font-serif text-3xl md:text-4xl lg:text-5xl
+                                        text-white/30 hover:text-white
+                                        transition-all duration-500 ease-out
+                                        transform hover:scale-105
+                                        min-h-[44px] flex flex-col items-center md:items-start justify-center
+                                        ${isAnimating ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                                    `}
+                                    style={{
+                                        transformOrigin: 'center center',
+                                        transitionDelay: isAnimating ? `${200 + slides.length * 80}ms` : '0ms'
+                                    }}
+                                >
+                                    <span className="font-mono text-xs tracking-widest mb-2 opacity-50 uppercase">07</span>
+                                    <span>Insights</span>
+                                </a>
+                            </div>
+
+                            {/* Divider */}
+                            <div className={`w-16 md:w-24 h-px bg-white/20 my-4 mx-auto md:mx-0 transition-all duration-700 ${isAnimating ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}
+                                style={{ transitionDelay: isAnimating ? `${200 + (slides.length + 1) * 80}ms` : '0ms' }}
+                            />
+
+                            {/* Contact Link */}
+                            <a
+                                href="mailto:hello@common-thread.io"
+                                className={`
+                                    font-mono text-xs tracking-widest uppercase
+                                    text-white/70 hover:text-white
+                                    transition-all duration-300
+                                    flex items-center justify-center md:justify-start gap-2
+                                    min-h-[44px]
+                                    ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
+                                `}
+                                style={{ transitionDelay: isAnimating ? `${200 + (slides.length + 2) * 80}ms` : '0ms' }}
+                            >
+                                Contact Us <ExternalLink className="w-3 h-3" />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Brand Statement / Atmospheric Element */}
+                    <div className={`
+                        hidden md:flex flex-col justify-center items-start
+                        border-l border-white/10 pl-12 lg:pl-16
+                        transition-all duration-700 delay-300
+                        ${isAnimating ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}
+                    `}>
+                        <div className="space-y-8">
+                            {/* Brand Statement */}
+                            <div className="space-y-4">
+                                <h3 className="font-serif text-2xl lg:text-3xl text-white/90 leading-relaxed">
+                                    Crafting digital experiences that resonate
+                                </h3>
+                                <p className="font-sans text-sm lg:text-base text-white/50 leading-relaxed max-w-md">
+                                    We weave together strategy, design, and technology to create meaningful connections between brands and their audiences.
+                                </p>
+                            </div>
+
+                            {/* Atmospheric Detail */}
+                            <div className="pt-8 space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-white/30" />
+                                    <span className="font-mono text-xs tracking-widest uppercase text-white/40">
+                                        Strategic Design
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-white/30" />
+                                    <span className="font-mono text-xs tracking-widest uppercase text-white/40">
+                                        Technical Excellence
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-white/30" />
+                                    <span className="font-mono text-xs tracking-widest uppercase text-white/40">
+                                        Brand Narrative
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div className="w-12 h-px bg-white/20 my-4" />
-
-                <a href="mailto:hello@common-thread.io" className="font-mono text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors flex items-center gap-2">
-                    Contact Us <ExternalLink className="w-3 h-3" />
-                </a>
             </div>
         </div>
     );

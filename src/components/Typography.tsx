@@ -2,7 +2,7 @@ import React from 'react';
 import { TypographyProps } from '../types';
 
 export const SerifDisplay: React.FC<TypographyProps> = ({ children, className = '' }) => (
-  <h1 className={`font-serif text-4xl sm:text-4xl md:text-4xl lg:text-5xl leading-[1.05] text-white tracking-tight pb-1 ${className}`}>
+  <h1 className={`font-serif text-4xl sm:text-4xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] lg:leading-[0.95] text-white tracking-tight lg:tracking-tighter pb-1 ${className}`}>
     {children}
   </h1>
 );
