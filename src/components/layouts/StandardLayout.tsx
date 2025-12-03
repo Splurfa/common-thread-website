@@ -4,6 +4,27 @@ import { slides } from '../../constants';
 import { SerifDisplay, MonoLabel, BodyText, SupportingText } from '../Typography';
 import { Blog } from '../Blog';
 
+// --- Slide Indicators Component ---
+const SlideIndicators = ({ currentSlide, totalSlides, onNavigate }: {
+    currentSlide: number;
+    totalSlides: number;
+    onNavigate: (index: number) => void;
+}) => (
+    <div className="hidden md:flex gap-2 pointer-events-auto">
+        {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+                key={index}
+                onClick={() => onNavigate(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                        ? 'bg-white scale-125'
+                        : 'bg-white/30 hover:bg-white/60'
+                    }`}
+                aria-label={`Go to slide ${index + 1}`}
+            />
+        ))}
+    </div>
+);
+
 // --- Menu Overlay Component ---
 const MenuOverlay = ({ isOpen, onClose, currentSlideId, onNavigate }: any) => {
     const [isAnimating, setIsAnimating] = React.useState(false);
@@ -226,6 +247,15 @@ export function StandardLayout({
                         Common Thread
                     </span>
                 </button>
+
+                {/* Slide Indicators - Centered */}
+                <div className="absolute left-1/2 transform -translate-x-1/2">
+                    <SlideIndicators
+                        currentSlide={currentSlide}
+                        totalSlides={totalSlides}
+                        onNavigate={changeSlide}
+                    />
+                </div>
 
                 {/* Menu Trigger */}
                 <button

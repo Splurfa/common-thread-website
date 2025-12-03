@@ -4,6 +4,7 @@ import { slides } from './constants';
 const Sandbox = React.lazy(() => import('./components/visual-drafts/Sandbox'));
 import { StandardLayout } from './components/layouts/StandardLayout';
 import { ExtremeLandscapeLayout } from './components/layouts/ExtremeLandscapeLayout';
+import { Gateway } from './components/Gateway';
 
 // Custom Hook for Layout Detection
 function useLayoutMode() {
@@ -39,6 +40,11 @@ export default function App() {
   }
 
   const isExtremeLandscape = useLayoutMode();
+
+  // Gateway state - check session storage to avoid showing on refresh
+  const [showGateway, setShowGateway] = useState(() => {
+    return sessionStorage.getItem('gateway-entered') !== 'true';
+  });
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -216,6 +222,12 @@ export default function App() {
     setTimeout(() => setHasLoadedSupport(true), 500);
   }, []);
 
+  // Handle gateway exit
+  const handleEnterGateway = () => {
+    sessionStorage.setItem('gateway-entered', 'true');
+    setShowGateway(false);
+  };
+
   // Mobile & Desktop Click-to-Expand Handler
   const handleGlobalClick = (e: React.MouseEvent) => {
     // Protection: Ignore clicks inside the Visual Container (Right/Top panel)
@@ -366,9 +378,16 @@ export default function App() {
     onTouchEnd
   };
 
-  return isExtremeLandscape ? (
-    <ExtremeLandscapeLayout {...layoutProps} />
-  ) : (
-    <StandardLayout {...layoutProps} />
+  return (
+    <>
+      {showGateway && (
+        <Gateway onEnter={handleEnterGateway} />
+      )}
+      {isExtremeLandscape ? (
+        <ExtremeLandscapeLayout {...layoutProps} />
+      ) : (
+        <StandardLayout {...layoutProps} />
+      )}
+    </>
   );
 }
