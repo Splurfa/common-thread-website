@@ -135,6 +135,36 @@ export const valueModalContent = {
   )
 };
 
+// ============================================================================
+// PERSPECTIVE CONTENT
+// Used with PerspectiveSelector component for 3-role cascade view
+// Each modal that uses perspectives has content for: Owner, Manager, Team Member
+// ============================================================================
+
+export const mechanismPerspectives = {
+  owner: <div>[OWNER: What you don't have to do anymore - PLACEHOLDER]</div>,
+  manager: <div>[MANAGER: What you don't have to do anymore - PLACEHOLDER]</div>,
+  teamMember: <div>[TEAM MEMBER: What you don't have to do anymore - PLACEHOLDER]</div>
+};
+
+export const visionPerspectives = {
+  owner: <div>[OWNER: What this looks like for you - PLACEHOLDER]</div>,
+  manager: <div>[MANAGER: What this looks like for you - PLACEHOLDER]</div>,
+  teamMember: <div>[TEAM MEMBER: What this looks like for you - PLACEHOLDER]</div>
+};
+
+export const valuePerspectives = {
+  owner: <div>[OWNER: What you get back - PLACEHOLDER]</div>,
+  manager: <div>[MANAGER: What you get back - PLACEHOLDER]</div>,
+  teamMember: <div>[TEAM MEMBER: What you get back - PLACEHOLDER]</div>
+};
+
+export const engagementPerspectives = {
+  owner: <div>[OWNER: What working with us feels like - PLACEHOLDER]</div>,
+  manager: <div>[MANAGER: What working with us feels like - PLACEHOLDER]</div>,
+  teamMember: <div>[TEAM MEMBER: What working with us feels like - PLACEHOLDER]</div>
+};
+
 export const engagementModalContent = {
   title: "What Working With Us Feels Like",
   content: (
@@ -246,7 +276,11 @@ export const slides: Slide[] = [
     supportingContent: (
       <div>
         <SupportingSubheading>The Foundation</SupportingSubheading>
-        <p className="mb-4">We begin by understanding how you work—where the friction lives, where the leverage points hide. From there, the distance between what you envision and what actually happens starts to close, gradually at first, then all at once.</p>
+        {/* NOTE: Three declarative statements feel performative (manifesto tone).
+            Needs rewrite that flows more naturally while keeping same brevity.
+            Consider: conversation tone vs. manifesto tone */}
+        <p className="mb-4">We learn how you operate. We find the leverage points and the friction.</p>
+        <p className="mb-4">The distance closes from there.</p>
         <a
           href="mailto:hello@common-thread.io"
           className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-blue-300 hover:text-white transition-colors mt-6"

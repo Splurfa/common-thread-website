@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
-import { slides } from '../../constants';
+import { slides, visionModalContent, mechanismPerspectives } from '../../constants';
+import { PerspectiveSelector } from '../PerspectiveSelector';
 import { SerifDisplay, MonoLabel, BodyText, SupportingText } from '../Typography';
 import { Blog } from '../Blog';
+import { Modal } from '../Modal';
+import { ContextLink } from '../ContextLink';
 
 // --- Slide Indicators Component ---
 const SlideIndicators = ({ currentSlide, totalSlides, onNavigate }: {
@@ -203,6 +206,10 @@ export function StandardLayout({
     onTouchStart,
     onTouchEnd
 }: any) {
+    // Modal state
+    const [showVisionModal, setShowVisionModal] = useState(false);
+    const [showMechanismModal, setShowMechanismModal] = useState(false);
+
     return (
         <div
             className="h-[100dvh] w-full bg-[#0a0a0a] text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white/20 touch-none relative overscroll-none"
@@ -210,6 +217,24 @@ export function StandardLayout({
             onTouchEnd={onTouchEnd}
             onClick={handleGlobalClick}
         >
+            {/* Vision Modal */}
+            <Modal
+                isOpen={showVisionModal}
+                onClose={() => setShowVisionModal(false)}
+                title={visionModalContent.title}
+            >
+                {visionModalContent.content}
+            </Modal>
+
+            {/* Mechanism Modal - Uses PerspectiveSelector */}
+            <Modal
+                isOpen={showMechanismModal}
+                onClose={() => setShowMechanismModal(false)}
+                title="What You Don't Have to Do Anymore"
+            >
+                <PerspectiveSelector perspectives={mechanismPerspectives} />
+            </Modal>
+
             {/* Blog Overlay */}
             {showBlog && (
                 <Blog onClose={() => window.location.hash = ''} />
@@ -337,6 +362,24 @@ export function StandardLayout({
                             {/* Desktop: Fluid typography (clamp) to smooth out responsive grey zones */}
                             <SerifDisplay className="text-4xl md:text-[clamp(2.5rem,2vw+1.5rem,3.5rem)]">{currentContent.title}</SerifDisplay>
                             <BodyText className="text-lg md:text-[clamp(1.25rem,0.6vw+1rem,1.5rem)]">{currentContent.body}</BodyText>
+
+                            {/* Modal trigger - Slide 2 only */}
+                            {currentContent.id === 2 && (
+                                <div className="mt-4">
+                                    <ContextLink onClick={() => setShowVisionModal(true)}>
+                                        What does this look like? →
+                                    </ContextLink>
+                                </div>
+                            )}
+
+                            {/* Modal trigger - Slide 3 (Mechanism) */}
+                            {currentContent.id === 3 && (
+                                <div className="mt-4">
+                                    <ContextLink onClick={() => setShowMechanismModal(true)}>
+                                        See what changes for you →
+                                    </ContextLink>
+                                </div>
+                            )}
                         </div>
 
                         {/* SUPPORTING CONTENT CONTAINER */}
